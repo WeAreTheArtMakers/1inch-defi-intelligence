@@ -2,156 +2,534 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DeFi Intelligence</title>
 <meta name="description" content="DeFi Intelligence — self-hosted multi-chain DeFi analytics and evidence-grounded AI research: token exploration, anomaly detection, reporting and private AI integration.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A1020">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/ibm-plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-condensed-600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--bg:#f7f8fa;--surface:#fff;--ink:#0f1726;--ink2:#3d4a5c;--ink3:#6b7789;--line:#e3e7ee;--accent:#3b6ef5;--good:#14805e;--warn:#a86400;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f17;--surface:#121826;--ink:#e8edf6;--ink2:#b3bdcc;--ink3:#7d889a;--line:#232c3d;--accent:#7aa2ff;--good:#4cc79a;--warn:#e0a84a;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#0b0f17;--surface:#121826;--ink:#e8edf6;--ink2:#b3bdcc;--ink3:#7d889a;--line:#232c3d;--accent:#7aa2ff;--good:#4cc79a;--warn:#e0a84a;color-scheme:dark}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}header{padding:56px 0 28px}h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
-h2{font-size:22px;margin:44px 0 12px;letter-spacing:-.01em}h3{font-size:16px;margin:0 0 6px}p{margin:0 0 12px;color:var(--ink2)}
-.lead{font-size:18px;max-width:760px}.note{font-size:13px;color:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
-.card p{font-size:14px;margin:0}.badge{display:inline-block;font-size:12px;font-weight:650;border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-right:6px;color:var(--ink2)}
-.ok{color:var(--good)}.warnc{color:var(--warn)}figure{margin:0}img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
-figcaption{font-size:13px;color:var(--ink3);margin-top:6px}.shots{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--ink3);font-weight:600}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}ul{margin:0;padding-left:20px;color:var(--ink2)}li{margin:4px 0}
-.num{font-variant-numeric:tabular-nums;font-weight:650;color:var(--ink)}footer{margin:56px 0 32px;font-size:13px;color:var(--ink3)}a{color:var(--accent)}
-.btn{display:inline-block;font-weight:650;font-size:15px;border-radius:10px;padding:11px 18px;text-decoration:none;border:1px solid var(--accent);background:var(--accent);color:#fff}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0b0f17}}:root[data-theme="dark"] .btn{color:#0b0f17}
-.btn:hover{filter:brightness(1.08)}.btn:focus-visible{outline:3px solid var(--ink3);outline-offset:2px}.cta{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:20px 0 14px}
-.cta small{font-size:13px;color:var(--ink3)}.steps{counter-reset:s;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
-.steps .card h3::before{counter-increment:s;content:counter(s) ". ";color:var(--accent)}.pilot{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
-.st-ok{color:var(--good);font-weight:650}.st-no{color:var(--warn);font-weight:650}
+@font-face{font-family:"Plex Sans";font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/ibm-plex-sans-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Plex Condensed";font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/ibm-plex-sans-condensed-600-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --night:#0A1020; --deep:#070C18; --surface:#111A2E; --raised:#17223B; --line:#24314D; --line-soft:#1B2640;
+  --ink:#E8EDF6; --ink-2:#A7B2C6; --ink-3:#8590A8;
+  --blue:#7EA6FF; --brass:#E2B65E; --brass-ink:#1A1407; --amber:#E7A951;
+  --display:"Plex Condensed","Plex Sans",system-ui,sans-serif; --text:"Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-sm:8px; --r-md:14px; --r-lg:22px; --wrap:1180px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--ink);font:400 17px/1.6 var(--text);font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue);text-underline-offset:3px}
+a:hover{color:#A9C3FF}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-999px;top:12px;background:var(--brass);color:var(--brass-ink);padding:8px 14px;border-radius:var(--r-sm);font-weight:600;z-index:20}
+.skip:focus{left:12px}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.01em;margin:0;color:var(--ink)}
+h1{font-size:clamp(40px,4.9vw,68px);line-height:1.03;letter-spacing:-.02em;max-width:15ch}
+h2{font-size:clamp(30px,3.4vw,44px);line-height:1.08;max-width:22ch}
+h3{font-size:22px;line-height:1.2}
+p{margin:0 0 14px;color:var(--ink-2)}
+.lede{font-size:clamp(18px,1.6vw,20px);line-height:1.55;max-width:58ch;color:var(--ink-2)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 16px/1 var(--text);padding:15px 22px;border-radius:12px;text-decoration:none;background:var(--brass);color:var(--brass-ink);border:1px solid #F0CD86;box-shadow:0 10px 30px -12px rgba(226,182,94,.55);transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+.btn:hover{color:var(--brass-ink);background:#ECC575;transform:translateY(-1px);box-shadow:0 14px 34px -12px rgba(226,182,94,.7)}
+.btn-quiet{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn-quiet:hover{background:var(--surface);color:var(--ink);box-shadow:none}
+.btn-sm{padding:10px 16px;font-size:15px}
+
+/* header */
+.top{position:sticky;top:0;z-index:10;background:rgba(10,16,32,.82);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--line-soft)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font:600 19px/1 var(--display);letter-spacing:.005em}
+.brand svg{flex:none}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:var(--ink-2);text-decoration:none;font-size:15px}
+.nav a:hover{color:var(--ink)}
+.nav a.btn,.nav a.btn:hover,.menu .panel a.btn,.menu .panel a.btn:hover{color:var(--brass-ink)}
+.menu{display:none;position:relative}
+.menu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;color:var(--ink);font-size:15px}
+.menu summary::-webkit-details-marker{display:none}
+.menu[open] summary{background:var(--surface)}
+.menu .panel{position:absolute;right:0;top:calc(100% + 10px);min-width:230px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:10px;display:grid;gap:2px;box-shadow:0 24px 48px -20px rgba(0,0,0,.7)}
+.menu .panel a{padding:11px 12px;border-radius:10px;color:var(--ink);text-decoration:none}
+.menu .panel a:hover{background:var(--raised)}
+.menu .panel .btn{justify-content:center;margin-top:6px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding:72px 0 40px}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:900px;height:700px;background:radial-gradient(closest-side,rgba(126,166,255,.16),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-200px;bottom:-260px;width:720px;height:520px;background:radial-gradient(closest-side,rgba(226,182,94,.09),transparent 70%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:center}
+@media (min-width:1101px){.stage{width:calc(100% + 72px);margin-right:-72px}}
+.hero .lede{margin-top:22px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
+.actions a.link{color:var(--ink);font-weight:500;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.actions a.link:hover{border-color:var(--blue)}
+.assure{margin-top:26px;font-size:14px;color:var(--ink-3);max-width:52ch}
+
+/* device stage */
+.stage{position:relative;aspect-ratio:1.25/1;perspective:2200px}
+.dev{position:absolute;background:#0B1120;border:1px solid #2A3756;box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03) inset}
+.dev img{width:100%;height:100%;object-fit:cover;object-position:top left;border-radius:inherit}
+.bar{display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;background:#0E1628;border-bottom:1px solid #1E2944}
+.bar i{width:8px;height:8px;border-radius:50%;background:#2B3854;flex:none}
+.url{flex:1;min-width:0;height:18px;border-radius:9px;background:#0A1222;border:1px solid #1E2944;color:#7D89A2;font:500 10.5px/16px var(--text);padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.laptop{right:0;top:2%;width:86%;border-radius:12px;transform:rotateY(-7deg) rotateX(2deg);transform-origin:right center}
+.laptop .screen{aspect-ratio:16/10;overflow:hidden;border-radius:0 0 11px 11px}
+.laptop::after{content:"";position:absolute;left:-4%;right:-4%;bottom:-16px;height:16px;border-radius:0 0 18px 18px;background:linear-gradient(#1C2640,#0D1324);border:1px solid #2A3756;border-top:none}
+.tablet{left:0;bottom:2%;width:36%;border-radius:20px;padding:8px;background:#060A14}
+.tablet .bar,.phone .bar{height:22px;border-radius:12px 12px 0 0;padding:0 8px}
+.tablet .bar .url,.phone .bar .url{font-size:8.5px;height:14px;line-height:12px}
+.tablet .screen{aspect-ratio:3/4.1;overflow:hidden;border-radius:0 0 12px 12px}
+.phone{right:6%;bottom:-3%;width:21%;border-radius:28px;padding:7px;background:#060A14}
+.phone .screen{aspect-ratio:9/18.4;overflow:hidden;border-radius:0 0 20px 20px}
+.phone .bar{border-radius:21px 21px 0 0}
+.stage-note{margin:34px 0 0;font-size:13.5px;color:var(--ink-3);max-width:70ch}
+@media (prefers-reduced-motion:no-preference){
+  .dev{animation:settle .9s cubic-bezier(.2,.7,.2,1) both}
+  .laptop{animation-name:settle-laptop}
+  .tablet{animation-delay:.18s}
+  .phone{animation-delay:.32s}
+  @keyframes settle{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+  @keyframes settle-laptop{from{opacity:0;translate:0 18px}to{opacity:1;translate:0 0}}
+}
+
+/* bands */
+section{scroll-margin-top:84px}
+.band{padding:96px 0;border-top:1px solid var(--line-soft)}
+.band.alt{background:linear-gradient(180deg,var(--deep),var(--night))}
+.intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:48px;align-items:end;margin-bottom:48px}
+.intro p{margin:0}
+
+/* coverage ledger */
+.ledger{display:grid;grid-template-columns:180px 1fr;border-top:1px solid var(--line);margin-top:28px}
+.ledger dt,.ledger dd{margin:0;padding:18px 0;border-bottom:1px solid var(--line)}
+.ledger dt{color:var(--ink-3);font-size:15px}
+.ledger dd{display:flex;flex-wrap:wrap;gap:8px 10px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:15px}
+.tag .dot{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+.tag.muted{color:var(--ink-2)} .tag.muted .dot{background:#5D6A86}
+
+/* audiences */
+.aud{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.aud div{padding:26px 0 26px 22px;border-left:2px solid var(--line);margin-bottom:14px}
+.aud div:hover{border-left-color:var(--blue)}
+.aud h3{font-size:21px;margin-bottom:8px}
+.aud p{margin:0;font-size:16px}
+
+/* pipeline (a real sequence) */
+.pipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;counter-reset:step;position:relative;margin:0;padding:0}
+.pipe li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px 26px 26px;position:relative}
+.pipe li::before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid var(--blue);color:var(--blue);font:600 15px/1 var(--text);margin-bottom:18px}
+.pipe li:not(:last-child)::after{content:"";position:absolute;top:44px;right:-23px;width:24px;height:1px;background:var(--blue);opacity:.5}
+.pipe h3{margin-bottom:10px}
+.pipe p{margin:0;font-size:16px}
+
+/* feature rows */
+.feature{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:56px 0}
+.feature + .feature{border-top:1px solid var(--line-soft)}
+.feature.flip .copy{order:2}
+.feature h3{font-size:clamp(26px,2.6vw,34px);margin-bottom:14px}
+.feature ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.feature li{position:relative;padding-left:22px;color:var(--ink-2);font-size:16px}
+.feature li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--brass)}
+.shot{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 30px 60px -32px rgba(0,0,0,.8)}
+figure{margin:0}
+figcaption{font-size:14px;color:var(--ink-3);margin-top:12px}
+
+/* AI */
+.ai-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:56px;align-items:start}
+.ai-phone{max-width:300px;justify-self:center}
+.ai-phone .dev{position:relative;inset:auto;width:100%;transform:none}
+.ai-phone .screen img{object-position:bottom center}
+
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tr:last-child td{border-bottom:none}
+th{color:var(--ink-3);font-weight:500;font-size:14px;background:#0F182B}
+td{color:var(--ink-2)} td:first-child{color:var(--ink)}
+.num{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+.st{white-space:nowrap;font-weight:600}
+.st.ok{color:var(--brass)} .st.part{color:var(--blue)} .st.no{color:var(--ink-3)}
+.note{font-size:14.5px;color:var(--ink-3);margin-top:14px;max-width:80ch}
+
+/* research cases */
+.cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.case{border-top:2px solid var(--brass);padding-top:18px}
+.case h3{font-size:21px;margin-bottom:6px}
+.case .when{font-size:14px;color:var(--ink-3);margin-bottom:14px}
+.case p{font-size:16px}
+
+/* pilot */
+.pilot{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;background:linear-gradient(135deg,#131D33,#0D1528);border:1px solid var(--line);border-radius:28px;padding:56px;position:relative;overflow:hidden}
+.pilot::before{content:"";position:absolute;right:-160px;top:-160px;width:460px;height:460px;background:radial-gradient(closest-side,rgba(226,182,94,.14),transparent 70%)}
+.pilot h2{max-width:16ch}
+.pilot .list{margin:0;padding:0;list-style:none;display:grid;gap:18px;position:relative}
+.pilot .list b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.pilot .list p{margin:0;font-size:16px}
+.contact{margin-top:26px;font-size:15px;color:var(--ink-3)}
+.email{color:var(--ink);font-weight:500;user-select:all;-webkit-user-select:all;border-bottom:1px dashed var(--line);padding-bottom:1px}
+
+/* limits + footer */
+.limits{columns:2 380px;column-gap:56px;margin:0;padding:0;list-style:none}
+.limits li{break-inside:avoid;padding:14px 0 14px 22px;position:relative;color:var(--ink-2);font-size:16px;border-bottom:1px solid var(--line-soft)}
+.limits li::before{content:"";position:absolute;left:0;top:1.45em;width:8px;height:8px;border:1px solid var(--ink-3);border-radius:50%}
+footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink-3);font-size:15px}
+.foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr) minmax(0,3fr);gap:40px}
+.foot h4{font:600 15px/1.3 var(--text);color:var(--ink);margin:0 0 12px}
+.foot p{color:var(--ink-3);font-size:15px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{color:var(--ink-2);text-decoration:none} .foot a:hover{color:var(--ink)}
+
+/* responsive */
+@media (max-width:1100px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);gap:56px}
+  h1{max-width:16ch}
+  .stage{max-width:880px;margin:0 auto;width:100%}
+  .intro{grid-template-columns:minmax(0,1fr);gap:18px}
+  .feature,.feature.flip{grid-template-columns:minmax(0,1fr);gap:28px}
+  .feature.flip .copy{order:0}
+  .ai-grid{grid-template-columns:minmax(0,1fr)}
+  .pilot{grid-template-columns:minmax(0,1fr);padding:40px}
+  .foot{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .nav{display:none} .menu{display:block}
+  .pipe{grid-template-columns:minmax(0,1fr)} .pipe li:not(:last-child)::after{display:none}
+  .cases{grid-template-columns:minmax(0,1fr)}
+  .aud{grid-template-columns:minmax(0,1fr)}
+  .band{padding:72px 0}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  .hero{padding:44px 0 24px}
+  .stage{aspect-ratio:1/1.02}
+  .laptop{width:100%;top:0;transform:none}
+  .laptop::after{bottom:-10px;height:10px}
+  .tablet{width:46%;bottom:0;left:0}
+  .phone{width:30%;right:2%;bottom:-2%}
+  .bar{height:22px} .url{font-size:8.5px;height:14px;line-height:12px}
+  .tablet .bar,.phone .bar{height:16px} .tablet .url,.phone .url{display:none}
+  .ledger{grid-template-columns:minmax(0,1fr)} .ledger dt{padding-bottom:0;border-bottom:none}
+  .pilot{padding:28px 22px;border-radius:22px}
+  .foot{grid-template-columns:minmax(0,1fr)}
+  th,td{padding:12px 14px}
+  .btn{width:100%;justify-content:center}
+  .actions a.link{margin:0 auto}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-  <span class="badge">Self-hosted</span><span class="badge">Multi-chain</span><span class="badge">Evidence-grounded AI</span>
-  <h1>DeFi Intelligence</h1>
-  <p class="lead">Self-hosted, multi-chain DeFi analytics and research: explore any token, detect unusual activity, produce source-backed reports, and ask an AI analyst that may only state numbers it can prove from verified on-chain data.</p>
-  <div class="cta"><a class="btn" href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a><small>Runs on your own infrastructure. Your organisation's data and AI prompts stay on your servers unless you choose a cloud AI provider.</small></div>
-  <p class="note">Independent software, not affiliated with or endorsed by any protocol it analyses. This static page shows <b>precomputed, reviewed snapshots generated on 2026-10-17</b>. It is not live data and it does not connect to any API.</p>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="DeFi Intelligence, back to top">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg>
+      DeFi Intelligence
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#product">Product</a>
+      <a href="#ai">AI analyst</a>
+      <a href="#status">What's verified</a>
+      <a href="#deploy">Deployment</a>
+      <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+    </nav>
+    <details class="menu">
+      <summary aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Menu</summary>
+      <div class="panel">
+        <a href="#product">Product</a>
+        <a href="#ai">AI analyst</a>
+        <a href="#status">What's verified</a>
+        <a href="#deploy">Deployment</a>
+        <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+      </div>
+    </details>
+  </div>
 </header>
 
-<section>
-  <h2>Who it is for</h2>
-  <div class="grid">
-    <div class="card"><h3>Protocols, DAOs and token teams</h3><p>See how your token actually trades across chains and pools — volume, liquidity, valuation coverage — and get flagged when activity departs from its baseline, with the evidence attached.</p></div>
-    <div class="card"><h3>Funds and research desks</h3><p>Source-backed token and protocol research: every figure carries its coverage, valuation method and the SQL behind it, so analyses can be reproduced and reviewed.</p></div>
-    <div class="card"><h3>Risk, compliance and market-integrity analytics</h3><p>Anomaly findings for investigation triage — statistical observations with baselines, limitations and alternative explanations, never accusations.</p></div>
-    <div class="card"><h3>Analytics consultancies</h3><p>Client-ready reports from verified data on private infrastructure, with an AI analyst that answers in several languages without inventing numbers.</p></div>
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>On-chain evidence your team can verify.</h1>
+      <p class="lede">Self-hosted DeFi analytics for funds, protocols and risk teams. Explore any token across chains, catch unusual activity with the evidence attached, publish source-backed reports, and ask an AI analyst that only states numbers it can prove.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+        <a class="link" href="#status">See what's verified</a>
+      </div>
+      <p class="assure">Runs on your own servers. Your organisation's data and AI prompts stay there unless you choose a cloud AI provider.</p>
+    </div>
+    <div>
+      <div class="stage" role="group" aria-label="The DeFi Intelligence web application on a laptop, a tablet and a phone">
+        <div class="dev laptop">
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">https://your-server/platform/anomalies</span></div>
+          <div class="screen"><img src="assets/img/devices/desktop-anomaly-center.jpg" width="1600" height="1000" fetchpriority="high" alt="Anomaly center in a desktop browser: high-severity findings for VELO, XDP and other subjects with network, window, observed-to-baseline ratio and evidence strength"></div>
+        </div>
+        <div class="dev tablet">
+          <div class="bar" aria-hidden="true"><i></i><span class="url">https://your-server/platform/explorer</span></div>
+          <div class="screen"><img src="assets/img/devices/tablet-token-explorer.jpg" width="960" height="1381" alt="Token explorer on a tablet: VELO on OP Mainnet verified on-chain, with twelve pools each marked supported"></div>
+        </div>
+        <div class="dev phone">
+          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
+          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" alt="Conversational analyst on a phone: a question about ARB on Arbitrum answered with cited facts"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17), shown in a browser on each device. DeFi Intelligence is a responsive web app, not a native mobile app.</p></div>
+</section>
+
+<section class="band" aria-labelledby="coverage-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="coverage-h">Built on receipt-verified data</h2>
+      <p>Swaps are read from public JSON-RPC or your own endpoints, proven complete for every block range and cross-checked before anything is published. A protocol family is supported only after its decoded swaps matched transaction receipts exactly on several networks.</p>
+    </div>
+    <dl class="ledger">
+      <dt>Networks</dt>
+      <dd><span class="tag"><span class="dot"></span>Base</span><span class="tag"><span class="dot"></span>Arbitrum One</span><span class="tag"><span class="dot"></span>OP Mainnet</span><span class="tag"><span class="dot"></span>Ethereum</span></dd>
+      <dt>Protocol families</dt>
+      <dd><span class="tag"><span class="dot"></span>Uniswap v3-style</span><span class="tag"><span class="dot"></span>Uniswap v2-style</span><span class="tag"><span class="dot"></span>Solidly (Velodrome/Aerodrome v2)</span></dd>
+      <dt>Not counted yet</dt>
+      <dd><span class="tag muted"><span class="dot"></span>PancakeSwap v3 (decoder only)</span><span class="tag muted"><span class="dot"></span>Uniswap v4 and other venues</span></dd>
+    </dl>
   </div>
 </section>
 
-<section>
-  <h2>How it works</h2>
-  <div class="steps">
-    <div class="card"><h3>Verified data</h3><p>Swaps are read from public JSON-RPC (or your own endpoints), proven complete per block range, cross-checked and published to ClickHouse only after quality gates pass. Prices come from stablecoin legs or verified hourly prices; unvalued swaps are never counted as $0.</p></div>
-    <div class="card"><h3>Analytics and findings</h3><p>Covered-hour metrics, window comparisons, an anomaly engine with frozen baselines, and reports that state exactly which pools and hours they cover.</p></div>
-    <div class="card"><h3>Evidence-grounded AI</h3><p>The AI phrases answers from the verified facts of each question. Every sentence must cite its facts; numbers, terminology and claims are re-checked, and anything unproven is replaced by a deterministic, evidence-backed answer — clearly labelled.</p></div>
+<section class="band alt" aria-labelledby="who-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="who-h">For teams whose numbers have to hold up</h2>
+      <p>Every figure carries its coverage, its valuation method and the SQL behind it, so analysis can be reproduced, reviewed and shared.</p>
+    </div>
+    <div class="aud">
+      <div><h3>Protocols, DAOs and token teams</h3><p>See how your token trades across chains and pools — volume, liquidity and valuation coverage — and get flagged when activity departs from its baseline.</p></div>
+      <div><h3>Funds and research desks</h3><p>Source-backed token and protocol research with stated coverage, so a conclusion can be traced back to the swaps that produced it.</p></div>
+      <div><h3>Risk and market-integrity analytics</h3><p>Anomaly findings for investigation triage: statistical observations with baselines, limitations and alternative explanations, never accusations.</p></div>
+      <div><h3>Analytics consultancies</h3><p>Client-ready reports from verified data on private infrastructure, with an AI analyst that answers in several languages without inventing numbers.</p></div>
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>What it does</h2>
-  <div class="grid">
-    <div class="card"><h3>Networks and protocols</h3><p>Base, Arbitrum One, OP Mainnet and Ethereum. Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools — each family supported only after its decoded swaps matched transaction receipts exactly on several networks.</p></div>
-    <div class="card"><h3>Universal token explorer</h3><p>Any token contract: on-chain identity, pool discovery, a support level per pool, collection of only the missing windows, per-pool coverage, quality checks and an evidence-backed report.</p></div>
-    <div class="card"><h3>Anomaly intelligence</h3><p>Level shifts against a frozen baseline, plus concentration, imbalance, divergence and repetitive patterns. Every finding shows its facts, method, limitations and alternative explanations.</p></div>
-    <div class="card"><h3>Reports and comparisons</h3><p>Markdown, HTML and JSON reports with price-source coverage, pool coverage, protocol breakdown and SQL evidence; window comparisons marked comparable only when every pool is covered in both.</p></div>
-    <div class="card"><h3>Multilingual AI analyst</h3><p>Multi-turn conversations with follow-up context, tested in English, Turkish and German. Answers are labelled as a validated AI answer or a deterministic fallback.</p></div>
-    <div class="card"><h3>AI provider options</h3><p><b>Local models via Ollama</b> (tested). <b>Anthropic Claude API</b> and <b>OpenAI API</b> (integrated; optional, off by default, no paid call until an administrator authorises it within limits). <b>Self-hosted OpenAI-compatible servers</b> such as vLLM, llama.cpp or LM Studio (integration option through the same adapter).</p></div>
-    <div class="card"><h3>Organisations and operations</h3><p>Organisations, roles, workspaces, saved reports and an audit log; one operations page for service health, pipeline runs, data freshness, quality audits, backups and alerts.</p></div>
+<section class="band" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="how-h">How it works</h2>
+      <p>Three stages, each with its own checks. Nothing reaches a report or an AI answer without passing the stage before it.</p>
+    </div>
+    <ol class="pipe">
+      <li><h3>Verified data</h3><p>Ingestion runs prove block coverage, confirm empty answers with a second provider and publish to ClickHouse only after quality gates pass. USD comes from stablecoin legs or verified hourly prices; unvalued swaps are never counted as $0.</p></li>
+      <li><h3>Analytics and findings</h3><p>Covered-hour metrics, window comparisons and an anomaly engine with frozen baselines. Reports state exactly which pools and hours they cover.</p></li>
+      <li><h3>Evidence-grounded AI</h3><p>The AI phrases answers from the verified facts of each question. Every number must match a fact the sentence cites; anything unproven is replaced by a clearly labelled deterministic answer.</p></li>
+    </ol>
   </div>
 </section>
 
-<section>
-  <h2>Verified research examples</h2>
-  <div class="grid">
-    <div class="card"><h3>Aggregator volume anomaly on Base</h3><p>1 Sep → 15 Oct 2026, audited, 3,293,676 decoded events. Window volume <span class="num">$458.56M</span>, with <span class="num">90.2%</span> from one automated account; peak <span class="num">10.3×</span> the pre-onset median; volume excluding that account <span class="num">−15.5%</span> against baseline (corrected by the audit from −20.5%).</p></div>
-    <div class="card"><h3>ARB on Arbitrum One</h3><p>3 ingested pools, 14 Oct 12:00 → 17 Oct 03:00 UTC. <span class="num">63,089</span> pool swap events, valued volume <span class="num">$17.06M</span>: 36.8% through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued. Pass-through routing 0.1%.</p></div>
-    <div class="card"><h3>VELO on OP Mainnet</h3><p>12 pools discovered, all receipt-verified; 6 ingested. The Solidly pools carried <span class="num">62,302</span> swap events but only 463,647 VELO, while the v3 pools carried 3,266 events and 12.2 M VELO. Coverage of the ingested pools is complete; market coverage is not, and the report says so.</p></div>
+<section class="band alt" id="product" aria-labelledby="product-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="product-h">One workflow from token to report</h2>
+      <p>Start with any token contract on a supported network and end with findings and a report you can defend.</p>
+    </div>
+
+    <div class="feature">
+      <div class="copy">
+        <h3>Universal token explorer</h3>
+        <p>Paste a token contract. DeFi Intelligence checks its identity on-chain and against an independent registry, discovers its pools and tells you which ones it can analyse.</p>
+        <ul>
+          <li>A support level and reason for every pool</li>
+          <li>Collects only the hours that are missing, through the same gated pipeline</li>
+          <li>Per-pool coverage, quality checks and an evidence-backed report</li>
+        </ul>
+      </div>
+      <figure class="shot"><img src="assets/img/explorer-pools.jpg" width="1128" height="781" loading="lazy" alt="Token explorer listing twelve VELO pools on OP Mainnet with family, pair, liquidity and a supported label for each"></figure>
+    </div>
+
+    <div class="feature flip">
+      <div class="copy">
+        <h3>Anomaly intelligence</h3>
+        <p>Volume, activity and liquidity shifts against a baseline frozen at onset, plus concentration, imbalance, divergence and repetitive patterns.</p>
+        <ul>
+          <li>Facts, method and parameters for every finding</li>
+          <li>Limitations and alternative explanations, stated up front</li>
+          <li>Statistical observations — never claims of intent or manipulation</li>
+        </ul>
+      </div>
+      <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="937" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"></figure>
+    </div>
+
+    <div class="feature">
+      <div class="copy">
+        <h3>Research and reporting</h3>
+        <p>Reports in Markdown, HTML and JSON with price-source coverage, pool coverage, protocol breakdown, multi-hop reconciliation and the SQL evidence.</p>
+        <ul>
+          <li>Window comparisons marked comparable only when every pool is covered in both</li>
+          <li>Workspaces with saved, frozen reports per organisation</li>
+          <li>Pool-event volume and transaction-net volume reported separately</li>
+        </ul>
+      </div>
+      <figure class="shot"><img src="assets/img/explorer-comparison.jpg" width="968" height="474" loading="lazy" alt="Historical comparison of two ARB windows on Arbitrum One, both fully covered, with swap events, token volume, valued USD volume and changes"></figure>
+    </div>
   </div>
-  <p class="note" style="margin-top:12px">Findings are statistical observations. They never establish intent, manipulation or wash trading, and addresses are not identified entities.</p>
 </section>
 
-<section>
-  <h2>Screenshots</h2>
-  <div class="shots">
-    <figure><img src="assets/img/explorer-pools.jpg" alt="Token explorer listing VELO pools on OP Mainnet with decoder support levels" loading="lazy"><figcaption>Token explorer: pools verified on-chain, with a support level per pool.</figcaption></figure>
-    <figure><img src="assets/img/explorer-comparison.jpg" alt="Historical comparison of two ARB windows, both fully covered for every pool" loading="lazy"><figcaption>Historical comparison: changes are shown as comparable only when every pool is covered in both windows.</figcaption></figure>
-    <figure><img src="assets/img/anomaly-findings.jpg" alt="Anomaly findings list filtered to high severity" loading="lazy"><figcaption>Anomaly findings (filtered to high severity): statistical observations, not accusations.</figcaption></figure>
-    <figure><img src="assets/img/anomaly-finding.jpg" alt="One VELO volume finding with frozen baseline, facts, method, limitations and provenance" loading="lazy"><figcaption>One finding: frozen baseline, facts, method, limitations, alternative explanations, provenance.</figcaption></figure>
+<section class="band" id="ai" aria-labelledby="ai-h">
+  <div class="wrap">
+    <div class="ai-grid">
+      <div>
+        <h2 id="ai-h">An AI analyst that cites its sources</h2>
+        <p class="lede" style="margin-top:18px">Ask in English, Turkish or German and keep the conversation going: follow-up questions keep the token and topic. Each answer is labelled either as a validated AI answer or as a deterministic answer built from the same verified facts.</p>
+        <div class="tw" style="margin-top:30px">
+          <table>
+            <tr><th scope="col">Inference option</th><th scope="col">Status</th><th scope="col">Notes</th></tr>
+            <tr><td>Local models via Ollama</td><td class="st ok">Tested</td><td>Runs on your hardware; a memory guard prevents overloading the host</td></tr>
+            <tr><td>Anthropic Claude API</td><td class="st part">Integrated</td><td>Optional and off by default; no paid call until an administrator authorises it within limits. Live calls not yet verified</td></tr>
+            <tr><td>OpenAI API</td><td class="st part">Integrated</td><td>Same controls as Claude. Live calls not yet verified</td></tr>
+            <tr><td>Self-hosted OpenAI-compatible servers</td><td class="st part">Integration option</td><td>vLLM, llama.cpp, LM Studio or an organisation gateway through the same adapter; GPU serving not yet tested</td></tr>
+          </table>
+        </div>
+        <h3 style="margin-top:44px">Local model benchmark</h3>
+        <p style="margin-top:10px">The same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic pre-checks) and the same validators, on a 16 GB machine.</p>
+        <div class="tw">
+          <table>
+            <tr><th scope="col">Model</th><th scope="col">Accepted by validation</th><th scope="col">Grounding failures</th><th scope="col">Avg latency</th><th scope="col">Memory</th></tr>
+            <tr><td>gemma3:4b</td><td class="num">8 / 8</td><td class="num">0</td><td class="num">8.3 s</td><td class="num">2.9 GB</td></tr>
+            <tr><td>qwen3.5:9b</td><td class="num">6 / 8</td><td class="num">2</td><td class="num">22.4 s</td><td class="num">5.7 GB</td></tr>
+          </table>
+        </div>
+        <p class="note">In release testing on 2026-10-17, gemma3:4b answers to an English question and English and Turkish follow-ups were all accepted. In a later run a Turkish answer that cited the wrong facts was rejected and replaced by the deterministic answer — exactly what the validation is for. One machine, not a performance promise.</p>
+      </div>
+      <div class="ai-phone">
+        <div class="dev phone" aria-hidden="false">
+          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
+          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" loading="lazy" alt="The analyst's answer about ARB on Arbitrum, with numbered fact citations after each sentence"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section>
-  <h2>Local model benchmark</h2>
-  <p>Reviewed snapshot (2026-10-17): the same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic pre-checks) and the same validators, on a 16 GB laptop.</p>
-  <div class="tw"><table>
-    <tr><th>Model</th><th>Accepted by validation</th><th>Grounding failures (deterministic fallback)</th><th>Avg latency</th><th>Resident memory</th></tr>
-    <tr><td>gemma3:4b</td><td class="num">8 / 8</td><td class="num">0</td><td class="num">8.3 s</td><td class="num">2.9 GB</td></tr>
-    <tr><td>qwen3.5:9b</td><td class="num">6 / 8</td><td class="num">2</td><td class="num">22.4 s</td><td class="num">5.7 GB</td></tr>
-  </table></div>
-  <p style="margin-top:10px;font-size:14px">Live multi-turn check on the release (2026-10-17): gemma3:4b answered an English question, an English follow-up and a Turkish follow-up — 3 of 3 accepted by validation. One machine, not a performance promise; larger models and GPU inference servers have not been benchmarked yet.</p>
+<section class="band alt" aria-labelledby="cases-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="cases-h">Verified research examples</h2>
+      <p>Reviewed snapshots from historical, ingested windows. Findings are statistical observations: they never establish intent, manipulation or wash trading, and addresses are not identified entities.</p>
+    </div>
+    <div class="cases">
+      <article class="case"><h3>Aggregator volume anomaly on Base</h3><p class="when">1 Sep to 15 Oct 2026, audited</p><p>3,293,676 decoded events. Window volume <span class="num">$458.56M</span>, with <span class="num">90.2%</span> from one automated account; peak <span class="num">10.3×</span> the pre-onset median; volume excluding the identified account <span class="num">−15.5%</span> against baseline (corrected by the audit from −20.5%).</p></article>
+      <article class="case"><h3>ARB on Arbitrum One</h3><p class="when">14 Oct 12:00 to 17 Oct 03:00 UTC, 3 pools</p><p><span class="num">63,089</span> pool swap events and <span class="num">$17.06M</span> valued volume: 36.8% through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued. Pass-through routing 0.1%.</p></article>
+      <article class="case"><h3>VELO on OP Mainnet</h3><p class="when">16 Oct 12:00 to 17 Oct 00:00 UTC</p><p>12 pools discovered and receipt-verified; 6 ingested. Solidly pools carried <span class="num">62,302</span> swap events but only 463,647 VELO; v3 pools carried 3,266 events and 12.2M VELO. The report states that market coverage is partial.</p></article>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2>Tested vs. not yet verified</h2>
-  <div class="tw"><table>
-    <tr><th>Capability</th><th>Status</th></tr>
-    <tr><td>Ingestion, token explorer, anomaly engine, reports and comparisons on the four networks above</td><td class="st-ok">Tested on real data</td></tr>
-    <tr><td>Local models via Ollama, including a live multilingual multi-turn conversation</td><td class="st-ok">Tested</td></tr>
-    <tr><td>Self-hosted Docker Compose installation (TLS proxy, first administrator, upgrade and rollback)</td><td class="st-ok">Tested (Docker Desktop)</td></tr>
-    <tr><td>Organisation roles and isolation of organisation data (workspaces, reports, members, settings, audit)</td><td class="st-ok">Tested</td></tr>
-    <tr><td>Local backups with verified test restore</td><td class="st-ok">Tested</td></tr>
-    <tr><td>Live Anthropic Claude API / OpenAI API calls</td><td class="st-no">Not yet verified</td></tr>
-    <tr><td>vLLM on GPU servers, Kubernetes, external/off-site backup targets</td><td class="st-no">Not yet verified</td></tr>
-    <tr><td>Multi-tenant hosting (chain data is shared platform-wide in one installation)</td><td class="st-no">Not offered</td></tr>
-  </table></div>
+<section class="band" id="status" aria-labelledby="status-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="status-h">What's verified, and what isn't yet</h2>
+      <p>We separate what has been tested on real data from what is integrated but not yet independently verified.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <tr><th scope="col">Capability</th><th scope="col">Status</th></tr>
+        <tr><td>Ingestion, token explorer, anomaly engine, reports and comparisons on Base, Arbitrum One, OP Mainnet and Ethereum</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Local models via Ollama, including a live multilingual multi-turn conversation</td><td class="st ok">Tested</td></tr>
+        <tr><td>Self-hosted Docker Compose installation: TLS proxy, first administrator, your own RPC endpoints, upgrade and rollback</td><td class="st ok">Tested on Docker Desktop</td></tr>
+        <tr><td>Organisation roles and isolation of organisation data (workspaces, reports, members, settings, audit)</td><td class="st ok">Tested</td></tr>
+        <tr><td>Local backups with verified test restore</td><td class="st ok">Tested</td></tr>
+        <tr><td>Live Anthropic Claude API and OpenAI API calls</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>vLLM on GPU servers</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>Kubernetes deployment</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>Off-site backups (a destination must be configured per installation)</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>Multi-tenant SaaS hosting</td><td class="st no">Not offered</td></tr>
+      </table>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2>Deployment</h2>
-  <div class="tw"><table>
-    <tr><th>Profile</th><th>Status</th><th>Target</th><th>Notes</th></tr>
-    <tr><td>Business server</td><td class="st-ok">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Only the TLS proxy is exposed; ClickHouse, pipelines and inference stay internal; your own RPC endpoints supported</td></tr>
-    <tr><td>Local evaluation</td><td class="st-ok">Tested</td><td>~16 GB machine</td><td>Small local models, memory guard, automatic ingestion off by default</td></tr>
-    <tr><td>Enterprise</td><td class="st-no">Not yet verified</td><td>Kubernetes, separate GPU inference servers</td><td>Manifests prepared; not yet validated on a cluster</td></tr>
-  </table></div>
-  <p style="margin-top:10px;font-size:14px">Starting points, not performance promises: capacity depends on the measured hardware.</p>
+<section class="band alt" id="deploy" aria-labelledby="deploy-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="deploy-h">Deploy it on your own infrastructure</h2>
+      <p>Only the TLS proxy is exposed. ClickHouse, pipelines and inference stay on internal networks, and secrets are encrypted at rest.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <tr><th scope="col">Profile</th><th scope="col">Status</th><th scope="col">Target</th><th scope="col">Notes</th></tr>
+        <tr><td>Business server</td><td class="st ok">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Read-only preflight installer, first-administrator setup, upgrade and rollback by release tag</td></tr>
+        <tr><td>Local evaluation</td><td class="st ok">Tested</td><td>A 16 GB machine</td><td>Small local models, memory guard, automatic ingestion off by default</td></tr>
+        <tr><td>Enterprise</td><td class="st no">Not yet verified</td><td>Kubernetes, separate GPU inference servers</td><td>Manifests prepared; not yet validated on a cluster</td></tr>
+      </table>
+    </div>
+    <p class="note">Starting points, not performance promises: capacity depends on the measured hardware.</p>
+  </div>
 </section>
 
-<section>
-  <h2>Private pilot</h2>
-  <div class="pilot">
-    <p>A pilot is installed on <b>your own server</b> and runs in evaluation mode for one organisation. Bring a token or protocol you want to analyse on a supported network; collection, findings, reports and the AI analyst run against verified on-chain data.</p>
-    <ul>
-      <li><b>You provide:</b> a Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints and a local or cloud AI model.</li>
-      <li><b>We never ask for</b> confidential datasets, API credentials, private keys or passwords — not by email, not during the pilot.</li>
-      <li><b>Terms</b> such as duration, scope and support are agreed individually before a pilot starts.</li>
+<section class="band" id="pilot" aria-labelledby="pilot-h">
+  <div class="wrap">
+    <div class="pilot">
+      <div>
+        <h2 id="pilot-h">Run a private pilot on your own server</h2>
+        <p class="lede" style="margin-top:18px">A pilot runs in evaluation mode for one organisation. Bring a token or protocol you want to analyse on a supported network; collection, findings, reports and the AI analyst run against verified on-chain data.</p>
+        <div class="actions"><a class="btn" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a></div>
+        <p class="contact">Opens a short email template: organisation, contact, use case, preferred deployment and AI. Or write to <span class="email">admin@wearetheartmakers.com</span></p>
+      </div>
+      <ul class="list">
+        <li><b>You provide</b><p>A Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints and a local or cloud AI model.</p></li>
+        <li><b>We never ask for</b><p>Confidential datasets, API credentials, private keys or passwords — not by email and not during the pilot.</p></li>
+        <li><b>Terms</b><p>Duration, scope and support are agreed individually before a pilot starts.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" aria-labelledby="limits-h">
+  <div class="wrap">
+    <div class="intro"><h2 id="limits-h">Limitations</h2><p>Stated plainly, so you know what the numbers cover.</p></div>
+    <ul class="limits">
+      <li>Only the listed networks and verified decoder families are analysed, and only pools that were discovered and ingested. Other venues are not counted.</li>
+      <li>The examples on this page cover historical, ingested windows. Nothing here is live, and the page connects to no API.</li>
+      <li>AI answer quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
+      <li>Dune and cloud AI integrations are optional and off by default.</li>
+      <li>Off-site backups need a destination configured per installation; until then they are reported as not configured.</li>
+      <li>DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
     </ul>
-    <div class="cta"><a class="btn" href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a><small>Opens a short email template: organisation, contact, use case, preferred deployment and AI.</small></div>
   </div>
 </section>
+</main>
 
-<section>
-  <h2>Limitations</h2>
-  <ul>
-    <li>Only the listed networks and verified decoder families are analysed, and only pools that were discovered and ingested. Other venues are not counted.</li>
-    <li>The examples cover historical, ingested windows; nothing on this page is live.</li>
-    <li>Local AI quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
-    <li>Optional Dune and cloud AI integrations are off by default.</li>
-    <li>DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
-  </ul>
-</section>
-
-<footer>DeFi Intelligence — self-hosted analytics software. The application source is private; this repository contains only the public overview. Pilot requests: <a href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">modartcollective@gmail.com</a>.</footer>
-</div>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="brand" href="#top" aria-label="DeFi Intelligence, back to top"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg>DeFi Intelligence</a>
+      <p style="margin-top:16px">Self-hosted analytics software by WATAM. Independent: not affiliated with or endorsed by any protocol it analyses. The application source is private; this repository contains only the public overview.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Pilot and evaluation requests:<br><span class="email">admin@wearetheartmakers.com</span></p>
+      <p><a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a></p>
+    </div>
+    <div>
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#ai">AI analyst</a></li>
+        <li><a href="#status">What's verified</a></li>
+        <li><a href="#deploy">Deployment</a></li>
+        <li><a href="#pilot">Private pilot</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
