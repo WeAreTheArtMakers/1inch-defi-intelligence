@@ -100,15 +100,18 @@ and GPU servers have not been benchmarked yet.
 | Local backups with verified test restore | Tested |
 | Live Anthropic Claude API / OpenAI API calls | Not yet verified |
 | vLLM on GPU servers | Not yet verified |
-| Kubernetes deployment | Not yet verified |
-| Off-site backups (a destination must be configured per installation) | Not yet verified |
+| Kubernetes deployment on a single-node test cluster | Validated locally |
+| Encrypted S3-compatible backups with isolated restore verification, against local S3-compatible storage | Tested locally |
+| Off-site recovery from an independent external S3 destination | Not yet verified |
 
 ## Deployment
 | Profile | Target | Status |
 |---|---|---|
 | Business server | Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU; only the TLS proxy exposed; your own RPC endpoints supported | Tested on Docker Desktop |
 | Local evaluation | ~16 GB machine, small local models, memory guard, automatic ingestion off by default | Tested |
-| Enterprise | Kubernetes, separate GPU inference servers (manifests prepared) | Not yet verified |
+| Enterprise | Kubernetes, separate GPU inference servers; manifests with optional Airflow | Validated on a local single-node cluster (upgrade, rollback, persistence, network policies, backups); production clusters, managed cloud, external TLS ingress and GPU inference nodes not yet validated |
+
+Backups are encrypted before they leave the server. Point them at your own S3-compatible bucket for off-site copies; every backup can be restore-verified in isolation, without modifying production data. Tested end-to-end against local S3-compatible storage; recovery from an independent remote destination has not yet been verified.
 
 These are starting points, not performance promises: capacity depends on the measured hardware.
 
