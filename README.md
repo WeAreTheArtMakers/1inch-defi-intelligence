@@ -1,8 +1,9 @@
 # DeFi Intelligence
 
-**Self-hosted, multi-chain DeFi analytics and anomaly intelligence, with private AI that can only explain verified numbers.**
+**Self-hosted, multi-chain DeFi analytics and evidence-grounded AI research: token exploration, anomaly detection,
+reporting and private AI integration.**
 
-Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/
+Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/ · **[Request a Private Pilot](mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)**
 
 DeFi Intelligence is independent software. It is not affiliated with or endorsed by any protocol it analyses.
 This repository is the **public showcase**: an overview, screenshots and reviewed example results. The application
@@ -10,6 +11,23 @@ source is private. The examples below are **precomputed, reviewed snapshots (gen
 data, and this static page does not connect to any API.
 
 ![Anomaly finding with frozen baseline, evidence and limitations](assets/img/anomaly-finding.jpg)
+
+## Who it is for
+- **Protocols, DAOs and token teams:** how your token trades across chains and pools, with unusual activity flagged
+  against its baseline and the evidence attached.
+- **Funds and research desks:** source-backed token and protocol research; every figure carries its coverage,
+  valuation method and SQL.
+- **Risk, compliance and market-integrity analytics:** anomaly findings for investigation triage, as statistical
+  observations with limitations, never accusations.
+- **Analytics consultancies:** client-ready reports from verified data on private infrastructure.
+
+## How it works
+1. **Verified data:** swaps from public JSON-RPC (or your own endpoints), proven complete per block range,
+   cross-checked, and published to ClickHouse only after quality gates pass.
+2. **Analytics and findings:** covered-hour metrics, window comparisons, an anomaly engine with frozen baselines, and
+   reports that state exactly what they cover.
+3. **Evidence-grounded AI:** answers cite the verified facts of each question. Numbers, terminology and claims are
+   re-checked, and anything unproven is replaced by a clearly labelled deterministic answer.
 
 ## What it does
 
@@ -20,7 +38,7 @@ data, and this static page does not connect to any API.
 | **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. |
 | **Anomaly intelligence** | Volume, activity and liquidity shifts against a baseline frozen at onset, plus address concentration, buy/sell imbalance, price-volume divergence and repetitive patterns. Every finding carries facts, method, parameters, limitations and alternative explanations, and none is an accusation. |
 | **Honest valuation** | USD comes from a stablecoin leg or a verified hourly price within ±15 minutes. Swaps without a verified price are counted as *unvalued*, never as $0. Pool-event volume and transaction-net volume (routing removed) are reported separately. |
-| **Private, model-agnostic AI** | Ollama (tested) or any server exposing an OpenAI-compatible API — vLLM, llama.cpp, LM Studio or an organisation gateway are integration options using the same adapter, which is tested against Ollama's OpenAI-compatible endpoint. Native Anthropic and OpenAI providers are optional and off by default: no paid request is made until an administrator enables the provider and authorises paid use within request, token and budget limits. Every sentence must cite the facts behind its numbers; numbers, terminology and claims are re-checked. A rejected answer falls back to a deterministic, evidence-backed one. |
+| **AI provider options** | **Local models via Ollama** (tested). **Anthropic Claude API** and **OpenAI API** (integrated; optional, off by default; no paid request until an administrator authorises paid use within request, token and budget limits). **Self-hosted OpenAI-compatible servers** such as vLLM, llama.cpp, LM Studio or an organisation gateway (integration options through the same adapter, which is tested against Ollama's OpenAI-compatible endpoint). Every sentence must cite the facts behind its numbers; a rejected answer falls back to a deterministic, evidence-backed one, labelled as such. |
 | **Conversational analyst** | Multi-turn, multilingual conversations (tested in English, Turkish and German). Follow-up questions keep the token and topic of the previous turn, and every turn is re-grounded in its own verified facts. |
 | **Operations** | One operations view (service health, pipeline runs and failures, freshness per token, quality audits, backups, alerts), measured storage, verified backups with test-restore, a versioned staging archive, separate restartable Airflow services, preflight resource checks, an audit log, organisations and role-based access. |
 
@@ -62,16 +80,30 @@ pre-checks), same validators, on a 16 GB laptop:
 | gemma3:4b | 8 / 8 | 0 | 8.3 s | 2.9 GB |
 | qwen3.5:9b | 6 / 8 | 2 | 22.4 s | 5.7 GB |
 
-A benchmark on one machine, not a performance promise; larger models and GPU servers have not been benchmarked yet.
+Live multi-turn check on the release (2026-10-17): gemma3:4b answered an English question, an English follow-up and a
+Turkish follow-up — 3 of 3 accepted by validation. A benchmark on one machine, not a performance promise; larger models
+and GPU servers have not been benchmarked yet.
 
-## Deployment profiles
-| Profile | Target | Notes |
+## Tested vs. not yet verified
+| Capability | Status |
+|---|---|
+| Ingestion, token explorer, anomaly engine, reports and comparisons on the four networks | Tested on real data |
+| Local models via Ollama, including a live multilingual multi-turn conversation | Tested |
+| Self-hosted Docker Compose installation (TLS proxy, first administrator, upgrade and rollback) | Tested on Docker Desktop |
+| Organisation roles and isolation of organisation data | Tested |
+| Local backups with verified test restore | Tested |
+| Live Anthropic Claude API / OpenAI API calls | Not yet verified |
+| vLLM on GPU servers, Kubernetes, external/off-site backup targets | Not yet verified |
+| Multi-tenant hosting (chain data is shared platform-wide in one installation) | Not offered |
+
+## Deployment
+| Profile | Target | Status |
 |---|---|---|
-| A — local developer | ~16 GB RAM laptop | Docker Compose, small or medium local models, conservative context, memory guard, hourly ingestion off by default |
-| B — business server | Linux, 32–128 GB, optional NVIDIA GPU | TLS reverse proxy only; ClickHouse, Airflow and inference stay internal; several models; separate Airflow services |
-| C — enterprise | Kubernetes, large GPUs, separate inference servers | Network policies, external secrets, model serving separate from the API. Horizontal API scaling needs a shared application database. |
+| Business server | Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU; only the TLS proxy exposed; your own RPC endpoints supported | Tested on Docker Desktop |
+| Local evaluation | ~16 GB machine, small local models, memory guard, automatic ingestion off by default | Tested |
+| Enterprise | Kubernetes, separate GPU inference servers (manifests prepared) | Not yet verified |
 
-These profiles are starting points, not performance promises. Capacity depends on the measured hardware.
+These are starting points, not performance promises: capacity depends on the measured hardware.
 
 ## Optional integrations
 - **Dune Analytics:** optional and off by default. Keys are stored encrypted on the server and tested with free calls
@@ -89,6 +121,15 @@ These profiles are starting points, not performance promises. Capacity depends o
   correct grammar.
 - **Multi-tenancy:** organisation isolation is enforced and tested for workspaces, reports, members, tokens, settings
   and audit. Ingested public-chain data is shared platform-wide.
+- **No advice or guarantees:** DeFi Intelligence is analytics and research software. It is not investment advice, makes
+  no promise of trading or investment outcomes, and is not a regulatory certification.
 
-## Access
-The application is self-hosted. For licensing or evaluation, contact the maintainers through this repository.
+## Private pilot
+A pilot is installed on **your own server** and runs in evaluation mode for one organisation.
+- **You provide:** a Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints
+  and a local or cloud AI model.
+- **We never ask for** confidential datasets, API credentials, private keys or passwords.
+- **Terms** such as duration, scope and support are agreed individually before a pilot starts.
+
+**[Request a Private Pilot](mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)** (opens a short email template: organisation, contact, use case, preferred
+deployment and AI).

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DeFi Intelligence</title>
-<meta name="description" content="Self-hosted, multi-chain DeFi analytics and anomaly intelligence with private AI that only explains verified numbers.">
+<meta name="description" content="DeFi Intelligence — self-hosted multi-chain DeFi analytics and evidence-grounded AI research: token exploration, anomaly detection, reporting and private AI integration.">
 <style>
 :root{--bg:#f7f8fa;--surface:#fff;--ink:#0f1726;--ink2:#3d4a5c;--ink3:#6b7789;--line:#e3e7ee;--accent:#3b6ef5;--good:#14805e;--warn:#a86400;color-scheme:light}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f17;--surface:#121826;--ink:#e8edf6;--ink2:#b3bdcc;--ink3:#7d889a;--line:#232c3d;--accent:#7aa2ff;--good:#4cc79a;--warn:#e0a84a;color-scheme:dark}}
@@ -20,28 +20,53 @@ figcaption{font-size:13px;color:var(--ink3);margin-top:6px}.shots{display:grid;g
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--ink3);font-weight:600}
 .tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}ul{margin:0;padding-left:20px;color:var(--ink2)}li{margin:4px 0}
 .num{font-variant-numeric:tabular-nums;font-weight:650;color:var(--ink)}footer{margin:56px 0 32px;font-size:13px;color:var(--ink3)}a{color:var(--accent)}
+.btn{display:inline-block;font-weight:650;font-size:15px;border-radius:10px;padding:11px 18px;text-decoration:none;border:1px solid var(--accent);background:var(--accent);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#0b0f17}}:root[data-theme="dark"] .btn{color:#0b0f17}
+.btn:hover{filter:brightness(1.08)}.btn:focus-visible{outline:3px solid var(--ink3);outline-offset:2px}.cta{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:20px 0 14px}
+.cta small{font-size:13px;color:var(--ink3)}.steps{counter-reset:s;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.steps .card h3::before{counter-increment:s;content:counter(s) ". ";color:var(--accent)}.pilot{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.st-ok{color:var(--good);font-weight:650}.st-no{color:var(--warn);font-weight:650}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-  <span class="badge">Self-hosted</span><span class="badge">Multi-chain</span><span class="badge">Private AI</span>
+  <span class="badge">Self-hosted</span><span class="badge">Multi-chain</span><span class="badge">Evidence-grounded AI</span>
   <h1>DeFi Intelligence</h1>
-  <p class="lead">Multi-chain DeFi analytics and anomaly intelligence on verified on-chain data, with AI that can only explain numbers it can prove.</p>
+  <p class="lead">Self-hosted, multi-chain DeFi analytics and research: explore any token, detect unusual activity, produce source-backed reports, and ask an AI analyst that may only state numbers it can prove from verified on-chain data.</p>
+  <div class="cta"><a class="btn" href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a><small>Runs on your own infrastructure. Your organisation's data and AI prompts stay on your servers unless you choose a cloud AI provider.</small></div>
   <p class="note">Independent software, not affiliated with or endorsed by any protocol it analyses. This static page shows <b>precomputed, reviewed snapshots generated on 2026-10-17</b>. It is not live data and it does not connect to any API.</p>
 </header>
 
 <section>
+  <h2>Who it is for</h2>
+  <div class="grid">
+    <div class="card"><h3>Protocols, DAOs and token teams</h3><p>See how your token actually trades across chains and pools — volume, liquidity, valuation coverage — and get flagged when activity departs from its baseline, with the evidence attached.</p></div>
+    <div class="card"><h3>Funds and research desks</h3><p>Source-backed token and protocol research: every figure carries its coverage, valuation method and the SQL behind it, so analyses can be reproduced and reviewed.</p></div>
+    <div class="card"><h3>Risk, compliance and market-integrity analytics</h3><p>Anomaly findings for investigation triage — statistical observations with baselines, limitations and alternative explanations, never accusations.</p></div>
+    <div class="card"><h3>Analytics consultancies</h3><p>Client-ready reports from verified data on private infrastructure, with an AI analyst that answers in several languages without inventing numbers.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="card"><h3>Verified data</h3><p>Swaps are read from public JSON-RPC (or your own endpoints), proven complete per block range, cross-checked and published to ClickHouse only after quality gates pass. Prices come from stablecoin legs or verified hourly prices; unvalued swaps are never counted as $0.</p></div>
+    <div class="card"><h3>Analytics and findings</h3><p>Covered-hour metrics, window comparisons, an anomaly engine with frozen baselines, and reports that state exactly which pools and hours they cover.</p></div>
+    <div class="card"><h3>Evidence-grounded AI</h3><p>The AI phrases answers from the verified facts of each question. Every sentence must cite its facts; numbers, terminology and claims are re-checked, and anything unproven is replaced by a deterministic, evidence-backed answer — clearly labelled.</p></div>
+  </div>
+</section>
+
+<section>
   <h2>What it does</h2>
   <div class="grid">
-    <div class="card"><h3>Verified ingestion</h3><p>Public JSON-RPC on Base, Arbitrum One, OP Mainnet and Ethereum, through Airflow into ClickHouse. Coverage is proven per run and data is published only after every quality gate passes.</p></div>
-    <div class="card"><h3>Universal token explorer</h3><p>Any token contract: on-chain identity, pool discovery, a support level per pool, collection of missing windows only, per-pool coverage, quality checks and an evidence-backed report.</p></div>
-    <div class="card"><h3>Receipt-verified decoders</h3><p>Uniswap v3-, Uniswap v2- and Solidly-style pools. A family counts as supported only when its decoded swaps match transaction receipts exactly on several networks.</p></div>
+    <div class="card"><h3>Networks and protocols</h3><p>Base, Arbitrum One, OP Mainnet and Ethereum. Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools — each family supported only after its decoded swaps matched transaction receipts exactly on several networks.</p></div>
+    <div class="card"><h3>Universal token explorer</h3><p>Any token contract: on-chain identity, pool discovery, a support level per pool, collection of only the missing windows, per-pool coverage, quality checks and an evidence-backed report.</p></div>
     <div class="card"><h3>Anomaly intelligence</h3><p>Level shifts against a frozen baseline, plus concentration, imbalance, divergence and repetitive patterns. Every finding shows its facts, method, limitations and alternative explanations.</p></div>
-    <div class="card"><h3>Honest valuation</h3><p>Stablecoin legs or verified hourly prices only; unvalued swaps are never counted as $0. Pool-event volume and transaction-net volume are reported separately.</p></div>
-    <div class="card"><h3>Private, model-agnostic AI</h3><p>Ollama (tested) or any OpenAI-compatible API server — vLLM, llama.cpp or LM Studio are integration options through the same adapter. Anthropic and OpenAI are optional and off by default; nothing paid runs until an administrator authorises it within limits. Every sentence cites its facts, and the numbers, terminology and claims are checked before an answer is shown.</p></div>
-    <div class="card"><h3>Conversational analyst</h3><p>Multi-turn, multilingual questions (tested in English, Turkish and German). Follow-ups keep the token and topic; each answer is re-grounded in that turn's verified facts or falls back to a deterministic one.</p></div>
-    <div class="card"><h3>Operations</h3><p>Service health, pipeline runs and failures, data freshness per token, quality audits, verified backups and alerts on one page, plus organisations with role-based access and an audit log.</p></div>
+    <div class="card"><h3>Reports and comparisons</h3><p>Markdown, HTML and JSON reports with price-source coverage, pool coverage, protocol breakdown and SQL evidence; window comparisons marked comparable only when every pool is covered in both.</p></div>
+    <div class="card"><h3>Multilingual AI analyst</h3><p>Multi-turn conversations with follow-up context, tested in English, Turkish and German. Answers are labelled as a validated AI answer or a deterministic fallback.</p></div>
+    <div class="card"><h3>AI provider options</h3><p><b>Local models via Ollama</b> (tested). <b>Anthropic Claude API</b> and <b>OpenAI API</b> (integrated; optional, off by default, no paid call until an administrator authorises it within limits). <b>Self-hosted OpenAI-compatible servers</b> such as vLLM, llama.cpp or LM Studio (integration option through the same adapter).</p></div>
+    <div class="card"><h3>Organisations and operations</h3><p>Organisations, roles, workspaces, saved reports and an audit log; one operations page for service health, pipeline runs, data freshness, quality audits, backups and alerts.</p></div>
   </div>
 </section>
 
@@ -73,18 +98,46 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;p
     <tr><td>gemma3:4b</td><td class="num">8 / 8</td><td class="num">0</td><td class="num">8.3 s</td><td class="num">2.9 GB</td></tr>
     <tr><td>qwen3.5:9b</td><td class="num">6 / 8</td><td class="num">2</td><td class="num">22.4 s</td><td class="num">5.7 GB</td></tr>
   </table></div>
-  <p style="margin-top:10px;font-size:14px">One machine, not a performance promise. Larger models and GPU inference servers have not been benchmarked yet.</p>
+  <p style="margin-top:10px;font-size:14px">Live multi-turn check on the release (2026-10-17): gemma3:4b answered an English question, an English follow-up and a Turkish follow-up — 3 of 3 accepted by validation. One machine, not a performance promise; larger models and GPU inference servers have not been benchmarked yet.</p>
 </section>
 
 <section>
-  <h2>Deployment profiles</h2>
+  <h2>Tested vs. not yet verified</h2>
   <div class="tw"><table>
-    <tr><th>Profile</th><th>Target</th><th>Notes</th></tr>
-    <tr><td>A — local developer</td><td>~16 GB laptop</td><td>Small or medium local models, conservative context, memory guard, ingestion paused by default</td></tr>
-    <tr><td>B — business server</td><td>Linux, 32–128 GB, optional NVIDIA GPU</td><td>Only TLS is exposed; ClickHouse, Airflow and inference stay internal; separate Airflow services</td></tr>
-    <tr><td>C — enterprise</td><td>Kubernetes, GPU inference servers</td><td>Network policies, external secrets, model serving separate from the API</td></tr>
+    <tr><th>Capability</th><th>Status</th></tr>
+    <tr><td>Ingestion, token explorer, anomaly engine, reports and comparisons on the four networks above</td><td class="st-ok">Tested on real data</td></tr>
+    <tr><td>Local models via Ollama, including a live multilingual multi-turn conversation</td><td class="st-ok">Tested</td></tr>
+    <tr><td>Self-hosted Docker Compose installation (TLS proxy, first administrator, upgrade and rollback)</td><td class="st-ok">Tested (Docker Desktop)</td></tr>
+    <tr><td>Organisation roles and isolation of organisation data (workspaces, reports, members, settings, audit)</td><td class="st-ok">Tested</td></tr>
+    <tr><td>Local backups with verified test restore</td><td class="st-ok">Tested</td></tr>
+    <tr><td>Live Anthropic Claude API / OpenAI API calls</td><td class="st-no">Not yet verified</td></tr>
+    <tr><td>vLLM on GPU servers, Kubernetes, external/off-site backup targets</td><td class="st-no">Not yet verified</td></tr>
+    <tr><td>Multi-tenant hosting (chain data is shared platform-wide in one installation)</td><td class="st-no">Not offered</td></tr>
   </table></div>
-  <p style="margin-top:10px;font-size:14px">These profiles are starting points, not performance promises. Capacity depends on the measured hardware.</p>
+</section>
+
+<section>
+  <h2>Deployment</h2>
+  <div class="tw"><table>
+    <tr><th>Profile</th><th>Status</th><th>Target</th><th>Notes</th></tr>
+    <tr><td>Business server</td><td class="st-ok">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Only the TLS proxy is exposed; ClickHouse, pipelines and inference stay internal; your own RPC endpoints supported</td></tr>
+    <tr><td>Local evaluation</td><td class="st-ok">Tested</td><td>~16 GB machine</td><td>Small local models, memory guard, automatic ingestion off by default</td></tr>
+    <tr><td>Enterprise</td><td class="st-no">Not yet verified</td><td>Kubernetes, separate GPU inference servers</td><td>Manifests prepared; not yet validated on a cluster</td></tr>
+  </table></div>
+  <p style="margin-top:10px;font-size:14px">Starting points, not performance promises: capacity depends on the measured hardware.</p>
+</section>
+
+<section>
+  <h2>Private pilot</h2>
+  <div class="pilot">
+    <p>A pilot is installed on <b>your own server</b> and runs in evaluation mode for one organisation. Bring a token or protocol you want to analyse on a supported network; collection, findings, reports and the AI analyst run against verified on-chain data.</p>
+    <ul>
+      <li><b>You provide:</b> a Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints and a local or cloud AI model.</li>
+      <li><b>We never ask for</b> confidential datasets, API credentials, private keys or passwords — not by email, not during the pilot.</li>
+      <li><b>Terms</b> such as duration, scope and support are agreed individually before a pilot starts.</li>
+    </ul>
+    <div class="cta"><a class="btn" href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a><small>Opens a short email template: organisation, contact, use case, preferred deployment and AI.</small></div>
+  </div>
 </section>
 
 <section>
@@ -93,11 +146,12 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;p
     <li>Only the listed networks and verified decoder families are analysed, and only pools that were discovered and ingested. Other venues are not counted.</li>
     <li>The examples cover historical, ingested windows; nothing on this page is live.</li>
     <li>Local AI quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
-    <li>Optional Dune and remote AI integrations are off by default.</li>
+    <li>Optional Dune and cloud AI integrations are off by default.</li>
+    <li>DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
   </ul>
 </section>
 
-<footer>DeFi Intelligence — self-hosted analytics software. The application source is private; this repository contains only the public overview.</footer>
+<footer>DeFi Intelligence — self-hosted analytics software. The application source is private; this repository contains only the public overview. Pilot requests: <a href="mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">modartcollective@gmail.com</a>.</footer>
 </div>
 </body>
 </html>
