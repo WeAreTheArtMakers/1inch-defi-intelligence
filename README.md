@@ -3,14 +3,16 @@
 **Self-hosted, multi-chain DeFi analytics and evidence-grounded AI research: token exploration, anomaly detection,
 reporting and private AI integration.**
 
-Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/ · **[Request a Private Pilot](mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)**
+Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/ · **[Request a Private Pilot](mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)**
 
 DeFi Intelligence is independent software. It is not affiliated with or endorsed by any protocol it analyses.
 This repository is the **public showcase**: an overview, screenshots and reviewed example results. The application
 source is private. The examples below are **precomputed, reviewed snapshots (generated 2026-10-17)**. They are not live
 data, and this static page does not connect to any API.
 
-![Anomaly finding with frozen baseline, evidence and limitations](assets/img/anomaly-finding.jpg)
+![The DeFi Intelligence web application in a desktop browser: the anomaly center with high-severity findings on verified on-chain data](assets/img/devices/desktop-anomaly-center.jpg)
+
+*A responsive web application (desktop, tablet and phone browsers), self-hosted on your own server — not a native mobile app.*
 
 ## Who it is for
 - **Protocols, DAOs and token teams:** how your token trades across chains and pools, with unusual activity flagged
@@ -66,10 +68,13 @@ number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled re
   so explicitly.
 
 ## Screenshots
+Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17).
+
 | | |
 |---|---|
+| ![Token explorer on a tablet: VELO on OP Mainnet with twelve supported pools](assets/img/devices/tablet-token-explorer.jpg) | ![Conversational analyst on a phone: an ARB question answered with cited facts](assets/img/devices/phone-ai-analyst.jpg) |
 | ![Token explorer: pools verified on-chain with a support level per pool](assets/img/explorer-pools.jpg) | ![Historical comparison of two fully covered windows](assets/img/explorer-comparison.jpg) |
-| ![Anomaly findings filtered to high severity](assets/img/anomaly-findings.jpg) | ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) |
+| ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) | |
 
 ## Local model benchmark (reviewed snapshot, 2026-10-17)
 Same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic
@@ -80,8 +85,9 @@ pre-checks), same validators, on a 16 GB laptop:
 | gemma3:4b | 8 / 8 | 0 | 8.3 s | 2.9 GB |
 | qwen3.5:9b | 6 / 8 | 2 | 22.4 s | 5.7 GB |
 
-Live multi-turn check on the release (2026-10-17): gemma3:4b answered an English question, an English follow-up and a
-Turkish follow-up — 3 of 3 accepted by validation. A benchmark on one machine, not a performance promise; larger models
+In release testing on 2026-10-17, gemma3:4b answers to an English question and English and Turkish follow-ups were all
+accepted; in a later run a Turkish answer that cited the wrong facts was rejected and replaced by the deterministic
+answer, as designed. A benchmark on one machine, not a performance promise; larger models
 and GPU servers have not been benchmarked yet.
 
 ## Tested vs. not yet verified
@@ -93,8 +99,10 @@ and GPU servers have not been benchmarked yet.
 | Organisation roles and isolation of organisation data | Tested |
 | Local backups with verified test restore | Tested |
 | Live Anthropic Claude API / OpenAI API calls | Not yet verified |
-| vLLM on GPU servers, Kubernetes, external/off-site backup targets | Not yet verified |
-| Multi-tenant hosting (chain data is shared platform-wide in one installation) | Not offered |
+| vLLM on GPU servers | Not yet verified |
+| Kubernetes deployment | Not yet verified |
+| Off-site backups (a destination must be configured per installation) | Not yet verified |
+| Multi-tenant SaaS hosting | Not offered |
 
 ## Deployment
 | Profile | Target | Status |
@@ -131,5 +139,7 @@ A pilot is installed on **your own server** and runs in evaluation mode for one 
 - **We never ask for** confidential datasets, API credentials, private keys or passwords.
 - **Terms** such as duration, scope and support are agreed individually before a pilot starts.
 
-**[Request a Private Pilot](mailto:modartcollective@gmail.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)** (opens a short email template: organisation, contact, use case, preferred
+**[Request a Private Pilot](mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A)** (opens a short email template: organisation, contact, use case, preferred
 deployment and AI).
+
+Contact: admin@wearetheartmakers.com
