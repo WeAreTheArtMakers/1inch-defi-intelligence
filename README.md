@@ -102,7 +102,6 @@ and GPU servers have not been benchmarked yet.
 | vLLM on GPU servers | Not yet verified |
 | Kubernetes deployment | Not yet verified |
 | Off-site backups (a destination must be configured per installation) | Not yet verified |
-| Multi-tenant SaaS hosting | Not offered |
 
 ## Deployment
 | Profile | Target | Status |
