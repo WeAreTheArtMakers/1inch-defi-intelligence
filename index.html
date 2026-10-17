@@ -1,454 +1,103 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>DeFi Intelligence — From On-Chain Data to Trusted Decisions</title>
-  <meta name="description" content="An independent concept: source-backed DeFi analytics over Dune data with a grounded AI analyst, built for a Data & Analytics Lead interview. Not affiliated with 1inch." />
-  <meta name="theme-color" content="#0b1020" />
-  <meta property="og:title" content="DeFi Intelligence — From On-Chain Data to Trusted Decisions" />
-  <meta property="og:description" content="Validated DuneSQL, a provenance-first dashboard and an AI analyst that can only explain numbers it can prove. Independent concept demo." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/overview-desktop.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;450;500;600;650;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/site.css" />
-  <script>
-    try { var t = localStorage.getItem('di-site-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeFi Intelligence</title>
+<meta name="description" content="Self-hosted, multi-chain DeFi analytics and anomaly intelligence with private AI that only explains verified numbers.">
+<style>
+:root{--bg:#f7f8fa;--surface:#fff;--ink:#0f1726;--ink2:#3d4a5c;--ink3:#6b7789;--line:#e3e7ee;--accent:#3b6ef5;--good:#14805e;--warn:#a86400;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0f17;--surface:#121826;--ink:#e8edf6;--ink2:#b3bdcc;--ink3:#7d889a;--line:#232c3d;--accent:#7aa2ff;--good:#4cc79a;--warn:#e0a84a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b0f17;--surface:#121826;--ink:#e8edf6;--ink2:#b3bdcc;--ink3:#7d889a;--line:#232c3d;--accent:#7aa2ff;--good:#4cc79a;--warn:#e0a84a;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}header{padding:56px 0 28px}h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+h2{font-size:22px;margin:44px 0 12px;letter-spacing:-.01em}h3{font-size:16px;margin:0 0 6px}p{margin:0 0 12px;color:var(--ink2)}
+.lead{font-size:18px;max-width:760px}.note{font-size:13px;color:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card p{font-size:14px;margin:0}.badge{display:inline-block;font-size:12px;font-weight:650;border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-right:6px;color:var(--ink2)}
+.ok{color:var(--good)}.warnc{color:var(--warn)}figure{margin:0}img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+figcaption{font-size:13px;color:var(--ink3);margin-top:6px}.shots{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--ink3);font-weight:600}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}ul{margin:0;padding-left:20px;color:var(--ink2)}li{margin:4px 0}
+.num{font-variant-numeric:tabular-nums;font-weight:650;color:var(--ink)}footer{margin:56px 0 32px;font-size:13px;color:var(--ink3)}a{color:var(--accent)}
+</style>
 </head>
 <body>
-  <a class="sr-only" href="#main">Skip to content</a>
+<div class="wrap">
+<header>
+  <span class="badge">Self-hosted</span><span class="badge">Multi-chain</span><span class="badge">Private AI</span>
+  <h1>DeFi Intelligence</h1>
+  <p class="lead">Multi-chain DeFi analytics and anomaly intelligence on verified on-chain data, with AI that can only explain numbers it can prove.</p>
+  <p class="note">Independent software, not affiliated with or endorsed by any protocol it analyses. This static page shows <b>precomputed, reviewed snapshots generated on 2026-10-17</b>. It is not live data and it does not connect to any API.</p>
+</header>
 
-  <header class="top">
-    <div class="wrap">
-      <a class="brand" href="#top" aria-label="DeFi Intelligence home">
-        <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--surface-2)" stroke="var(--line-strong)"/><path d="M7 21l5-6 4 3 8-9" fill="none" stroke="var(--blue)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="9" r="2.4" fill="var(--cyan)"/></svg>
-        <span>DeFi Intelligence<small>From on-chain data to trusted decisions</small></span>
-      </a>
-      <nav class="nav" aria-label="Sections">
-        <a href="#what">What it does</a>
-        <a href="#grounded">Grounded AI</a>
-        <a href="#lab">Evolution lab</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#status">Status</a>
-      </nav>
-      <button class="icon-btn" id="theme" type="button" aria-label="Toggle light / dark theme">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
-    </div>
-  </header>
+<section>
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card"><h3>Verified ingestion</h3><p>Public JSON-RPC on Base, Arbitrum One, OP Mainnet and Ethereum, through Airflow into ClickHouse. Coverage is proven per run and data is published only after every quality gate passes.</p></div>
+    <div class="card"><h3>Universal token explorer</h3><p>Any token contract: on-chain identity, pool discovery, a support level per pool, collection of missing windows only, per-pool coverage, quality checks and an evidence-backed report.</p></div>
+    <div class="card"><h3>Receipt-verified decoders</h3><p>Uniswap v3-, Uniswap v2- and Solidly-style pools. A family counts as supported only when its decoded swaps match transaction receipts exactly on several networks.</p></div>
+    <div class="card"><h3>Anomaly intelligence</h3><p>Level shifts against a frozen baseline, plus concentration, imbalance, divergence and repetitive patterns. Every finding shows its facts, method, limitations and alternative explanations.</p></div>
+    <div class="card"><h3>Honest valuation</h3><p>Stablecoin legs or verified hourly prices only; unvalued swaps are never counted as $0. Pool-event volume and transaction-net volume are reported separately.</p></div>
+    <div class="card"><h3>Private, model-agnostic AI</h3><p>Ollama (tested) or any OpenAI-compatible API server — vLLM, llama.cpp or LM Studio are integration options through the same adapter. Anthropic and OpenAI are optional and off by default; nothing paid runs until an administrator authorises it within limits. Every sentence cites its facts, and the numbers, terminology and claims are checked before an answer is shown.</p></div>
+    <div class="card"><h3>Conversational analyst</h3><p>Multi-turn, multilingual questions (tested in English, Turkish and German). Follow-ups keep the token and topic; each answer is re-grounded in that turn's verified facts or falls back to a deterministic one.</p></div>
+    <div class="card"><h3>Operations</h3><p>Service health, pipeline runs and failures, data freshness per token, quality audits, verified backups and alerts on one page, plus organisations with role-based access and an audit log.</p></div>
+  </div>
+</section>
 
-  <main id="main">
-    <!-- ============================================================ HERO -->
-    <div class="hero" id="top">
-      <canvas id="net" aria-hidden="true"></canvas>
-      <div class="wrap">
-        <span class="pill"><span class="dot"></span>Independent concept demo · Data &amp; Analytics Lead interview · not affiliated with 1inch</span>
-        <h1><span class="grad">From on-chain data to trusted decisions.</span></h1>
-        <p class="lede">
-          A working analytics platform on top of Dune: version-controlled DuneSQL, a provenance-first multi-chain
-          dashboard, and an AI analyst that can only explain numbers it can prove — every figure traceable to a query,
-          an execution id and a deterministic calculation.
-        </p>
-        <div class="cta">
-          <a class="btn btn-primary" href="#what">See what it does
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn" href="#grounded">How the AI stays grounded</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><b data-count="13">13</b><span>validated DuneSQL templates</span></div>
-          <div class="stat"><b data-count="31">31</b><span>typed REST endpoints</span></div>
-          <div class="stat"><b data-count="276">276</b><span>automated tests passing</span></div>
-          <div class="stat"><b data-count="0">0</b><span>AI numbers shown without a computed fact</span></div>
-        </div>
+<section>
+  <h2>Verified research examples</h2>
+  <div class="grid">
+    <div class="card"><h3>Aggregator volume anomaly on Base</h3><p>1 Sep → 15 Oct 2026, audited, 3,293,676 decoded events. Window volume <span class="num">$458.56M</span>, with <span class="num">90.2%</span> from one automated account; peak <span class="num">10.3×</span> the pre-onset median; volume excluding that account <span class="num">−15.5%</span> against baseline (corrected by the audit from −20.5%).</p></div>
+    <div class="card"><h3>ARB on Arbitrum One</h3><p>3 ingested pools, 14 Oct 12:00 → 17 Oct 03:00 UTC. <span class="num">63,089</span> pool swap events, valued volume <span class="num">$17.06M</span>: 36.8% through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued. Pass-through routing 0.1%.</p></div>
+    <div class="card"><h3>VELO on OP Mainnet</h3><p>12 pools discovered, all receipt-verified; 6 ingested. The Solidly pools carried <span class="num">62,302</span> swap events but only 463,647 VELO, while the v3 pools carried 3,266 events and 12.2 M VELO. Coverage of the ingested pools is complete; market coverage is not, and the report says so.</p></div>
+  </div>
+  <p class="note" style="margin-top:12px">Findings are statistical observations. They never establish intent, manipulation or wash trading, and addresses are not identified entities.</p>
+</section>
 
-        <div class="devices" aria-label="The application on desktop, tablet and phone">
-          <div class="laptop">
-            <div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
-            <img src="assets/img/overview-desktop.jpg" width="2880" height="1800" alt="Executive overview dashboard with KPIs, data freshness and a daily volume trend (synthetic demo data)" fetchpriority="high" />
-          </div>
-          <div class="tablet"><img src="assets/img/overview-ipad.jpg" width="1640" height="2360" alt="The dashboard on an iPad in portrait" loading="lazy" /></div>
-          <div class="phone"><img src="assets/img/ai-phone.jpg" width="1170" height="2532" alt="AI analyst answer on a phone" loading="lazy" /></div>
-        </div>
-        <p class="muted" style="font-size:12.5px;margin-top:56px;text-align:center">Screens show the bundled <strong>synthetic demo dataset</strong> — clearly labelled in-app as “SYNTHETIC DEMO DATA — NOT ACTUAL 1INCH METRICS”.</p>
-      </div>
-    </div>
+<section>
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <figure><img src="assets/img/explorer-pools.jpg" alt="Token explorer listing VELO pools on OP Mainnet with decoder support levels" loading="lazy"><figcaption>Token explorer: pools verified on-chain, with a support level per pool.</figcaption></figure>
+    <figure><img src="assets/img/explorer-comparison.jpg" alt="Historical comparison of two ARB windows, both fully covered for every pool" loading="lazy"><figcaption>Historical comparison: changes are shown as comparable only when every pool is covered in both windows.</figcaption></figure>
+    <figure><img src="assets/img/anomaly-findings.jpg" alt="Anomaly findings list filtered to high severity" loading="lazy"><figcaption>Anomaly findings (filtered to high severity): statistical observations, not accusations.</figcaption></figure>
+    <figure><img src="assets/img/anomaly-finding.jpg" alt="One VELO volume finding with frozen baseline, facts, method, limitations and provenance" loading="lazy"><figcaption>One finding: frozen baseline, facts, method, limitations, alternative explanations, provenance.</figcaption></figure>
+  </div>
+</section>
 
-    <!-- ============================================================ WHAT -->
-    <section id="what">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">What it does</div>
-          <h2>Five capabilities, one rule: every number has a source.</h2>
-          <p class="sub">1inch already runs Dune queries and dashboards. This concept adds a validated-metrics layer and a grounded AI workflow on top — complementing that foundation, not replacing it.</p>
-        </div>
-        <div class="bento">
-          <article class="card b-4 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/></svg></div>
-            <h3>Provenance-first multi-chain dashboard</h3>
-            <p>KPIs, trends, chain distribution, address-keyed token pairs and anomaly alerts — all filters update every chart and the narrative consistently. Each panel shows which query, execution and freshness produced it.</p>
-            <div class="shot"><img src="assets/img/analytics-desktop.jpg" width="2880" height="1800" alt="Chain and token research page" loading="lazy" /></div>
-          </article>
-          <article class="card b-2 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 17l6-5-6-5M12 19h8"/></svg></div>
-            <h3>Real Dune API integration</h3>
-            <p>SQL &amp; saved-query execution, status polling, paginated results, cancel, retries, rate limits, credit budgets and cache — keys stay server-side; page renders never spend credits.</p>
-          </article>
-          <article class="card b-2 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7-4.7-1.8 4.7-1.8Z"/></svg></div>
-            <h3>Grounded AI analyst</h3>
-            <p>Findings, interpretation and evidence for every answer. The model picks a validated analysis and phrases facts; a validator rejects any unproven number.</p>
-          </article>
-          <article class="card b-4 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-            <h3>Data reliability, reported honestly</h3>
-            <p>Application health, upstream freshness and validation checks — null prices, duplicate keys, completeness, aggregate-vs-record consistency, SQL-vs-app anomaly agreement — are separated. When Dune refuses an execution, the real error is shown.</p>
-            <div class="shot"><img src="assets/img/health-desktop.jpg" width="2880" height="1800" alt="Data reliability page with connectivity, freshness and validation checks" loading="lazy" /></div>
-          </article>
-          <article class="card b-3 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5ZM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-            <h3>Covered-set aggregator comparison</h3>
-            <p>1inch vs 0x, CoW, Odos and KyberSwap from the same curated table and window — explicitly a covered-set comparison, with a peer check asking “is this change unique to 1inch?”</p>
-            <div class="shot"><img src="assets/img/aggregators-desktop.jpg" width="2880" height="1800" alt="Aggregator comparison page" loading="lazy" /></div>
-          </article>
-          <article class="card b-3 reveal">
-            <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 3h20M4 3v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3M12 16v5M8 21h8"/></svg></div>
-            <h3>Interview presentation mode</h3>
-            <p>Five interactive scenes with speaker notes: the challenge, trusted data, traditional analytics, AI-augmented analytics, and business impact &amp; architecture.</p>
-            <div class="shot"><img src="assets/img/presentation-desktop.jpg" width="2880" height="1800" alt="Presentation mode, scene four with speaker notes" loading="lazy" /></div>
-          </article>
-        </div>
-      </div>
-    </section>
+<section>
+  <h2>Local model benchmark</h2>
+  <p>Reviewed snapshot (2026-10-17): the same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic pre-checks) and the same validators, on a 16 GB laptop.</p>
+  <div class="tw"><table>
+    <tr><th>Model</th><th>Accepted by validation</th><th>Grounding failures (deterministic fallback)</th><th>Avg latency</th><th>Resident memory</th></tr>
+    <tr><td>gemma3:4b</td><td class="num">8 / 8</td><td class="num">0</td><td class="num">8.3 s</td><td class="num">2.9 GB</td></tr>
+    <tr><td>qwen3.5:9b</td><td class="num">6 / 8</td><td class="num">2</td><td class="num">22.4 s</td><td class="num">5.7 GB</td></tr>
+  </table></div>
+  <p style="margin-top:10px;font-size:14px">One machine, not a performance promise. Larger models and GPU inference servers have not been benchmarked yet.</p>
+</section>
 
-    <!-- ============================================================ TRAPS -->
-    <section id="traps" style="background:var(--bg-2)">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">Data methodology</div>
-          <h2>Most analytics errors are grain errors, not math errors.</h2>
-          <p class="sub">Validating the starting query surfaced the traps below. The platform reports each count separately and never adds non-additive metrics.</p>
-        </div>
-        <div class="traps">
-          <div class="card reveal">
-            <div class="trap-list">
-              <div class="trap"><span class="n">01</span><div><h3 style="margin:0 0 4px">Records ≠ transactions ≠ addresses</h3><p>A transaction can hold several aggregator records; distinct addresses are not additive across days or chains — so window counts use <code>GROUPING SETS</code>.</p></div></div>
-              <div class="trap"><span class="n">02</span><div><h3 style="margin:0 0 4px">A routed swap appears twice</h3><p>Once in <code>dex_aggregator.trades</code>, again as execution steps in <code>dex.trades</code>. The two tables are never summed.</p></div></div>
-              <div class="trap"><span class="n">03</span><div><h3 style="margin:0 0 4px"><code>tx_from</code> is often a resolver</h3><p>In intent-based flows (Fusion, CoW) the sender submits for the user — the platform reports trader (<code>taker</code>) and initiator (<code>tx_from</code>) addresses side by side.</p></div></div>
-              <div class="trap"><span class="n">04</span><div><h3 style="margin:0 0 4px">Second-side limit-order rows</h3><p>Direct limit-order fills are emitted from both users’ perspectives (<code>evt_index = -1</code>); their share of volume is surfaced instead of silently double counted.</p></div></div>
-            </div>
-          </div>
-          <div class="card reveal" id="counts">
-            <div class="lane-head"><b>Same week, four different counts</b><span class="tag">synthetic demo data</span></div>
-            <div class="counts" style="margin-top:20px">
-              <div class="bar-row"><span>Trade records</span><div class="track"><div class="fill" data-w="8791"></div></div><b>8,791</b></div>
-              <div class="bar-row"><span>Distinct transactions</span><div class="track"><div class="fill" data-w="8411"></div></div><b>8,411</b></div>
-              <div class="bar-row"><span>Trader addresses (taker)</span><div class="track"><div class="fill" data-w="7491"></div></div><b>7,491</b></div>
-              <div class="bar-row"><span>Initiators (tx_from)</span><div class="track"><div class="fill" data-w="5087"></div></div><b>5,087</b></div>
-            </div>
-            <p class="legend-note" style="margin-top:18px">Fewer initiators than traders is consistent with resolvers submitting transactions on users’ behalf. Values from the bundled synthetic dataset (last 7 complete UTC days), run through the same SQL as live mode.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<section>
+  <h2>Deployment profiles</h2>
+  <div class="tw"><table>
+    <tr><th>Profile</th><th>Target</th><th>Notes</th></tr>
+    <tr><td>A — local developer</td><td>~16 GB laptop</td><td>Small or medium local models, conservative context, memory guard, ingestion paused by default</td></tr>
+    <tr><td>B — business server</td><td>Linux, 32–128 GB, optional NVIDIA GPU</td><td>Only TLS is exposed; ClickHouse, Airflow and inference stay internal; separate Airflow services</td></tr>
+    <tr><td>C — enterprise</td><td>Kubernetes, GPU inference servers</td><td>Network policies, external secrets, model serving separate from the API</td></tr>
+  </table></div>
+  <p style="margin-top:10px;font-size:14px">These profiles are starting points, not performance promises. Capacity depends on the measured hardware.</p>
+</section>
 
-    <!-- ============================================================ GROUNDED AI -->
-    <section id="grounded">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">Grounded AI</div>
-          <h2>The model explains. It never computes, and it never writes SQL.</h2>
-          <p class="sub">Every answer runs the same pipeline. The two LLM steps are bounded by schemas; everything numeric happens in deterministic code, and a validator checks the prose before it is shown. Without an LLM key, a clearly labelled rule-based mode answers instead.</p>
-        </div>
-        <div class="pipeline" id="pipeline">
-          <div class="step llm"><b>Classify intent</b><span>Question → one of 12 validated analyses (enum schema)</span></div>
-          <div class="step"><b>Select metrics</b><span>Intent → datasets &amp; allowlisted templates</span></div>
-          <div class="step"><b>Retrieve data</b><span>Dune execution or cache, with execution ids</span></div>
-          <div class="step"><b>Calculate facts</b><span>Changes, Shapley decomposition, peers, z-scores</span></div>
-          <div class="step llm"><b>Explain</b><span>Facts in, prose out — hypotheses, not causes</span></div>
-          <div class="step"><b>Validate</b><span>Every number must match a computed fact</span></div>
-          <div class="step"><b>Evidence</b><span>SQL, executions, freshness, cost, limitations</span></div>
-          <div class="step"><b>Answer</b><span>Findings · Interpretation · Evidence &amp; limitations</span></div>
-        </div>
+<section>
+  <h2>Limitations</h2>
+  <ul>
+    <li>Only the listed networks and verified decoder families are analysed, and only pools that were discovered and ingested. Other venues are not counted.</li>
+    <li>The examples cover historical, ingested windows; nothing on this page is live.</li>
+    <li>Local AI quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
+    <li>Optional Dune and remote AI integrations are off by default.</li>
+  </ul>
+</section>
 
-        <div class="validator">
-          <div class="card answer reveal">
-            <div class="lane-head"><b>Answer draft — hover a number</b><span class="tag ok">✓ grounded</span></div>
-            <p style="margin-top:16px">“Why did aggregator volume change on Arbitrum over the last seven days?”</p>
-            <p>Observed volume fell from <span class="num" data-f="vol_prev">$27.09M</span> to <span class="num" data-f="vol_cur">$15.12M</span> (<span class="num" data-f="vol_change">-44.2%</span>).</p>
-            <p>Count effect <span class="num" data-f="count_effect">-$4.62M</span>, average-size effect <span class="num" data-f="size_effect">-$7.35M</span> — consistent with fewer large trades.</p>
-            <p>Covered peers moved <span class="num" data-f="peer_change">-10.7%</span>; the covered-set share went <span class="num" data-f="share_prev">55.0%</span> → <span class="num" data-f="share_cur">43.3%</span>, so part of the change looks 1inch-specific.</p>
-            <div class="rejected" style="margin-top:14px;padding-top:14px;border-top:1px dashed var(--line-strong)">
-              <div class="lane-head"><span class="tag no">✕ rejected by validator</span></div>
-              <p style="margin-top:10px">“Volume dropped <span class="bad">52%</span> because of a competitor incentive.”</p>
-              <p class="legend-note">52% matches no computed fact, and the causal claim has no evidence → the sentence is removed and listed in the validation report.</p>
-            </div>
-          </div>
-          <div class="card reveal">
-            <div class="lane-head"><b>Fact book (deterministic)</b><span class="tag">pandas</span></div>
-            <div class="table-scroll" style="margin-top:12px">
-              <table class="facts" id="facts">
-                <tbody>
-                  <tr data-f="vol_prev"><td>vol_prev</td><td>Σ volume_usd, previous 7 days</td><td>$27.09M</td></tr>
-                  <tr data-f="vol_cur"><td>vol_cur</td><td>Σ volume_usd, current 7 days</td><td>$15.12M</td></tr>
-                  <tr data-f="vol_change"><td>vol_change</td><td>(cur − prev) / prev</td><td>-44.2%</td></tr>
-                  <tr data-f="count_effect"><td>count_effect</td><td>(n₁ − n₀)(s₀ + s₁) / 2</td><td>-$4.62M</td></tr>
-                  <tr data-f="size_effect"><td>size_effect</td><td>(s₁ − s₀)(n₀ + n₁) / 2</td><td>-$7.35M</td></tr>
-                  <tr data-f="peer_change"><td>peer_change</td><td>covered peers, cur vs prev</td><td>-10.7%</td></tr>
-                  <tr data-f="share_prev"><td>share_prev</td><td>1inch ÷ covered set, prev</td><td>55.0%</td></tr>
-                  <tr data-f="share_cur"><td>share_cur</td><td>1inch ÷ covered set, cur</td><td>43.3%</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="legend-note" style="margin-top:14px">Synthetic demo values. Count + size effects sum exactly to the change (Shapley split). Peer comparison separates market-wide from 1inch-specific movement.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ LAB -->
-    <section id="lab" style="background:var(--bg-2)">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">Analytics evolution lab</div>
-          <h2>Same data. Better decisions.</h2>
-          <p class="sub">A representative SQL &amp; dashboard workflow and the proposed AI-assisted workflow run side by side on the same dataset, chain and window. Only measured times are recorded — human interaction time and engine runtime are kept separate. No productivity multiple is claimed.</p>
-        </div>
-        <div class="lab">
-          <div class="card lane reveal">
-            <div class="lane-label">Baseline</div>
-            <h3>Manual SQL &amp; dashboard analysis</h3>
-            <ol>
-              <li><i>1</i>Define the analytical question</li>
-              <li><i>2</i>Select a validated SQL query</li>
-              <li><i>3</i>Execute and watch progress</li>
-              <li><i>4</i>Inspect the results table and chart</li>
-              <li><i>5</i>Compare historical metrics</li>
-              <li><i>6</i>Write the business interpretation</li>
-            </ol>
-          </div>
-          <div class="card lane ai reveal">
-            <div class="lane-label">Proposed</div>
-            <h3>AI-assisted, source-backed analytics</h3>
-            <ol>
-              <li><i>1</i>Ask a natural-language question</li>
-              <li><i>2</i>Identify metrics &amp; validated queries</li>
-              <li><i>3</i>Retrieve trusted Dune data</li>
-              <li><i>4</i>Calculate changes and anomalies</li>
-              <li><i>5</i>Draft an explanation — human verifies</li>
-              <li><i>6</i>Inspect SQL evidence &amp; follow-ups</li>
-            </ol>
-          </div>
-        </div>
-        <div class="card reveal" style="margin-top:14px">
-          <div class="shot" style="margin-top:-22px;border-top:0;border-bottom:1px solid var(--line);margin-bottom:18px"><img src="assets/img/lab-lanes-desktop.jpg" width="2880" height="1800" alt="Evolution lab with both workflows side by side" loading="lazy" /></div>
-          <div class="match">
-            <span class="ok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-            <div><b>Both workflows report the same number.</b><div class="muted" style="font-size:14px">The baseline lane’s query result and the analyst’s <code>vol_cur</code> fact are compared in-app — and asserted equal in the test suite.</div></div>
-          </div>
-          <div class="table-scroll">
-            <table class="compare">
-              <thead><tr><th>Dimension</th><th>Traditional</th><th>AI-augmented</th></tr></thead>
-              <tbody>
-                <tr><td>Input</td><td>SQL / manual filters</td><td>Natural-language question</td></tr>
-                <tr><td>Data source</td><td>Dune</td><td>Same validated Dune data</td></tr>
-                <tr><td>Analysis</td><td>Analyst-driven</td><td>AI-assisted + deterministic metrics</td></tr>
-                <tr><td>Evidence</td><td>SQL and charts</td><td>SQL, charts, execution ids, facts, validation</td></tr>
-                <tr><td>Interpretation</td><td>Manual</td><td>AI draft, human verification</td></tr>
-                <tr><td>Repeatability</td><td>Saved queries</td><td>Saved analytical workflows</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ GALLERY -->
-    <section id="gallery">
-      <div class="wrap">
-        <div class="lane-head reveal">
-          <div>
-            <div class="kicker">Screens</div>
-            <h2>Built for desk, tablet and phone.</h2>
-          </div>
-          <div class="g-controls">
-            <button class="icon-btn" type="button" data-g="-1" aria-label="Previous screen" style="margin:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-            <button class="icon-btn" type="button" data-g="1" aria-label="Next screen" style="margin:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
-          </div>
-        </div>
-        <div class="gallery" id="g" tabindex="0" aria-label="Screenshot gallery — scroll horizontally">
-          <figure><img src="assets/img/ai-desktop.jpg" width="2880" height="1800" alt="AI analyst page" loading="lazy" /><figcaption><b>AI analyst</b> — findings, hypotheses, evidence, SQL and a measured pipeline trace.</figcaption></figure>
-          <figure><img src="assets/img/lab-hero-desktop.jpg" width="2880" height="1800" alt="Evolution lab hero and shared scenario" loading="lazy" /><figcaption><b>Evolution lab</b> — one shared scenario drives both workflows.</figcaption></figure>
-          <figure><img src="assets/img/lab-consistency-desktop.jpg" width="2880" height="1800" alt="Consistency check and measured sessions" loading="lazy" /><figcaption><b>Same-data check</b> and measured demo sessions.</figcaption></figure>
-          <figure><img src="assets/img/architecture-desktop.jpg" width="2880" height="1800" alt="Architecture page" loading="lazy" /><figcaption><b>Architecture</b> — interactive layers, AI request flow, security and scaling path.</figcaption></figure>
-          <figure><img src="assets/img/overview-light.jpg" width="2880" height="1800" alt="Overview in light theme" loading="lazy" /><figcaption><b>Light theme</b> — selected, not auto-flipped; charts re-derived from tokens.</figcaption></figure>
-          <figure><img src="assets/img/health-desktop.jpg" width="2880" height="1800" alt="Data health page" loading="lazy" /><figcaption><b>Data health</b> — the real Dune error is surfaced, never hidden.</figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ ARCHITECTURE -->
-    <section id="architecture" style="background:var(--bg-2)">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">Architecture</div>
-          <h2>One SQL source of truth, two engines, zero mixing.</h2>
-          <p class="sub">The same DuneSQL files run on Dune in LIVE mode and — transpiled with sqlglot — on a local DuckDB synthetic engine in DEMO mode, so the SQL shown as evidence is exactly what ran. Every payload is labelled with its mode.</p>
-        </div>
-        <div class="arch reveal">
-          <div class="arch-desktop card" style="padding:18px">
-            <svg viewBox="0 0 1100 470" role="img" aria-label="Architecture diagram: sources, execution layer, analytics, AI layer and experience">
-              <text class="svg-k" x="20" y="28">SOURCES</text>
-              <rect class="svg-box hi" x="20" y="40" width="250" height="78" rx="14"/>
-              <text class="svg-title" x="38" y="70">Dune curated tables</text>
-              <text class="svg-text" x="38" y="92">dex_aggregator.trades · dex.trades</text>
-              <text class="svg-text" x="38" y="108">oneinch.swaps (experimental)</text>
-              <rect class="svg-box opt" x="20" y="134" width="250" height="64" rx="14"/>
-              <text class="svg-title" x="38" y="162">1inch first-party data</text>
-              <text class="svg-text" x="38" y="182">quotes · routes · telemetry (future)</text>
-
-              <text class="svg-k" x="320" y="28">EXECUTION</text>
-              <rect class="svg-box" x="320" y="40" width="260" height="158" rx="14"/>
-              <text class="svg-title" x="338" y="70">FastAPI execution service</text>
-              <text class="svg-text" x="338" y="94">validated templates · allowlisted params</text>
-              <text class="svg-text" x="338" y="114">budget guard · concurrency limit</text>
-              <text class="svg-text" x="338" y="134">cache per (mode, SQL, UTC day)</text>
-              <text class="svg-text" x="338" y="154">polling · retries · cancel</text>
-              <text class="svg-text" x="338" y="174">execution registry (SQLite)</text>
-
-              <text class="svg-k" x="630" y="28">ANALYTICS</text>
-              <rect class="svg-box" x="630" y="40" width="210" height="158" rx="14"/>
-              <text class="svg-title" x="648" y="70">Deterministic metrics</text>
-              <text class="svg-text" x="648" y="94">changes · decomposition</text>
-              <text class="svg-text" x="648" y="114">log z-score anomalies</text>
-              <text class="svg-text" x="648" y="134">HHI · contributors</text>
-              <text class="svg-text" x="648" y="154">quality checks</text>
-
-              <text class="svg-k" x="890" y="28">EXPERIENCE</text>
-              <rect class="svg-box" x="890" y="40" width="190" height="158" rx="14"/>
-              <text class="svg-title" x="908" y="70">Angular 22</text>
-              <text class="svg-text" x="908" y="94">dashboard · AI analyst</text>
-              <text class="svg-text" x="908" y="114">evolution lab · SQL lab</text>
-              <text class="svg-text" x="908" y="134">data health · presentation</text>
-              <text class="svg-text" x="908" y="154">ECharts · Tailwind v4</text>
-
-              <text class="svg-k" x="320" y="262">AI LAYER</text>
-              <rect class="svg-box hi" x="320" y="274" width="520" height="110" rx="14"/>
-              <text class="svg-title" x="338" y="304">Intent → templates → facts → explanation → grounding validator</text>
-              <text class="svg-text" x="338" y="328">Claude structured outputs (enum intent, schema narrative) or labelled rule-based mode</text>
-              <text class="svg-text" x="338" y="348">labels sanitised · facts passed as delimited data · every number re-validated</text>
-              <text class="svg-text" x="338" y="368">answer = findings · interpretation · evidence &amp; limitations</text>
-
-              <text class="svg-k" x="20" y="262">OPTIONAL SCALE PATH</text>
-              <rect class="svg-box opt" x="20" y="274" width="250" height="110" rx="14"/>
-              <text class="svg-title" x="38" y="304">Airflow → ClickHouse</text>
-              <text class="svg-text" x="38" y="328">saved queries on schedule</text>
-              <text class="svg-text" x="38" y="348">ReplacingMergeTree · monthly</text>
-              <text class="svg-text" x="38" y="368">partitions · 400-day TTL</text>
-
-              <rect class="svg-box" x="890" y="274" width="190" height="110" rx="14"/>
-              <text class="svg-title" x="908" y="304">Two modes</text>
-              <text class="svg-text" x="908" y="328">LIVE DATA — DUNE</text>
-              <text class="svg-text" x="908" y="348">SYNTHETIC DEMO</text>
-              <text class="svg-text" x="908" y="368">never mixed silently</text>
-
-              <path class="flow" d="M270 80 H320"/>
-              <path class="flow" d="M580 118 H630"/>
-              <path class="flow" d="M840 118 H890"/>
-              <path class="flow v" d="M735 198 V274"/>
-              <path class="flow v" d="M840 330 H890"/>
-              <path class="flow" d="M235 198 V274"/>
-              <path class="flow" d="M450 198 V274"/>
-              <text class="svg-text" x="20" y="430">Security: server-side keys · CORS allowlist · rate limits · optional bearer token · no raw SQL to Dune · guarded dev-only SQL editor · no wallet connection or signing</text>
-            </svg>
-          </div>
-          <div class="arch-mobile">
-            <div class="layer"><b>Sources</b><span>Dune curated tables (dex_aggregator.trades, dex.trades) · future 1inch first-party data</span></div>
-            <svg class="arrow-down" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-            <div class="layer"><b>Execution service</b><span>Validated templates · budgets · cache · polling · registry</span></div>
-            <svg class="arrow-down" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-            <div class="layer"><b>Deterministic analytics</b><span>Changes · decomposition · anomalies · concentration · quality</span></div>
-            <svg class="arrow-down" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-            <div class="layer"><b>AI layer</b><span>Intent → facts → explanation → grounding validator</span></div>
-            <svg class="arrow-down" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-            <div class="layer"><b>Experience</b><span>Angular 22 dashboard, analyst, lab, SQL lab, data health, presentation</span></div>
-            <div class="layer opt"><b>Optional scale path</b><span>Airflow → ClickHouse mart (ReplacingMergeTree, monthly partitions, TTL)</span></div>
-          </div>
-        </div>
-        <div class="chips reveal" aria-label="Technology stack">
-          <span class="chip">Python 3.12</span><span class="chip">FastAPI</span><span class="chip">Pydantic</span><span class="chip">pandas</span><span class="chip">DuckDB</span><span class="chip">sqlglot</span><span class="chip">SQLAlchemy</span><span class="chip">HTTPX</span><span class="chip">Anthropic SDK</span><span class="chip">Angular 22</span><span class="chip">Signals · zoneless</span><span class="chip">Tailwind v4</span><span class="chip">ECharts 6</span><span class="chip">Vitest</span><span class="chip">Playwright</span><span class="chip">ClickHouse</span><span class="chip">Airflow</span><span class="chip">Docker Compose</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ STATUS -->
-    <section id="status">
-      <div class="wrap">
-        <div class="reveal">
-          <div class="kicker">Honest status</div>
-          <h2>What is verified — and what is not yet.</h2>
-          <p class="sub">Correctness over polish: nothing on this page or in the app claims a result that was not measured.</p>
-        </div>
-        <div class="grid-2">
-          <div class="card reveal">
-            <table class="status">
-              <tbody>
-                <tr><td>Dune API integration</td><td><span class="badge ok">✓ implemented &amp; tested</span><br><span class="muted" style="font-size:14px">Auth and schema calls verified live; SQL executions pending the account’s datapoint limit (HTTP 402). No live result is faked.</span></td></tr>
-                <tr><td>SQL templates</td><td><span class="badge ok">✓ executed on synthetic engine</span><br><span class="muted" style="font-size:14px">Live coverage verification pending the 402 fix.</span></td></tr>
-                <tr><td>Dashboard · analyst · lab · presentation</td><td><span class="badge ok">✓ verified at 390 / 820 / 1180 / 1440 px</span></td></tr>
-                <tr><td>Claude integration</td><td><span class="badge wait">◷ implemented, not exercised live</span><br><span class="muted" style="font-size:14px">Labelled rule-based mode used without an API key.</span></td></tr>
-                <tr><td>ClickHouse mart</td><td><span class="badge ok">✓ verified in a container</span></td></tr>
-                <tr><td>Airflow DAG</td><td><span class="badge exp">◇ experimental</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card reveal">
-            <div class="lane-head"><b>Automated tests</b><span class="tag ok">all passing</span></div>
-            <div class="counts" style="margin-top:20px" id="tests">
-              <div class="bar-row"><span>Backend (pytest)</span><div class="track"><div class="fill" data-w="202" data-max="202"></div></div><b>202</b></div>
-              <div class="bar-row"><span>End-to-end (Playwright)</span><div class="track"><div class="fill" data-w="54" data-max="202" style="background:var(--violet)"></div></div><b>54</b></div>
-              <div class="bar-row"><span>Frontend unit (Vitest)</span><div class="track"><div class="fill" data-w="20" data-max="202" style="background:var(--cyan)"></div></div><b>20</b></div>
-            </div>
-            <p class="legend-note" style="margin-top:16px">Includes Dune client behaviour (mocked), injection attempts, SQL-vs-app anomaly agreement, grounding of every AI number, filter consistency, and 12 routes × phone / tablet / desktop with no horizontal overflow. One opt-in live smoke test is skipped by default.</p>
-          </div>
-        </div>
-
-        <div class="repo">
-          <div class="card reveal">
-            <div class="lane-head"><b>This repository — public showcase</b><code>1inch-defi-intelligence</code></div>
-            <ul class="check">
-              <li>Project overview, screenshots and this homepage</li>
-              <li>Methodology highlights and honest status</li>
-              <li>No source code, credentials or data</li>
-            </ul>
-          </div>
-          <div class="card reveal">
-            <div class="lane-head"><b>Core — private repository</b><code>1inch-defi-intelligence-core</code></div>
-            <ul class="check lock">
-              <li>FastAPI backend, DuneSQL templates, AI analyst</li>
-              <li>Angular 22 frontend, tests, ClickHouse &amp; Airflow modules</li>
-              <li>Full documentation and interview kit — access on request</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div>
-        <strong>Independent concept demo.</strong> Built for a Data &amp; Analytics Lead interview. Not an official 1inch product and not affiliated with or endorsed by 1inch.
-        On-chain data via Dune Analytics curated tables. Screens show synthetic demo data. No trading, wallet connection or signing.
-      </div>
-      <div>© <span id="y">2026</span> WeAreTheArtMakers</div>
-    </div>
-  </footer>
-
-  <script src="assets/js/site.js" defer></script>
+<footer>DeFi Intelligence — self-hosted analytics software. The application source is private; this repository contains only the public overview.</footer>
+</div>
 </body>
 </html>

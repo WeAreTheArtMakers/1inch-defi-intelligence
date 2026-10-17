@@ -1,84 +1,94 @@
-# DeFi Intelligence: from on-chain data to trusted decisions
+# DeFi Intelligence
 
-**Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/**
+**Self-hosted, multi-chain DeFi analytics and anomaly intelligence, with private AI that can only explain verified numbers.**
 
-> **Independent concept demo.** Built for a Data & Analytics Lead interview. It is not an official 1inch product and
-> is not affiliated with or endorsed by 1inch. The screens below show the bundled **synthetic demo dataset**. In the
-> app that data is always labelled "SYNTHETIC DEMO DATA — NOT ACTUAL 1INCH METRICS".
+Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/
 
-![Executive overview](assets/img/overview-desktop.jpg)
+DeFi Intelligence is independent software. It is not affiliated with or endorsed by any protocol it analyses.
+This repository is the **public showcase**: an overview, screenshots and reviewed example results. The application
+source is private. The examples below are **precomputed, reviewed snapshots (generated 2026-10-17)**. They are not live
+data, and this static page does not connect to any API.
 
-This is a working analytics platform built on top of Dune. It has three parts:
-
-- **Version-controlled DuneSQL**, run through the official Dune API.
-- **A provenance-first, multi-chain dashboard.**
-- **An AI analyst that can only explain numbers it can prove.**
-
-Every figure traces back to a query, an execution id and a deterministic calculation.
-
-This repository is the **public showcase**: an overview, screenshots and the homepage. The source code lives in the
-private core repository, `1inch-defi-intelligence-core`. Access is available on request.
+![Anomaly finding with frozen baseline, evidence and limitations](assets/img/anomaly-finding.jpg)
 
 ## What it does
 
-| Capability | Highlights |
+| Capability | What it means |
 |---|---|
-| Real Dune integration | Execute SQL and saved queries, poll status, fetch paginated results, cancel, retry on rate limits, cache. Credit budgets are enforced before anything is submitted. Keys stay server-side. |
-| Validated DuneSQL | 13 templates (daily performance, chains, pairs, wallets, aggregators, anomalies, routing, discovery, quality). Parameters are typed and allowlisted. |
-| Dashboard | KPIs, trends, chain distribution, address-keyed token pairs, anomalies and freshness. Filters update every chart and the narrative consistently. |
-| Grounded AI analyst | The question is mapped to a validated intent, then to metrics and facts. The explanation is checked by a validator before anything is shown. Answers are split into findings, interpretation and evidence & limitations. |
-| Analytics evolution lab | A manual SQL workflow and an AI-assisted workflow run side by side on the same data. Only measured times are recorded, and no productivity multiple is claimed. |
-| Data reliability | App health, upstream freshness and validation checks are reported separately. A real Dune error is shown as it is, never hidden. |
-| Presentation mode | Five interview scenes with speaker notes. |
-| Scale path | An optional Airflow → ClickHouse mart. ClickHouse is verified in a container; the Airflow DAG is experimental. |
+| **Verified multi-chain ingestion** | Public JSON-RPC on Base, Arbitrum One, OP Mainnet and Ethereum through Airflow into ClickHouse. Block coverage is proven per run; empty answers are confirmed by a second provider; timestamps come from block headers; a run is published only when every quality gate passes, idempotently. |
+| **Universal token explorer** | Any token contract on a supported network: on-chain identity check plus an independent registry check, pool discovery, decoder support level per pool (supported / partially supported / unsupported), collection of only the missing windows, per-pool coverage, quality checks, anomaly detection and an evidence-backed report. |
+| **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. |
+| **Anomaly intelligence** | Volume, activity and liquidity shifts against a baseline frozen at onset, plus address concentration, buy/sell imbalance, price-volume divergence and repetitive patterns. Every finding carries facts, method, parameters, limitations and alternative explanations, and none is an accusation. |
+| **Honest valuation** | USD comes from a stablecoin leg or a verified hourly price within ±15 minutes. Swaps without a verified price are counted as *unvalued*, never as $0. Pool-event volume and transaction-net volume (routing removed) are reported separately. |
+| **Private, model-agnostic AI** | Ollama (tested) or any server exposing an OpenAI-compatible API — vLLM, llama.cpp, LM Studio or an organisation gateway are integration options using the same adapter, which is tested against Ollama's OpenAI-compatible endpoint. Native Anthropic and OpenAI providers are optional and off by default: no paid request is made until an administrator enables the provider and authorises paid use within request, token and budget limits. Every sentence must cite the facts behind its numbers; numbers, terminology and claims are re-checked. A rejected answer falls back to a deterministic, evidence-backed one. |
+| **Conversational analyst** | Multi-turn, multilingual conversations (tested in English, Turkish and German). Follow-up questions keep the token and topic of the previous turn, and every turn is re-grounded in its own verified facts. |
+| **Operations** | One operations view (service health, pipeline runs and failures, freshness per token, quality audits, backups, alerts), measured storage, verified backups with test-restore, a versioned staging archive, separate restartable Airflow services, preflight resource checks, an audit log, organisations and role-based access. |
 
-## Methodology highlights
+## Verified research examples (reviewed snapshots)
 
-- **Records ≠ transactions ≠ addresses.** Distinct counts are computed at the window grain (`GROUPING SETS`) and
-  never summed across days or chains.
-- **`dex_aggregator.trades` and `dex.trades` are never added together.** A routed swap appears in both.
-- **`tx_from` is often a resolver.** In intent-based flows (Fusion, CoW) it is not the user, so trader (`taker`)
-  and initiator counts are reported side by side.
-- **Second-side limit-order rows** (`evt_index = -1`) are surfaced instead of silently double counted.
-- **Anomalies are statistical alerts, not causes.** The method is a log-volume z-score against a trailing
-  baseline. The SQL and application implementations are asserted identical.
+**Aggregator volume anomaly on Base** (1inch series, 1 Sep → 15 Oct 2026). This is an audited case: every headline
+number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled receipts matched.
+- Window volume: **$458.56M**. A single automated account accounted for **90.2%** of it.
+- Peak: **10.3×** the pre-onset median.
+- Volume excluding the identified account: **−15.5%** against its 14-day baseline. The audit corrected this from
+  −20.5% after finding a silently empty provider response.
+- These are statistical observations; they do not claim intent.
 
-## Screens
+**ARB on Arbitrum One** (14 Oct 12:00 → 17 Oct 03:00 UTC, 3 ingested Uniswap v3 pools):
+- 63,089 pool swap events in 62,892 transactions; valued volume $17.06M.
+- Valuation: 36.8% of swaps through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued.
+- Pass-through routing: 0.1%.
 
+**VELO on OP Mainnet** (16 Oct 12:00 → 17 Oct 00:00 UTC):
+- **Pools:** 12 discovered, all receipt-verified and supported; 6 ingested.
+- **Contrast:** the Solidly pools carried 62,302 swap events but only 463,647 VELO; the v3 pools carried 3,266 events
+  but 12.2 M VELO.
+- **Repetitive patterns:** detected and reported as observations, not accusations.
+- **Scope:** time coverage of the ingested pools is complete, but the token's market coverage is not. The report says
+  so explicitly.
+
+## Screenshots
 | | |
 |---|---|
-| ![AI analyst](assets/img/ai-desktop.jpg) | ![Evolution lab](assets/img/lab-lanes-desktop.jpg) |
-| ![Aggregators](assets/img/aggregators-desktop.jpg) | ![Data health](assets/img/health-desktop.jpg) |
-| ![Presentation](assets/img/presentation-desktop.jpg) | ![Architecture](assets/img/architecture-desktop.jpg) |
+| ![Token explorer: pools verified on-chain with a support level per pool](assets/img/explorer-pools.jpg) | ![Historical comparison of two fully covered windows](assets/img/explorer-comparison.jpg) |
+| ![Anomaly findings filtered to high severity](assets/img/anomaly-findings.jpg) | ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) |
 
-<p align="center"><img src="assets/img/overview-phone.jpg" width="260" alt="Phone" /> &nbsp; <img src="assets/img/overview-ipad.jpg" width="360" alt="Tablet" /></p>
+## Local model benchmark (reviewed snapshot, 2026-10-17)
+Same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic
+pre-checks), same validators, on a 16 GB laptop:
 
-## Stack
+| Model | Answers accepted by validation | Grounding failures (fell back to deterministic) | Avg latency | Resident memory |
+|---|---|---|---|---|
+| gemma3:4b | 8 / 8 | 0 | 8.3 s | 2.9 GB |
+| qwen3.5:9b | 6 / 8 | 2 | 22.4 s | 5.7 GB |
 
-- **Backend:** Python 3.12, FastAPI, Pydantic, pandas, DuckDB, sqlglot, SQLAlchemy, HTTPX, Anthropic SDK.
-- **Frontend:** Angular 22 (standalone, signals, zoneless), Tailwind v4, ECharts 6.
-- **Testing:** Vitest and Playwright.
-- **Optional infrastructure:** ClickHouse and Airflow via Docker Compose.
+A benchmark on one machine, not a performance promise; larger models and GPU servers have not been benchmarked yet.
 
-## Honest status
+## Deployment profiles
+| Profile | Target | Notes |
+|---|---|---|
+| A — local developer | ~16 GB RAM laptop | Docker Compose, small or medium local models, conservative context, memory guard, hourly ingestion off by default |
+| B — business server | Linux, 32–128 GB, optional NVIDIA GPU | TLS reverse proxy only; ClickHouse, Airflow and inference stay internal; several models; separate Airflow services |
+| C — enterprise | Kubernetes, large GPUs, separate inference servers | Network policies, external secrets, model serving separate from the API. Horizontal API scaling needs a shared application database. |
 
-| Area | Status |
-|---|---|
-| Dune API integration | Implemented and tested. Auth and schema calls verified live. SQL executions are pending the account's datapoint limit (HTTP 402); no live result is faked. |
-| SQL templates | Executed on the synthetic engine. Live coverage verification is pending. |
-| UI | Verified at 390 / 820 / 1180 / 1440 px, in dark and light themes. |
-| Claude integration | Implemented but not exercised live. Without an API key it runs in a clearly labelled rule-based mode. |
-| Automated tests | 202 backend (pytest), 54 end-to-end (Playwright), 20 frontend unit (Vitest), all passing. |
+These profiles are starting points, not performance promises. Capacity depends on the measured hardware.
 
-## About this homepage
+## Optional integrations
+- **Dune Analytics:** optional and off by default. Keys are stored encrypted on the server and tested with free calls
+  only. No workflow depends on it.
+- **Remote or enterprise AI endpoints:** receive organisation data only when an administrator authorises them.
+- **Anthropic / OpenAI:** off by default; no chargeable request is made until an administrator authorises paid use.
 
-A static page with no framework:
+## Limitations
+- **Analysed scope:** the networks and decoder families listed above, plus pools that are discovered and ingested.
+  Other venues are not counted.
+- **Time ranges:** the examples above cover historical, ingested windows; nothing here is live streaming data.
+- **Findings:** statistical observations. They never establish intent, manipulation or wash trading, and addresses are
+  not identified entities.
+- **Local AI quality:** depends on the model. The validators reject ungrounded or forbidden statements but do not
+  correct grammar.
+- **Multi-tenancy:** organisation isolation is enforced and tested for workspaces, reports, members, tokens, settings
+  and audit. Ingested public-chain data is shared platform-wide.
 
-- **Modern CSS:** OKLCH colour tokens, container queries, and scroll-driven animations (`animation-timeline: view()`)
-  with fallbacks.
-- **Interaction:** a canvas network background, View Transitions for the theme switch, and pointer spotlights.
-- **Accessibility:** respects `prefers-reduced-motion`; responsive across phone, tablet and desktop.
-
----
-
-© WeAreTheArtMakers. All rights reserved. Content and screenshots are provided for review purposes.
+## Access
+The application is self-hosted. For licensing or evaluation, contact the maintainers through this repository.
