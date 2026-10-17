@@ -449,8 +449,9 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         <tr><td>Local backups with verified test restore</td><td class="st ok">Tested</td></tr>
         <tr><td>Live Anthropic Claude API and OpenAI API calls</td><td class="st no">Not yet verified</td></tr>
         <tr><td>vLLM on GPU servers</td><td class="st no">Not yet verified</td></tr>
-        <tr><td>Kubernetes deployment</td><td class="st no">Not yet verified</td></tr>
-        <tr><td>Off-site backups (a destination must be configured per installation)</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>Kubernetes deployment on a single-node test cluster</td><td class="st part">Validated locally</td></tr>
+        <tr><td>Encrypted S3-compatible backups with isolated restore verification, against local S3-compatible storage</td><td class="st part">Tested locally</td></tr>
+        <tr><td>Off-site recovery from an independent external S3 destination</td><td class="st no">Not yet verified</td></tr>
       </table>
     </div>
   </div>
@@ -467,9 +468,10 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         <tr><th scope="col">Profile</th><th scope="col">Status</th><th scope="col">Target</th><th scope="col">Notes</th></tr>
         <tr><td>Business server</td><td class="st ok">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Read-only preflight installer, first-administrator setup, upgrade and rollback by release tag</td></tr>
         <tr><td>Local evaluation</td><td class="st ok">Tested</td><td>A 16 GB machine</td><td>Small local models, memory guard, automatic ingestion off by default</td></tr>
-        <tr><td>Enterprise</td><td class="st no">Not yet verified</td><td>Kubernetes, separate GPU inference servers</td><td>Manifests prepared; not yet validated on a cluster</td></tr>
+        <tr><td>Enterprise</td><td class="st part">Validated locally</td><td>Kubernetes, separate GPU inference servers</td><td>Kubernetes manifests with optional Airflow. Upgrade, rollback, persistence, network policies and backups validated on a local single-node cluster; production clusters, managed cloud, external TLS ingress and GPU inference nodes not yet validated</td></tr>
       </table>
     </div>
+    <p class="note">Backups are encrypted before they leave the server. Point them at your own S3-compatible bucket for off-site copies; every backup can be restore-verified in isolation, without modifying production data. Tested end-to-end against local S3-compatible storage; recovery from an independent remote destination has not yet been verified.</p>
     <p class="note">Starting points, not performance promises: capacity depends on the measured hardware.</p>
   </div>
 </section>
@@ -500,7 +502,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <li>The examples on this page cover historical, ingested windows. Nothing here is live, and the page connects to no API.</li>
       <li>AI answer quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
       <li>Dune and cloud AI integrations are optional and off by default.</li>
-      <li>Off-site backups need a destination configured per installation; until then they are reported as not configured.</li>
+      <li>Off-site backups need an external S3-compatible destination configured per installation; until one is registered and verified, they are reported as not configured.</li>
       <li>DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
     </ul>
   </div>
