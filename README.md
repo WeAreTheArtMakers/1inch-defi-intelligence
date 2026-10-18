@@ -7,7 +7,7 @@ Homepage → https://wearetheartmakers.github.io/1inch-defi-intelligence/ · **[
 
 DeFi Intelligence is independent software. It is not affiliated with or endorsed by any protocol it analyses.
 This repository is the **public showcase**: an overview, screenshots and reviewed example results. The application
-source is private. The examples below are **precomputed, reviewed snapshots (generated 2026-10-17)**. They are not live
+source is private. The examples below are **precomputed, reviewed snapshots (generated 2026-10-17; the Ethereum 1INCH case 2026-10-18)**. They are not live
 data, and this static page does not connect to any API.
 
 ![The DeFi Intelligence web application in a desktop browser: the anomaly center with high-severity findings on verified on-chain data](assets/img/devices/desktop-anomaly-center.jpg)
@@ -37,7 +37,7 @@ data, and this static page does not connect to any API.
 |---|---|
 | **Verified multi-chain ingestion** | Public JSON-RPC on Base, Arbitrum One, OP Mainnet and Ethereum through Airflow into ClickHouse. Block coverage is proven per run; empty answers are confirmed by a second provider; timestamps come from block headers; a run is published only when every quality gate passes, idempotently. |
 | **Universal token explorer** | Any token contract on a supported network: on-chain identity check plus an independent registry check, pool discovery, decoder support level per pool (supported / partially supported / unsupported), collection of only the missing windows, per-pool coverage, quality checks, anomaly detection and an evidence-backed report. |
-| **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. |
+| **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. **Uniswap v4** is verified pool by pool instead: six Ethereum 1INCH pools are individually verified and ingestible; other v4 pools are not. PancakeSwap v3 is decoder-only and not verified for ingestion. |
 | **Anomaly intelligence** | Volume, activity and liquidity shifts against a baseline frozen at onset, plus address concentration, buy/sell imbalance, price-volume divergence and repetitive patterns. Every finding carries facts, method, parameters, limitations and alternative explanations, and none is an accusation. |
 | **Honest valuation** | USD comes from a stablecoin leg or a verified hourly price within ±15 minutes. Swaps without a verified price are counted as *unvalued*, never as $0. Pool-event volume and transaction-net volume (routing removed) are reported separately. |
 | **AI provider options** | **Local models via Ollama** (tested). **Anthropic Claude API** and **OpenAI API** (integrated; optional, off by default; no paid request until an administrator authorises paid use within request, token and budget limits). **Self-hosted OpenAI-compatible servers** such as vLLM, llama.cpp, LM Studio or an organisation gateway (integration options through the same adapter, which is tested against Ollama's OpenAI-compatible endpoint). Every sentence must cite the facts behind its numbers; a rejected answer falls back to a deterministic, evidence-backed one, labelled as such. |
@@ -45,6 +45,51 @@ data, and this static page does not connect to any API.
 | **Operations** | One operations view (service health, pipeline runs and failures, freshness per token, quality audits, backups, alerts), measured storage, verified backups with test-restore, a versioned staging archive, separate restartable Airflow services, preflight resource checks, an audit log, organisations and role-based access. |
 
 ## Verified research examples (reviewed snapshots)
+
+**1INCH token on Ethereum** (16 Oct 2026 19:00 → 17 Oct 2026 19:00 UTC; 11 ingested pools, including six individually
+verified Uniswap v4 pools).
+
+![The application's token report for 1INCH on Ethereum: 289 pool swaps, $108.7K valued, 288 of 289 swaps valued, 11 verified pools, with an hourly chart](assets/img/report-1inch-ethereum.jpg)
+
+- **Activity:** 289 pool Swap events in 250 distinct transactions, over 24 fully covered hours across all 11 selected
+  pools.
+- **Valuation:** 288 of 289 swaps valued (99.7%), giving **$108,733.34** of USD-valued pool-event volume. 3 swaps were
+  valued from a stablecoin leg and 285 from verified DefiLlama hourly prices. One wstETH swap had no verified hourly
+  price and stays unvalued, never counted as $0.
+- **Routing:** 28 transactions passed through more than one ingested pool. Pool-event volume (1,180,334 1INCH) is
+  therefore higher than transaction-net volume (855,100 1INCH).
+- **Findings:** none for this 24-hour window under the existing detection method.
+- **Scope:** selected-pool event measurements. This is **not** total 1INCH market volume and **not** transaction-net
+  trading volume; other pools, venues and exchanges are not included.
+
+| Pair | Protocol | Fee tier | Swap events |
+|---|---|---|---|
+| 1INCH / CRV | Uniswap v4 (PoolId 0x6bf6…d1fe) | 1% | 79 |
+| 1INCH / AAVE | Uniswap v4 (PoolId 0x32dd…3a7a) | 1% | 50 |
+| 1INCH / LINK | Uniswap v3 (0x2802…e4c2) | 0.3% | 47 |
+| 1INCH / wstETH | Uniswap v4 (PoolId 0x1d6e…ea6f) | 1% | 39 |
+| 1INCH / LINK | Uniswap v4 (PoolId 0x17bc…2958) | 1% | 33 |
+| 1INCH / WETH | Uniswap v3 (0xe931…cb97) | 1% | 21 |
+| 1INCH / WETH | Uniswap v2 (0x26aa…86f2) | 0.3% | 13 |
+| 1INCH / WETH | Uniswap v3 (0xd35e…4b44) | 0.3% | 3 |
+| 1INCH / USDC | Uniswap v4 (PoolId 0x1ff1…e81d) | 1% | 2 |
+| 1INCH / WBTC | Uniswap v4 (PoolId 0x6255…d826) | 1% | 1 |
+| 1INCH / USDC | Uniswap v3 (0x9feb…82ae) | 1% | 1 |
+| **11 pools** | **6 Uniswap v4 (204 events), 4 Uniswap v3, 1 Uniswap v2** | | **289** |
+
+**How the six Uniswap v4 pools were verified:**
+- **PoolId ↔ PoolKey:** each pool's Initialize event (found on one RPC provider, confirmed by three others) gives its
+  PoolKey, and the hash of that key equals the PoolId. All six are hookless 1% pools without native ETH.
+- **Two-provider agreement:** the 204 v4 Swap events in this window were fetched independently from two RPC providers.
+  Both returned the identical set, and the published rows match it event for event.
+- **Sampled receipt reconciliation:** 149 sampled transaction receipts (from this window and earlier blocks) reconciled
+  exactly with the PoolManager's token transfers, 24–25 per pool, with 0 mismatches. Not every one of the 204 swaps was
+  individually receipt-reconciled.
+- **Not automatically supported:** other v4 PoolIds, Uniswap v4 on other networks, pools with hooks that can change swap
+  amounts and pools with native ETH each need the same verification first.
+
+This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the aggregator case on Base
+below, which analyses 1inch aggregator volume on another network.
 
 **Aggregator volume anomaly on Base** (1inch series, 1 Sep → 15 Oct 2026). This is an audited case: every headline
 number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled receipts matched.
@@ -74,7 +119,7 @@ Real screens from the self-hosted web application on verified on-chain data (sna
 |---|---|
 | ![Token explorer on a tablet: VELO on OP Mainnet with twelve supported pools](assets/img/devices/tablet-token-explorer.jpg) | ![Conversational analyst on a phone: an ARB question answered with cited facts](assets/img/devices/phone-ai-analyst.jpg) |
 | ![Token explorer: pools verified on-chain with a support level per pool](assets/img/explorer-pools.jpg) | ![Historical comparison of two fully covered windows](assets/img/explorer-comparison.jpg) |
-| ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) | |
+| ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) | ![Token report: 1INCH on Ethereum across 11 ingested pools (snapshot 2026-10-18)](assets/img/report-1inch-ethereum.jpg) |
 
 ## Local model benchmark (reviewed snapshot, 2026-10-17)
 Same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic
@@ -94,6 +139,9 @@ and GPU servers have not been benchmarked yet.
 | Capability | Status |
 |---|---|
 | Ingestion, token explorer, anomaly engine, reports and comparisons on the four networks | Tested on real data |
+| Uniswap v4: six individually verified Ethereum 1INCH pools | Tested on real data |
+| Other Uniswap v4 pools, other networks, hooks that change swap amounts, native ETH | Not supported |
+| PancakeSwap v3 ingestion | Decoder only |
 | Local models via Ollama, including a live multilingual multi-turn conversation | Tested |
 | Self-hosted Docker Compose installation (TLS proxy, first administrator, upgrade and rollback) | Tested on Docker Desktop |
 | Organisation roles and isolation of organisation data | Tested |
@@ -122,8 +170,10 @@ These are starting points, not performance promises: capacity depends on the mea
 - **Anthropic / OpenAI:** off by default; no chargeable request is made until an administrator authorises paid use.
 
 ## Limitations
-- **Analysed scope:** the networks and decoder families listed above, plus pools that are discovered and ingested.
-  Other venues are not counted.
+- **Analysed scope:** the networks, verified protocol families and individually verified pools listed above, and only
+  pools that are discovered and ingested. Other venues are not counted, so no figure here is a token's whole market.
+- **Pool-event volume:** a routed trade is counted in every ingested pool it passes through; transaction-net volume is
+  reported separately.
 - **Time ranges:** the examples above cover historical, ingested windows; nothing here is live streaming data.
 - **Findings:** statistical observations. They never establish intent, manipulation or wash trading, and addresses are
   not identified entities.

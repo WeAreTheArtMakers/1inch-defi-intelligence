@@ -115,6 +115,7 @@ section{scroll-margin-top:84px}
 .tag{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:15px}
 .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--brass)}
 .tag.muted{color:var(--ink-2)} .tag.muted .dot{background:#5D6A86}
+a.tag{text-decoration:none} a.tag:hover{color:var(--ink);border-color:var(--blue)}
 
 /* audiences */
 .aud{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
@@ -167,6 +168,28 @@ td{color:var(--ink-2)} td:first-child{color:var(--ink)}
 .case h3{font-size:21px;margin-bottom:6px}
 .case .when{font-size:14px;color:var(--ink-3);margin-bottom:14px}
 .case p{font-size:16px}
+.xcase{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:40px;margin-bottom:56px}
+.xcase-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:12px 48px;align-items:end;margin-bottom:28px}
+.xcase-head h3{font-size:clamp(26px,2.6vw,34px)}
+.xcase-head .when{font-size:15px;color:var(--ink-3);margin:8px 0 0}
+.xcase-head p.lead{margin:0;font-size:16px}
+.kicker{display:inline-block;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);margin-bottom:10px}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;margin:0 0 32px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:var(--r-md);overflow:hidden}
+.figs div{background:#0F182B;padding:20px 20px 18px}
+.figs dt{font:600 clamp(24px,2.4vw,30px)/1.1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums;margin-bottom:8px}
+.figs dd{margin:0;font-size:14.5px;line-height:1.45;color:var(--ink-2)}
+.xcase-body{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:start;margin-bottom:36px}
+.xcase h4{font:600 18px/1.3 var(--display);color:var(--ink);margin:0 0 14px}
+.checks{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.checks li{position:relative;padding-left:22px;color:var(--ink-2);font-size:15.5px}
+.checks li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--brass)}
+.checks b{color:var(--ink);font-weight:600}
+.pools td:nth-child(3),.pools td:nth-child(4),.pools th:nth-child(3),.pools th:nth-child(4){text-align:right;white-space:nowrap}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.pools code{font:500 13.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink-3)}
+.pools tfoot td{color:var(--ink);font-weight:600;border-top:1px solid var(--line)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:36px}
+.aside{border-left:2px solid var(--line);padding-left:20px;font-size:15px;color:var(--ink-3);margin-top:32px}
 
 /* pilot */
 .pilot{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;background:linear-gradient(135deg,#131D33,#0D1528);border:1px solid var(--line);border-radius:28px;padding:56px;position:relative;overflow:hidden}
@@ -205,6 +228,9 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   .nav{display:none} .menu{display:block}
   .pipe{grid-template-columns:minmax(0,1fr)} .pipe li:not(:last-child)::after{display:none}
   .cases{grid-template-columns:minmax(0,1fr)}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .xcase-head,.xcase-body,.split{grid-template-columns:minmax(0,1fr);gap:28px}
+  .xcase{padding:28px}
   .aud{grid-template-columns:minmax(0,1fr)}
   .band{padding:72px 0}
 }
@@ -223,6 +249,22 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   .pilot{padding:28px 22px;border-radius:22px}
   .foot{grid-template-columns:minmax(0,1fr)}
   th,td{padding:12px 14px}
+  .xcase{padding:22px 18px;border-radius:var(--r-md)}
+  .figs div{padding:16px 14px}
+  .pools thead{display:none}
+  .pools tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;padding:12px 14px;border-bottom:1px solid var(--line-soft)}
+  .pools tbody tr:last-child{border-bottom:none}
+  .pools td{padding:0;border:none}
+  .pools td:nth-child(1){grid-column:1;grid-row:1;color:var(--ink);font-weight:600}
+  .pools td:nth-child(4){grid-column:2;grid-row:1}
+  .pools td:nth-child(2){grid-column:1;grid-row:2;font-size:14px}
+  .pools td:nth-child(3){grid-column:2;grid-row:2;font-size:14px;color:var(--ink-3)}
+  .pools td:nth-child(4)::after{content:" events";font-weight:400;color:var(--ink-3);font-size:14px}
+  .pools td:nth-child(3):not(:empty)::after{content:" fee"}
+  .pools code{display:inline;margin-left:4px;white-space:nowrap}
+  .pools td.one::after{content:" event"}
+  .pools tfoot tr{border-top:1px solid var(--line);border-bottom:none}
+  .pools tfoot td{border-top:none}
   .btn{width:100%;justify-content:center}
   .actions a.link{margin:0 auto}
 }
@@ -240,6 +282,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
     <nav class="nav" aria-label="Main">
       <a href="#product">Product</a>
       <a href="#ai">AI analyst</a>
+      <a href="#research">Research</a>
       <a href="#status">What's verified</a>
       <a href="#deploy">Deployment</a>
       <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
@@ -249,6 +292,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <div class="panel">
         <a href="#product">Product</a>
         <a href="#ai">AI analyst</a>
+        <a href="#research">Research</a>
         <a href="#status">What's verified</a>
         <a href="#deploy">Deployment</a>
         <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
@@ -293,15 +337,17 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="intro">
       <h2 id="coverage-h">Built on receipt-verified data</h2>
-      <p>Swaps are read from public JSON-RPC or your own endpoints, proven complete for every block range and cross-checked before anything is published. A protocol family is supported only after its decoded swaps matched transaction receipts exactly on several networks.</p>
+      <p>Swaps are read from public JSON-RPC or your own endpoints, proven complete for every block range and cross-checked before anything is published. A protocol family is supported only after its decoded swaps matched transaction receipts exactly on several networks. Uniswap v4 is verified differently: its pools share one contract and can carry hooks, so each pool is verified on its own, and only individually verified pools are ingested.</p>
     </div>
     <dl class="ledger">
       <dt>Networks</dt>
       <dd><span class="tag"><span class="dot"></span>Base</span><span class="tag"><span class="dot"></span>Arbitrum One</span><span class="tag"><span class="dot"></span>OP Mainnet</span><span class="tag"><span class="dot"></span>Ethereum</span></dd>
-      <dt>Protocol families</dt>
+      <dt>Verified protocol families</dt>
       <dd><span class="tag"><span class="dot"></span>Uniswap v3-style</span><span class="tag"><span class="dot"></span>Uniswap v2-style</span><span class="tag"><span class="dot"></span>Solidly (Velodrome/Aerodrome v2)</span></dd>
-      <dt>Not counted yet</dt>
-      <dd><span class="tag muted"><span class="dot"></span>PancakeSwap v3 (decoder only)</span><span class="tag muted"><span class="dot"></span>Uniswap v4 and other venues</span></dd>
+      <dt>Individually verified pools</dt>
+      <dd><a class="tag" href="#case-1inch"><span class="dot"></span>Uniswap v4: six Ethereum 1INCH pools</a></dd>
+      <dt>Not counted</dt>
+      <dd><span class="tag muted"><span class="dot"></span>PancakeSwap v3 (decoder only, not verified for ingestion)</span><span class="tag muted"><span class="dot"></span>Other Uniswap v4 pools and networks</span><span class="tag muted"><span class="dot"></span>v4 pools with native ETH or swap-changing hooks</span><span class="tag muted"><span class="dot"></span>Other venues</span></dd>
     </dl>
   </div>
 </section>
@@ -419,12 +465,82 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   </div>
 </section>
 
-<section class="band alt" aria-labelledby="cases-h">
+<section class="band alt" id="research" aria-labelledby="cases-h">
   <div class="wrap">
     <div class="intro">
       <h2 id="cases-h">Verified research examples</h2>
       <p>Reviewed snapshots from historical, ingested windows. Findings are statistical observations: they never establish intent, manipulation or wash trading, and addresses are not identified entities.</p>
     </div>
+    <article class="xcase" id="case-1inch" aria-labelledby="case-1inch-h">
+      <div class="xcase-head">
+        <div>
+          <span class="kicker">Historical research snapshot</span>
+          <h3 id="case-1inch-h">1INCH token on Ethereum</h3>
+          <p class="when">16 Oct 2026, 19:00 UTC to 17 Oct 2026, 19:00 UTC · 11 ingested pools, including six individually verified Uniswap v4 pools · reviewed snapshot, not live</p>
+        </div>
+        <p class="lead">Every Swap event emitted by the eleven selected pools in this window. These are selected-pool event measurements: not the total 1INCH market and not transaction-net trading volume.</p>
+      </div>
+      <dl class="figs">
+        <div><dt>289</dt><dd>pool Swap events</dd></div>
+        <div><dt>250</dt><dd>distinct transactions</dd></div>
+        <div><dt>24</dt><dd>fully covered hours, across all 11 selected pools</dd></div>
+        <div><dt>288 / 289</dt><dd>swaps valued in USD (99.7%)</dd></div>
+        <div><dt>$108,733.34</dt><dd>USD-valued pool-event volume</dd></div>
+        <div><dt>1</dt><dd>unvalued wstETH swap: no verified hourly price, so it is left unvalued, never counted as $0</dd></div>
+        <div><dt>28</dt><dd>transactions that passed through more than one ingested pool</dd></div>
+        <div><dt>0</dt><dd>anomaly findings for this window under the existing detection method</dd></div>
+      </dl>
+      <div class="xcase-body">
+        <figure class="shot"><img src="assets/img/report-1inch-ethereum.jpg" width="1440" height="892" loading="lazy" alt="The application's token report for 1INCH on Ethereum: window 16 Oct 19:00 to 17 Oct 19:00 UTC, 24 verified covered hours, USD scope limited to the 11 ingested pools, 289 pool swaps, 1,180,334 1INCH, $108.7K valued with 288 of 289 swaps valued and 1 unvalued, 11 verified pools, and an hourly chart of 1INCH bought and sold"></figure>
+        <div>
+          <h4>How to read these numbers</h4>
+          <ul class="checks">
+            <li><b>Selected pools, not the market.</b> Only the eleven ingested pools are measured. Other DEX pools, other venues and centralised exchanges are not included, so this is not total 1INCH trading volume.</li>
+            <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both. 28 transactions did this, which is why pool-event volume (1,180,334 1INCH) is higher than transaction-net volume (855,100 1INCH).</li>
+            <li><b>Valuation.</b> 3 swaps were valued from a stablecoin leg and 285 from verified DefiLlama hourly prices. The remaining wstETH swap had no verified price for its hour and stays unvalued.</li>
+            <li><b>No findings.</b> The anomaly detectors returned nothing for this single 24-hour window. That is a statistical result for a short window, not a statement about intent or market quality.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tw">
+        <table class="pools">
+          <caption class="sr-only">The eleven ingested pools and their Swap events in the window</caption>
+          <thead><tr><th scope="col">Pair</th><th scope="col">Protocol and identifier</th><th scope="col">Fee tier</th><th scope="col">Swap events</th></tr></thead>
+          <tbody>
+            <tr><td>1INCH / CRV</td><td>Uniswap v4 <code>PoolId 0x6bf6…d1fe</code></td><td>1%</td><td class="num">79</td></tr>
+            <tr><td>1INCH / AAVE</td><td>Uniswap v4 <code>PoolId 0x32dd…3a7a</code></td><td>1%</td><td class="num">50</td></tr>
+            <tr><td>1INCH / LINK</td><td>Uniswap v3 <code>Pool 0x2802…e4c2</code></td><td>0.3%</td><td class="num">47</td></tr>
+            <tr><td>1INCH / wstETH</td><td>Uniswap v4 <code>PoolId 0x1d6e…ea6f</code></td><td>1%</td><td class="num">39</td></tr>
+            <tr><td>1INCH / LINK</td><td>Uniswap v4 <code>PoolId 0x17bc…2958</code></td><td>1%</td><td class="num">33</td></tr>
+            <tr><td>1INCH / WETH</td><td>Uniswap v3 <code>Pool 0xe931…cb97</code></td><td>1%</td><td class="num">21</td></tr>
+            <tr><td>1INCH / WETH</td><td>Uniswap v2 <code>Pool 0x26aa…86f2</code></td><td>0.3%</td><td class="num">13</td></tr>
+            <tr><td>1INCH / WETH</td><td>Uniswap v3 <code>Pool 0xd35e…4b44</code></td><td>0.3%</td><td class="num">3</td></tr>
+            <tr><td>1INCH / USDC</td><td>Uniswap v4 <code>PoolId 0x1ff1…e81d</code></td><td>1%</td><td class="num">2</td></tr>
+            <tr><td>1INCH / WBTC</td><td>Uniswap v4 <code>PoolId 0x6255…d826</code></td><td>1%</td><td class="num one">1</td></tr>
+            <tr><td>1INCH / USDC</td><td>Uniswap v3 <code>Pool 0x9feb…82ae</code></td><td>1%</td><td class="num one">1</td></tr>
+          </tbody>
+          <tfoot><tr><td>11 pools</td><td>6 Uniswap v4 (204 events) · 4 Uniswap v3 · 1 Uniswap v2</td><td></td><td class="num">289</td></tr></tfoot>
+        </table>
+      </div>
+      <div class="split">
+        <div>
+          <h4>How the six Uniswap v4 pools were verified</h4>
+          <ul class="checks">
+            <li><b>PoolId matches PoolKey.</b> Each pool's Initialize event, found on one RPC provider and confirmed by three others, gives its PoolKey, and the hash of that key equals the PoolId. All six are hookless 1% pools without native ETH.</li>
+            <li><b>Two providers agree.</b> The 204 v4 Swap events in this window were fetched independently from two RPC providers. Both returned the identical set, and the published rows match it event for event.</li>
+            <li><b>Sampled receipt reconciliation.</b> 149 sampled transaction receipts, from this window and earlier blocks, reconciled exactly with the PoolManager's token transfers (24–25 per pool), with 0 mismatches. Not every one of the 204 swaps was individually receipt-reconciled.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>What is not covered</h4>
+          <ul class="checks">
+            <li><b>Other v4 pools are not automatically supported.</b> Other PoolIds, Uniswap v4 on other networks, pools with hooks that can change swap amounts and pools with native ETH each need the same verification first.</li>
+            <li><b>PancakeSwap v3 remains decoder-only.</b> Its swaps can be decoded, but it is not verified for ingestion.</li>
+            <li><b>Not the Base case.</b> This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the audited aggregator case on Base below, which analyses 1inch aggregator volume on another network.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
     <div class="cases">
       <article class="case"><h3>Aggregator volume anomaly on Base</h3><p class="when">1 Sep to 15 Oct 2026, audited</p><p>3,293,676 decoded events. Window volume <span class="num">$458.56M</span>, with <span class="num">90.2%</span> from one automated account; peak <span class="num">10.3×</span> the pre-onset median; volume excluding the identified account <span class="num">−15.5%</span> against baseline (corrected by the audit from −20.5%).</p></article>
       <article class="case"><h3>ARB on Arbitrum One</h3><p class="when">14 Oct 12:00 to 17 Oct 03:00 UTC, 3 pools</p><p><span class="num">63,089</span> pool swap events and <span class="num">$17.06M</span> valued volume: 36.8% through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued. Pass-through routing 0.1%.</p></article>
@@ -443,6 +559,9 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <table>
         <tr><th scope="col">Capability</th><th scope="col">Status</th></tr>
         <tr><td>Ingestion, token explorer, anomaly engine, reports and comparisons on Base, Arbitrum One, OP Mainnet and Ethereum</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Uniswap v4: six individually verified Ethereum 1INCH pools (PoolId/PoolKey match, two-provider agreement, sampled receipt reconciliation)</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Other Uniswap v4 pools, other networks, hooks that change swap amounts, native ETH</td><td class="st no">Not supported</td></tr>
+        <tr><td>PancakeSwap v3 ingestion</td><td class="st part">Decoder only</td></tr>
         <tr><td>Local models via Ollama, including a live multilingual multi-turn conversation</td><td class="st ok">Tested</td></tr>
         <tr><td>Self-hosted Docker Compose installation: TLS proxy, first administrator, your own RPC endpoints, upgrade and rollback</td><td class="st ok">Tested on Docker Desktop</td></tr>
         <tr><td>Organisation roles and isolation of organisation data (workspaces, reports, members, settings, audit)</td><td class="st ok">Tested</td></tr>
@@ -498,7 +617,8 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="intro"><h2 id="limits-h">Limitations</h2><p>Stated plainly, so you know what the numbers cover.</p></div>
     <ul class="limits">
-      <li>Only the listed networks and verified decoder families are analysed, and only pools that were discovered and ingested. Other venues are not counted.</li>
+      <li>Only the listed networks, verified protocol families and individually verified pools are analysed, and only pools that were discovered and ingested. Other venues are not counted, so no figure on this page is a token's whole market.</li>
+      <li>Pool-event volume counts a routed trade in every ingested pool it passes through. Transaction-net volume is reported separately.</li>
       <li>The examples on this page cover historical, ingested windows. Nothing here is live, and the page connects to no API.</li>
       <li>AI answer quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
       <li>Dune and cloud AI integrations are optional and off by default.</li>
@@ -525,6 +645,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <ul>
         <li><a href="#product">Product</a></li>
         <li><a href="#ai">AI analyst</a></li>
+        <li><a href="#research">Research examples</a></li>
         <li><a href="#status">What's verified</a></li>
         <li><a href="#deploy">Deployment</a></li>
         <li><a href="#pilot">Private pilot</a></li>
