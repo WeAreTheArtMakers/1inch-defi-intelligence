@@ -35,9 +35,9 @@ data, and this static page does not connect to any API.
 
 | Capability | What it means |
 |---|---|
-| **Verified multi-chain ingestion** | Public JSON-RPC on Base, Arbitrum One, OP Mainnet and Ethereum through Airflow into ClickHouse. Block coverage is proven per run; empty answers are confirmed by a second provider; timestamps come from block headers; a run is published only when every quality gate passes, idempotently. |
+| **Verified multi-chain ingestion** | Public JSON-RPC on Ethereum, Base, Arbitrum One, OP Mainnet, BNB Smart Chain and Avalanche C-Chain through Airflow into ClickHouse (BNB Smart Chain: recent windows; Avalanche: verified read-only, not yet ingested). Solana: read-only research, nothing stored. Block coverage is proven per run; empty answers are confirmed by a second provider; timestamps come from block headers; a run is published only when every quality gate passes, idempotently. |
 | **Universal token explorer** | Any token contract on a supported network: on-chain identity check plus an independent registry check, pool discovery, decoder support level per pool (supported / partially supported / unsupported), collection of only the missing windows, per-pool coverage, quality checks, anomaly detection and an evidence-backed report. |
-| **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. **Uniswap v4** is verified pool by pool instead: six Ethereum 1INCH pools are individually verified and ingestible; other v4 pools are not. PancakeSwap v3 is decoder-only and not verified for ingestion. |
+| **Receipt-verified decoders** | Uniswap v3-style, Uniswap v2-style (including PancakeSwap v2, LFJ v1 and Pangolin v2), PancakeSwap v3 (its own decoder) and Solidly-style (Velodrome/Aerodrome v2) pools. A family is supported only after ≥ 2 pools on ≥ 2 networks match transaction receipts exactly, including Solidly's fee forwarding. **Uniswap v4** is verified pool by pool instead: six Ethereum 1INCH pools are individually verified and ingestible; other v4 pools and PancakeSwap Infinity CL / Bin pools are verified one by one on request, and pools with native currencies or swap-changing hooks are not supported. |
 | **Anomaly intelligence** | Volume, activity and liquidity shifts against a baseline frozen at onset, plus address concentration, buy/sell imbalance, price-volume divergence and repetitive patterns. Every finding carries facts, method, parameters, limitations and alternative explanations, and none is an accusation. |
 | **Honest valuation** | USD comes from a stablecoin leg or a verified hourly price within ±15 minutes. Swaps without a verified price are counted as *unvalued*, never as $0. Pool-event volume and transaction-net volume (routing removed) are reported separately. |
 | **AI provider options** | **Local models via Ollama** (tested). **Anthropic Claude API** and **OpenAI API** (integrated; optional, off by default; no paid request until an administrator authorises paid use within request, token and budget limits). **Self-hosted OpenAI-compatible servers** such as vLLM, llama.cpp, LM Studio or an organisation gateway (integration options through the same adapter, which is tested against Ollama's OpenAI-compatible endpoint). Every sentence must cite the facts behind its numbers; a rejected answer falls back to a deterministic, evidence-backed one, labelled as such. |
@@ -91,26 +91,20 @@ verified Uniswap v4 pools).
 This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the aggregator case on Base
 below, which analyses 1inch aggregator volume on another network.
 
-**Aggregator volume anomaly on Base** (1inch series, 1 Sep → 15 Oct 2026). This is an audited case: every headline
+**1INCH beyond Ethereum (read-only inventory, 18 Oct 2026).** The token was verified on BNB Smart Chain, Arbitrum One,
+OP Mainnet and Base, but no ingestible 1INCH pool was found there: on BNB Smart Chain all 12 listed pools are below the
+$10,000 liquidity floor; on Arbitrum One and OP Mainnet no pool is listed; on Base four Uniswap v4 pools await
+individual verification and one pool is below the floor. On Avalanche C-Chain the bridged token's on-chain symbol
+(1INCH.e) disagrees with the registry, so it is not analysed (fail closed). The 1INCH figures therefore cover selected
+Ethereum pools only.
+
+**1inch aggregator volume anomaly on Base** (1 Sep → 15 Oct 2026; aggregator research, separate from 1INCH token trading volume). This is an audited case: every headline
 number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled receipts matched.
 - Window volume: **$458.56M**. A single automated account accounted for **90.2%** of it.
 - Peak: **10.3×** the pre-onset median.
 - Volume excluding the identified account: **−15.5%** against its 14-day baseline. The audit corrected this from
   −20.5% after finding a silently empty provider response.
 - These are statistical observations; they do not claim intent.
-
-**ARB on Arbitrum One** (14 Oct 12:00 → 17 Oct 03:00 UTC, 3 ingested Uniswap v3 pools):
-- 63,089 pool swap events in 62,892 transactions; valued volume $17.06M.
-- Valuation: 36.8% of swaps through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued.
-- Pass-through routing: 0.1%.
-
-**VELO on OP Mainnet** (16 Oct 12:00 → 17 Oct 00:00 UTC):
-- **Pools:** 12 discovered, all receipt-verified and supported; 6 ingested.
-- **Contrast:** the Solidly pools carried 62,302 swap events but only 463,647 VELO; the v3 pools carried 3,266 events
-  but 12.2 M VELO.
-- **Repetitive patterns:** detected and reported as observations, not accusations.
-- **Scope:** time coverage of the ingested pools is complete, but the token's market coverage is not. The report says
-  so explicitly.
 
 ## Screenshots
 Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17).
@@ -138,10 +132,15 @@ and GPU servers have not been benchmarked yet.
 ## Tested vs. not yet verified
 | Capability | Status |
 |---|---|
-| Ingestion, token explorer, anomaly engine, reports and comparisons on the four networks | Tested on real data |
+| Ingestion, token explorer, anomaly engine, reports and comparisons on Ethereum, Base, Arbitrum One and OP Mainnet | Tested on real data |
+| BNB Smart Chain: verified ingestion and hourly metrics for selected pools; older windows not operationally approved until two independent archive RPC providers are configured | Recent windows tested |
+| Avalanche C-Chain: pool discovery and protocol verification | Verified read-only; not yet ingested |
+| Solana: mint and Raydium / Orca pool verification, bounded swap research reconciled against token balances | Read-only research; nothing stored |
 | Uniswap v4: six individually verified Ethereum 1INCH pools | Tested on real data |
-| Other Uniswap v4 pools, other networks, hooks that change swap amounts, native ETH | Not supported |
-| PancakeSwap v3 ingestion | Decoder only |
+| Other Uniswap v4 pools, on any of the six EVM networks | Verified pool by pool on request |
+| PancakeSwap Infinity CL and Bin pools (BNB Smart Chain) | Verified pool by pool; none in production yet |
+| Uniswap v4 and Infinity pools with native currencies or hooks that change swap amounts | Not supported |
+| PancakeSwap v3 (own decoder, receipt-verified on BNB Smart Chain and Ethereum) | Tested on real data |
 | Local models via Ollama, including a live multilingual multi-turn conversation | Tested |
 | Self-hosted Docker Compose installation (TLS proxy, first administrator, upgrade and rollback) | Tested on Docker Desktop |
 | Organisation roles and isolation of organisation data | Tested |
