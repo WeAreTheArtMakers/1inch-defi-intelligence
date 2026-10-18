@@ -132,6 +132,24 @@ accepted; in a later run a Turkish answer that cited the wrong facts was rejecte
 answer, as designed. A benchmark on one machine, not a performance promise; larger models
 and GPU servers have not been benchmarked yet.
 
+## Seven networks: what each level means
+
+- **Configured:** all seven networks: public RPC endpoints, explorers and token / pool registries are set up.
+- **Read-only research:** token identity, pool discovery and per-pool protocol verification on demand. Nothing is stored.
+- **Verified ingestion:** swaps are stored only after per-run coverage proof, two-provider checks and every quality gate.
+- **Automatic analysis:** one click from a token to a verified report. In development and not released. It has been tested only in an isolated test environment, not in production.
+- **Unsupported protocols:** listed with the reason, never measured.
+
+| Network | Read-only research | Verified ingestion | Automatic analysis | Notes and unsupported protocols |
+|---|---|---|---|---|
+| Ethereum | Yes | Tested on real data | Not released | Includes six individually verified Uniswap v4 1INCH pools. Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified. |
+| Base | Yes | Tested on real data | Not released | Four 1INCH Uniswap v4 pools await individual verification. Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified. |
+| Arbitrum One | Yes | Tested on real data | Not released | Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified. |
+| OP Mainnet | Yes | Tested on real data | Not released | Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified. |
+| BNB Smart Chain | Yes | Recent windows | Not released | Selected pools, recent windows only: older windows need two independent archive RPC providers. PancakeSwap Infinity CL / Bin pools with native currencies or swap-changing hooks are not supported; others are verified pool by pool. |
+| Avalanche C-Chain | Yes | Not yet | Not available | Pool discovery and protocol verification (LFJ v1, Pangolin v2, Uniswap v3) only. The bridged 1INCH.e token's identity is unresolved. |
+| Solana | Yes | Not yet | Not available | Mint verification, Raydium CPMM / CLMM and Orca Whirlpool pool verification and bounded swap research; nothing is stored. Every other program is listed with the reason and never measured. |
+
 ## Tested vs. not yet verified
 | Capability | Status |
 |---|---|

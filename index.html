@@ -543,6 +543,34 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   </div>
 </section>
 
+<section class="band" id="networks" aria-labelledby="networks-h">
+  <div class="wrap">
+    <div class="intro">
+      <h2 id="networks-h">Seven networks, five levels</h2>
+      <p>Being configured is not the same as being ingested. This is where each network stands.</p>
+    </div>
+    <ul class="checks" style="margin:0 0 28px">
+      <li><b>Configured:</b> all seven networks: public RPC endpoints, explorers and token / pool registries are set up.</li>
+      <li><b>Read-only research:</b> token identity, pool discovery and per-pool protocol verification on demand. Nothing is stored.</li>
+      <li><b>Verified ingestion:</b> swaps are stored only after per-run coverage proof, two-provider checks and every quality gate.</li>
+      <li><b>Automatic analysis:</b> one click from a token to a verified report. In development and not released. It has been tested only in an isolated test environment, not in production.</li>
+      <li><b>Unsupported protocols:</b> listed with the reason, never measured.</li>
+    </ul>
+    <div class="tw">
+      <table style="min-width:820px">
+        <tr><th scope="col">Network</th><th scope="col">Read-only research</th><th scope="col">Verified ingestion</th><th scope="col">Automatic analysis</th><th scope="col">Notes and unsupported protocols</th></tr>
+        <tr><td>Ethereum</td><td class="st ok">Yes</td><td class="st ok">Tested on real data</td><td class="st part">Not released</td><td>Includes six individually verified Uniswap v4 1INCH pools. Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified.</td></tr>
+        <tr><td>Base</td><td class="st ok">Yes</td><td class="st ok">Tested on real data</td><td class="st part">Not released</td><td>Four 1INCH Uniswap v4 pools await individual verification. Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified.</td></tr>
+        <tr><td>Arbitrum One</td><td class="st ok">Yes</td><td class="st ok">Tested on real data</td><td class="st part">Not released</td><td>Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified.</td></tr>
+        <tr><td>OP Mainnet</td><td class="st ok">Yes</td><td class="st ok">Tested on real data</td><td class="st part">Not released</td><td>Uniswap v4 pools with native ETH or swap-changing hooks are not supported; other v4 pools only once individually verified.</td></tr>
+        <tr><td>BNB Smart Chain</td><td class="st ok">Yes</td><td class="st part">Recent windows</td><td class="st part">Not released</td><td>Selected pools, recent windows only: older windows need two independent archive RPC providers. PancakeSwap Infinity CL / Bin pools with native currencies or swap-changing hooks are not supported; others are verified pool by pool.</td></tr>
+        <tr><td>Avalanche C-Chain</td><td class="st ok">Yes</td><td class="st no">Not yet</td><td class="st no">Not available</td><td>Pool discovery and protocol verification (LFJ v1, Pangolin v2, Uniswap v3) only. The bridged 1INCH.e token's identity is unresolved.</td></tr>
+        <tr><td>Solana</td><td class="st ok">Yes</td><td class="st no">Not yet</td><td class="st no">Not available</td><td>Mint verification, Raydium CPMM / CLMM and Orca Whirlpool pool verification and bounded swap research; nothing is stored. Every other program is listed with the reason and never measured.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="status" aria-labelledby="status-h">
   <div class="wrap">
     <div class="intro">
