@@ -146,6 +146,7 @@ figcaption{font-size:14px;color:var(--ink-3);margin-top:12px}
 
 /* AI */
 .ai-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:56px;align-items:start}
+.ai-grid.ai-single{grid-template-columns:minmax(0,1fr);max-width:880px}
 .ai-phone{max-width:300px;justify-self:center}
 .ai-phone .dev{position:relative;inset:auto;width:100%;transform:none}
 .ai-phone .screen img{object-position:bottom center}
@@ -316,21 +317,21 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
     <div>
       <div class="stage" role="group" aria-label="The DeFi Intelligence web application on a laptop, a tablet and a phone">
         <div class="dev laptop">
-          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">https://your-server/platform/anomalies</span></div>
-          <div class="screen"><img src="assets/img/devices/desktop-anomaly-center.jpg" width="1600" height="1000" fetchpriority="high" alt="Anomaly center in a desktop browser: high-severity findings for VELO, XDP and other subjects with network, window, observed-to-baseline ratio and evidence strength"></div>
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">https://your-server/platform/explorer</span></div>
+          <div class="screen"><img src="assets/img/devices/desktop-token-explorer-1inch.jpg" width="1600" height="1000" fetchpriority="high" alt="Token explorer in a desktop browser: 1INCH on Ethereum verified on-chain and against the DefiLlama registry, with its discovered pools — individually verified Uniswap v4 PoolIds and Uniswap v3 and v2 pools — each with a support level"></div>
         </div>
         <div class="dev tablet">
-          <div class="bar" aria-hidden="true"><i></i><span class="url">https://your-server/platform/explorer</span></div>
-          <div class="screen"><img src="assets/img/devices/tablet-token-explorer.jpg" width="960" height="1381" alt="Token explorer on a tablet: VELO on OP Mainnet verified on-chain, with twelve pools each marked supported"></div>
+          <div class="bar" aria-hidden="true"><i></i><span class="url">https://your-server/platform</span></div>
+          <div class="screen"><img src="assets/img/devices/tablet-token-report-1inch.jpg" width="960" height="1381" alt="The 1INCH on Ethereum token report on a tablet: top recipients by share of 1INCH volume, the two successful ingestion runs that cover the window with their RPC providers, and the stated limitations"></div>
         </div>
         <div class="dev phone">
-          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
-          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" alt="Conversational analyst on a phone: a question about ARB on Arbitrum answered with cited facts"></div>
+          <div class="bar" aria-hidden="true"><span class="url">your-server/platform</span></div>
+          <div class="screen"><img src="assets/img/devices/phone-token-report-1inch.jpg" width="640" height="1384" alt="The 1INCH on Ethereum token report on a phone: 289 pool swaps, 1,180,334 1INCH, $108.7K valued USD with 288 of 289 swaps valued, 11 verified pools, scoped to the ingested pools only"></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17), shown in a browser on each device. DeFi Intelligence is a responsive web app, not a native mobile app.</p></div>
+  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified on-chain 1INCH data (captured 2026-10-18), shown in a browser on each device. DeFi Intelligence is a responsive web app, not a native mobile app.</p></div>
 </section>
 
 <section class="band" aria-labelledby="coverage-h">
@@ -398,7 +399,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <li>Per-pool coverage, quality checks and an evidence-backed report</li>
         </ul>
       </div>
-      <figure class="shot"><img src="assets/img/explorer-pools.jpg" width="1128" height="781" loading="lazy" alt="Token explorer listing twelve VELO pools on OP Mainnet with family, pair, liquidity and a supported label for each"></figure>
+      <figure class="shot"><img src="assets/img/explorer-pools-1inch.jpg" width="968" height="781" loading="lazy" alt="Token explorer: 1INCH on Ethereum verified on-chain and against the DefiLlama registry; 10 supported, 0 partial and 1 unsupported pools, each listed with its family, pair and liquidity — the Uniswap v4 pools by PoolId"></figure>
     </div>
 
     <div class="feature flip">
@@ -411,7 +412,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <li>Statistical observations — never claims of intent or manipulation</li>
         </ul>
       </div>
-      <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="937" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"></figure>
+      <figure class="shot"><img src="assets/img/anomaly-finding-1inch-base.jpg" width="926" height="1072" loading="lazy" alt="A volume-spike finding for 1inch aggregator volume on Base (DefiLlama daily aggregator volume, not 1INCH token trading): 7.22 times the frozen weekday-adjusted baseline from 30 Sep to 13 Oct 2026, with facts, method, limitations, alternative explanations and provenance"></figure>
     </div>
 
     <div class="feature">
@@ -424,14 +425,14 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <li>Pool-event volume and transaction-net volume reported separately</li>
         </ul>
       </div>
-      <figure class="shot"><img src="assets/img/explorer-comparison.jpg" width="968" height="474" loading="lazy" alt="Historical comparison of two ARB windows on Arbitrum One, both fully covered, with swap events, token volume, valued USD volume and changes"></figure>
+      <figure class="shot"><img src="assets/img/report-sql-1inch.jpg" width="892" height="361" loading="lazy" alt="The SQL evidence shown with the 1INCH on Ethereum token report: the executed ClickHouse query, with its sign convention, its pool-level definition and its stablecoin-leg rule stated in comments"></figure>
     </div>
   </div>
 </section>
 
 <section class="band" id="ai" aria-labelledby="ai-h">
   <div class="wrap">
-    <div class="ai-grid">
+    <div class="ai-grid ai-single">
       <div>
         <h2 id="ai-h">An AI analyst that cites its sources</h2>
         <p class="lede" style="margin-top:18px">Ask in English, Turkish or German and keep the conversation going: follow-up questions keep the token and topic. Each answer is labelled either as a validated AI answer or as a deterministic answer built from the same verified facts.</p>
@@ -454,12 +455,6 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           </table>
         </div>
         <p class="note">In release testing on 2026-10-17, gemma3:4b answers to an English question and English and Turkish follow-ups were all accepted. In a later run a Turkish answer that cited the wrong facts was rejected and replaced by the deterministic answer — exactly what the validation is for. One machine, not a performance promise.</p>
-      </div>
-      <div class="ai-phone">
-        <div class="dev phone" aria-hidden="false">
-          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
-          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" loading="lazy" alt="The analyst's answer about ARB on Arbitrum, with numbered fact citations after each sentence"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -495,6 +490,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         <div>
           <h4>How to read these numbers</h4>
           <ul class="checks">
+            <li><b>How the eleven were selected.</b> When the window was collected, the explorer listed 12 Ethereum pools for 1INCH; the 11 whose protocol identity was verified on-chain were ingested (1 Uniswap v2, 4 Uniswap v3 and the 6 individually verified Uniswap v4 pools). The twelfth belonged to an unrecorded fork and was not ingested. Pools that are not listed are undiscovered, not absent.</li>
             <li><b>Selected pools, not the market.</b> Only the eleven ingested pools are measured. Other DEX pools, other venues and centralised exchanges are not included, so this is not total 1INCH trading volume.</li>
             <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both. 28 transactions did this, which is why pool-event volume (1,180,334 1INCH) is higher than transaction-net volume (855,100 1INCH).</li>
             <li><b>Valuation.</b> 3 swaps were valued from a stablecoin leg and 285 from verified DefiLlama hourly prices. The remaining wstETH swap had no verified price for its hour and stays unvalued.</li>
@@ -535,7 +531,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <h4>What is not covered</h4>
           <ul class="checks">
             <li><b>Other v4 pools are not automatically supported.</b> Other PoolIds, Uniswap v4 on other networks, pools with hooks that can change swap amounts and pools with native ETH each need the same verification first.</li>
-            <li><b>1INCH beyond Ethereum is not covered yet.</b> A read-only inventory on 18 Oct 2026 verified the token on BNB Smart Chain, Arbitrum One, OP Mainnet and Base, but found no ingestible 1INCH pool there: on BNB Smart Chain all 12 listed pools are below the $10,000 liquidity floor; on Arbitrum One and OP Mainnet no pool is listed; on Base four Uniswap v4 pools await individual verification and one pool is below the floor. On Avalanche C-Chain the bridged token's on-chain symbol (1INCH.e) disagrees with the registry, so it is not analysed. The figures in this case therefore cover selected Ethereum pools only.</li>
+            <li><b>1INCH on other networks is not covered here.</b> A read-only inventory on 18 Oct 2026 verified the token contract on BNB Smart Chain, Arbitrum One, OP Mainnet and Base, but the current discovery (DexScreener listings, each verified on-chain, with a $10,000 liquidity floor) found no pool there that can be ingested today: on BNB Smart Chain the 12 listed pools were below the floor; on Arbitrum One and OP Mainnet DexScreener listed no pool, which does not prove that none exists — unlisted pools are undiscovered, not absent; on Base four Uniswap v4 pools await individual verification and one pool was below the floor. On Avalanche C-Chain the bridged token's on-chain symbol (1INCH.e) differs from the registry's (1INCH), so its identity is unresolved and it is not analysed until it has been verified.</li>
             <li><b>Not the Base case.</b> This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the audited aggregator case on Base below, which analyses 1inch aggregator volume on another network.</li>
           </ul>
         </div>

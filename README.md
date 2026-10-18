@@ -10,7 +10,7 @@ This repository is the **public showcase**: an overview, screenshots and reviewe
 source is private. The examples below are **precomputed, reviewed snapshots (generated 2026-10-17; the Ethereum 1INCH case 2026-10-18)**. They are not live
 data, and this static page does not connect to any API.
 
-![The DeFi Intelligence web application in a desktop browser: the anomaly center with high-severity findings on verified on-chain data](assets/img/devices/desktop-anomaly-center.jpg)
+![The token explorer in a desktop browser: 1INCH on Ethereum verified on-chain, with its discovered pools and their support levels](assets/img/devices/desktop-token-explorer-1inch.jpg)
 
 *A responsive web application (desktop, tablet and phone browsers), self-hosted on your own server — not a native mobile app.*
 
@@ -91,12 +91,15 @@ verified Uniswap v4 pools).
 This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the aggregator case on Base
 below, which analyses 1inch aggregator volume on another network.
 
-**1INCH beyond Ethereum (read-only inventory, 18 Oct 2026).** The token was verified on BNB Smart Chain, Arbitrum One,
-OP Mainnet and Base, but no ingestible 1INCH pool was found there: on BNB Smart Chain all 12 listed pools are below the
-$10,000 liquidity floor; on Arbitrum One and OP Mainnet no pool is listed; on Base four Uniswap v4 pools await
-individual verification and one pool is below the floor. On Avalanche C-Chain the bridged token's on-chain symbol
-(1INCH.e) disagrees with the registry, so it is not analysed (fail closed). The 1INCH figures therefore cover selected
-Ethereum pools only.
+**1INCH on other networks (read-only inventory, 18 Oct 2026).** The token contract was verified on BNB Smart Chain,
+Arbitrum One, OP Mainnet and Base, but the current discovery (DexScreener listings, each verified on-chain, with a $10,000
+liquidity floor) found no pool there that can be ingested today: on BNB Smart Chain the 12 listed pools were below the
+floor; on Arbitrum One and OP Mainnet DexScreener listed no pool, which does not prove that none exists (unlisted pools
+are undiscovered, not absent); on Base four Uniswap v4 pools await individual verification and one pool was below the
+floor. On Avalanche C-Chain the bridged token's on-chain symbol (1INCH.e) differs from the registry's (1INCH), so its
+identity is unresolved and it is not analysed until it has been verified. 1INCH trading on these networks is therefore
+not covered; the case above measures the 11 Ethereum pools whose protocol identity was verified when the window was
+collected (of 12 listed; the twelfth belonged to an unrecorded fork).
 
 **1inch aggregator volume anomaly on Base** (1 Sep → 15 Oct 2026; aggregator research, separate from 1INCH token trading volume). This is an audited case: every headline
 number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled receipts matched.
@@ -107,13 +110,13 @@ number was re-derived from 3,293,676 decoded swap events, and 150/150 sampled re
 - These are statistical observations; they do not claim intent.
 
 ## Screenshots
-Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17).
+Real screens from the self-hosted web application on verified on-chain data (captured 2026-10-18).
 
 | | |
 |---|---|
-| ![Token explorer on a tablet: VELO on OP Mainnet with twelve supported pools](assets/img/devices/tablet-token-explorer.jpg) | ![Conversational analyst on a phone: an ARB question answered with cited facts](assets/img/devices/phone-ai-analyst.jpg) |
-| ![Token explorer: pools verified on-chain with a support level per pool](assets/img/explorer-pools.jpg) | ![Historical comparison of two fully covered windows](assets/img/explorer-comparison.jpg) |
-| ![One finding: frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding.jpg) | ![Token report: 1INCH on Ethereum across 11 ingested pools (snapshot 2026-10-18)](assets/img/report-1inch-ethereum.jpg) |
+| ![The 1INCH on Ethereum report on a tablet: top recipients, covering ingestion runs and limitations](assets/img/devices/tablet-token-report-1inch.jpg) | ![The 1INCH on Ethereum report on a phone: pool swaps, volume, valued USD and verified pools](assets/img/devices/phone-token-report-1inch.jpg) |
+| ![Token explorer: 1INCH on Ethereum, pools verified on-chain with a support level per pool](assets/img/explorer-pools-1inch.jpg) | ![The SQL evidence shown with the 1INCH token report](assets/img/report-sql-1inch.jpg) |
+| ![One finding: 1inch aggregator volume on Base (aggregator research, not 1INCH token volume) with frozen baseline, facts, method, limitations, provenance](assets/img/anomaly-finding-1inch-base.jpg) | ![Token report: 1INCH on Ethereum across 11 ingested pools (snapshot 2026-10-18)](assets/img/report-1inch-ethereum.jpg) |
 
 ## Local model benchmark (reviewed snapshot, 2026-10-17)
 Same frozen fact set (10 questions in English, Turkish and German; 8 answered by the model, 2 declined by deterministic
