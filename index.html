@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence</title>
-<meta name="description" content="WATAM DeFi Intelligence is private on-chain analytics and AI intelligence software that runs on your own infrastructure: receipt-verified swap data, token exploration, anomaly findings with evidence, source-backed reports and an AI analyst that cites its facts.">
+<title>WATAM DeFi Intelligence — On-chain analytics your team can verify</title>
+<meta name="description" content="WATAM DeFi Intelligence is self-hosted on-chain analytics for DeFi protocol, token and research teams: swap data collected and checked on your own infrastructure, pool-level token analysis, anomaly findings with their evidence, and reports that state exactly what they cover.">
 <link rel="canonical" href="https://wearetheartmakers.github.io/defi-intelligence/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="WATAM DeFi Intelligence">
-<meta property="og:title" content="WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence">
+<meta property="og:title" content="WATAM DeFi Intelligence — On-chain analytics your team can verify">
 <meta property="og:description" content="Your infrastructure. Your blockchain data. Verifiable intelligence.">
 <meta property="og:url" content="https://wearetheartmakers.github.io/defi-intelligence/">
 <meta property="og:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="WATAM DeFi Intelligence — Your infrastructure. Your blockchain data. Verifiable intelligence.">
+<meta property="og:image:alt" content="WATAM DeFi Intelligence — On-chain analytics your team can verify">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence">
+<meta name="twitter:title" content="WATAM DeFi Intelligence — On-chain analytics your team can verify">
 <meta name="twitter:description" content="Your infrastructure. Your blockchain data. Verifiable intelligence.">
 <meta name="twitter:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://wearetheartmakers.github.io/defi-intelligence/#watam","name":"WATAM — We Are The Art Makers","alternateName":"WATAM","email":"admin@wearetheartmakers.com"},
-{"@type":"SoftwareApplication","name":"WATAM DeFi Intelligence","applicationCategory":"BusinessApplication","operatingSystem":"Linux (self-hosted, Docker)","description":"Private on-chain analytics and AI intelligence software that runs on the customer's own infrastructure.","url":"https://wearetheartmakers.github.io/defi-intelligence/","publisher":{"@id":"https://wearetheartmakers.github.io/defi-intelligence/#watam"}}
+{"@type":"SoftwareApplication","name":"WATAM DeFi Intelligence","applicationCategory":"BusinessApplication","operatingSystem":"Linux (self-hosted, Docker)","description":"Self-hosted on-chain analytics for DeFi protocol, token and research teams, running on the customer's own infrastructure.","url":"https://wearetheartmakers.github.io/defi-intelligence/","publisher":{"@id":"https://wearetheartmakers.github.io/defi-intelligence/#watam"}}
 ]}
 </script>
 <meta name="color-scheme" content="dark">
@@ -113,6 +113,10 @@ p{margin:0 0 14px;color:var(--ink-2)}
 .phone{right:6%;bottom:-3%;width:21%;border-radius:28px;padding:7px;background:#060A14}
 .phone .screen{aspect-ratio:9/18.4;overflow:hidden;border-radius:0 0 20px 20px}
 .phone .bar{border-radius:21px 21px 0 0}
+.stage.single{aspect-ratio:auto;perspective:1800px}
+.win{position:relative;width:min(100%,600px);margin-left:auto;border-radius:12px;transform:rotateY(-5deg);transform-origin:right center}
+.win .screen{overflow:hidden;border-radius:0 0 11px 11px}
+.win img{height:auto;display:block}
 .stage-note{margin:34px 0 0;font-size:13.5px;color:var(--ink-3);max-width:70ch}
 @media (prefers-reduced-motion:no-preference){
   .dev{animation:settle .9s cubic-bezier(.2,.7,.2,1) both}
@@ -168,7 +172,7 @@ figure{margin:0}
 figcaption{font-size:14px;color:var(--ink-3);margin-top:12px}
 
 /* AI */
-.ai-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:56px;align-items:start}
+.ai-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:56px;align-items:start;max-width:880px}
 .ai-phone{max-width:300px;justify-self:center}
 .ai-phone .dev{position:relative;inset:auto;width:100%;transform:none}
 .ai-phone .screen img{object-position:bottom center}
@@ -239,6 +243,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 /* responsive */
 @media (max-width:1100px){
   .hero-grid{grid-template-columns:minmax(0,1fr);gap:56px}
+  .win{transform:none;margin:0 auto;width:min(100%,640px)}
   h1{max-width:16ch}
   .stage{max-width:880px;margin:0 auto;width:100%}
   .intro{grid-template-columns:minmax(0,1fr);gap:18px}
@@ -265,6 +270,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   .hero{padding:44px 0 24px}
   .stage{aspect-ratio:1/1.02}
   .laptop{width:100%;top:0;transform:none}
+  .stage.single{aspect-ratio:auto}
   .laptop::after{bottom:-10px;height:10px}
   .tablet{width:46%;bottom:0;left:0}
   .phone{width:30%;right:2%;bottom:-2%}
@@ -330,33 +336,25 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Private On-Chain Analytics &amp; AI Intelligence</span>
-      <h1>Your infrastructure. Your blockchain data. Verifiable intelligence.</h1>
-      <p class="lede">WATAM DeFi Intelligence is analytics software you run on your own servers. It reads swaps from the blockchain, proves the data is complete before using it, flags unusual activity with the evidence attached, produces source-backed reports, and lets you ask an AI analyst that only states numbers it can trace to verified facts.</p>
+      <span class="eyebrow">Self-hosted on-chain analytics for DeFi teams</span>
+      <h1>On-chain analytics your team can verify.</h1>
+      <p class="lede">WATAM DeFi Intelligence collects a token's swaps directly from the blockchain, checks that the data is complete, and shows what happened pool by pool — with unusual activity flagged and the evidence attached. It runs on infrastructure you control, and every report states exactly which pools and hours it covers.</p>
       <div class="actions">
         <a class="btn" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a>
         <a class="link" href="#status">See what's verified</a>
       </div>
-      <p class="assure">Runs on your own servers. Your organisation's data and AI prompts stay there unless you choose a cloud AI provider. Pilots are scoped individually.</p>
+      <p class="assure">Your infrastructure. Your blockchain data. Verifiable intelligence. Deployed per customer — no shared hosted service — and pilots are scoped individually.</p>
     </div>
     <div>
-      <div class="stage" role="group" aria-label="The WATAM DeFi Intelligence web application on a laptop, a tablet and a phone">
-        <div class="dev laptop">
+      <div class="stage single" role="group" aria-label="One anomaly finding in the WATAM DeFi Intelligence web application">
+        <div class="dev win">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">https://your-server/platform/anomalies</span></div>
-          <div class="screen"><img src="assets/img/devices/desktop-anomaly-center.jpg" width="1600" height="1000" fetchpriority="high" alt="Anomaly center in a desktop browser: high-severity findings for VELO, XDP and other subjects with network, window, observed-to-baseline ratio and evidence strength"></div>
-        </div>
-        <div class="dev tablet">
-          <div class="bar" aria-hidden="true"><i></i><span class="url">https://your-server/platform/explorer</span></div>
-          <div class="screen"><img src="assets/img/devices/tablet-token-explorer.jpg" width="960" height="1381" alt="Token explorer on a tablet: VELO on OP Mainnet verified on-chain, with twelve pools each marked supported"></div>
-        </div>
-        <div class="dev phone">
-          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
-          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" alt="Conversational analyst on a phone: a question about ARB on Arbitrum answered with cited facts"></div>
+          <div class="screen"><img src="assets/img/anomaly-finding.jpg" width="926" height="938" fetchpriority="high" alt="One anomaly finding for VELO on OP Mainnet: hourly token volume in VELO against a frozen baseline, with facts, method, limitations and provenance"></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified, historical on-chain data (snapshot of 17 Oct 2026 — not live, not streaming), shown in a browser on each device. The screenshots predate the WATAM product name. It is a responsive web app, not a native mobile app.</p></div>
+  <div class="wrap"><p class="stage-note">A real screen from the self-hosted web application: one finding computed from swap events collected over public JSON-RPC (VELO on OP Mainnet, historical snapshot of 17 Oct 2026 — not live, not streaming). The application is a responsive web app for desktop, tablet and phone browsers, not a native app.</p></div>
 </section>
 
 <section class="band" aria-labelledby="coverage-h">
@@ -400,7 +398,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <p>Three stages, each with its own checks. Nothing reaches a report or an AI answer without passing the stage before it.</p>
     </div>
     <ol class="pipe">
-      <li><h3>Verified data</h3><p>Ingestion runs prove block coverage, confirm empty answers with a second provider and publish to ClickHouse only after quality gates pass. USD comes from stablecoin legs or verified hourly prices; unvalued swaps are never counted as $0.</p></li>
+      <li><h3>Verified data</h3><p>Ingestion runs prove block coverage, confirm empty answers with a second provider and publish to ClickHouse only after quality gates pass. USD comes from stablecoin legs or an hourly price feed configured for the installation; unvalued swaps are never counted as $0.</p></li>
       <li><h3>Analytics and findings</h3><p>Covered-hour metrics, window comparisons and an anomaly engine with frozen baselines. Reports state exactly which pools and hours they cover.</p></li>
       <li><h3>Evidence-grounded AI</h3><p>The AI phrases answers from the verified facts of each question. Every number must match a fact the sentence cites; anything unproven is replaced by a clearly labelled deterministic answer.</p></li>
     </ol>
@@ -410,47 +408,28 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 <section class="band alt" id="product" aria-labelledby="product-h">
   <div class="wrap">
     <div class="intro">
-      <h2 id="product-h">One workflow from token to report</h2>
-      <p>Start with any token contract on a supported network and end with findings and a report you can defend.</p>
+      <h2 id="product-h">What teams can do with it today</h2>
+      <p>Three analytical tasks the current release supports on its verified networks and protocol families. Each one states what it covers and what it does not.</p>
     </div>
-
-    <div class="feature">
-      <div class="copy">
-        <h3>Universal token explorer</h3>
-        <p>Paste a token contract. WATAM DeFi Intelligence checks its identity on-chain and against an independent registry, discovers its pools and tells you which ones it can analyse.</p>
-        <ul>
-          <li>A support level and reason for every pool</li>
-          <li>Collects only the hours that are missing, through the same gated pipeline</li>
-          <li>Per-pool coverage, quality checks and an evidence-backed report</li>
-        </ul>
-      </div>
-      <figure class="shot"><img src="assets/img/explorer-pools.jpg" width="1128" height="781" loading="lazy" alt="Token explorer listing twelve VELO pools on OP Mainnet with family, pair, liquidity and a supported label for each"></figure>
-    </div>
-
-    <div class="feature flip">
-      <div class="copy">
-        <h3>Anomaly intelligence</h3>
-        <p>Volume, activity and liquidity shifts against a baseline frozen at onset, plus concentration, imbalance, divergence and repetitive patterns.</p>
-        <ul>
-          <li>Facts, method and parameters for every finding</li>
-          <li>Limitations and alternative explanations, stated up front</li>
-          <li>Statistical observations — never claims of intent or manipulation</li>
-        </ul>
-      </div>
-      <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="937" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"></figure>
-    </div>
-
-    <div class="feature">
-      <div class="copy">
-        <h3>Research and reporting</h3>
-        <p>Reports in Markdown, HTML and JSON with price-source coverage, pool coverage, protocol breakdown, multi-hop reconciliation and the SQL evidence.</p>
-        <ul>
-          <li>Window comparisons marked comparable only when every pool is covered in both</li>
-          <li>Workspaces with saved, frozen reports per organisation</li>
-          <li>Pool-event volume and transaction-net volume reported separately</li>
-        </ul>
-      </div>
-      <figure class="shot"><img src="assets/img/explorer-comparison.jpg" width="968" height="474" loading="lazy" alt="Historical comparison of two ARB windows on Arbitrum One, both fully covered, with swap events, token volume, valued USD volume and changes"></figure>
+    <div class="cases">
+      <article class="case">
+        <h3>Analyse a token pool by pool</h3>
+        <p class="when">Token teams, protocol analytics, research desks</p>
+        <p>Paste a token contract. The application checks it on-chain, finds its pools and says which ones it can decode. It then collects the missing hours through the same gated pipeline and reports swaps, token volume, buyers and sellers, and routing per pool — with the covered hours stated.</p>
+        <p class="note" style="margin-top:10px">Covers the selected pools on supported networks, not the token's whole market.</p>
+      </article>
+      <article class="case">
+        <h3>Triage unusual activity</h3>
+        <p class="when">Risk, market-integrity and research teams</p>
+        <p>The anomaly engine flags volume, activity and liquidity shifts against a baseline frozen at onset, plus concentration, imbalance and repetitive patterns. Every finding carries its facts, method, parameters, limitations and alternative explanations, so it can be checked before anyone acts on it.</p>
+        <p class="note" style="margin-top:10px">A statistical observation, never a claim of intent or manipulation.</p>
+      </article>
+      <article class="case">
+        <h3>Compare two time windows</h3>
+        <p class="when">Growth, treasury and research teams</p>
+        <p>Compare a token's activity before and after a listing, an incentive change or an event. A comparison is marked comparable only when every pool is covered in both windows; otherwise the report says it is incomplete instead of showing a misleading change.</p>
+        <p class="note" style="margin-top:10px">Historical windows that have been ingested; not live streaming.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -481,12 +460,6 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         </div>
         <p class="note">In release testing on 2026-10-17, gemma3:4b answers to an English question and English and Turkish follow-ups were all accepted. In a later run a Turkish answer that cited the wrong facts was rejected and replaced by the deterministic answer — exactly what the validation is for. One machine, not a performance promise.</p>
       </div>
-      <div class="ai-phone">
-        <div class="dev phone" aria-hidden="false">
-          <div class="bar" aria-hidden="true"><span class="url">your-server/platform/analyst</span></div>
-          <div class="screen"><img src="assets/img/devices/phone-ai-analyst.jpg" width="640" height="1385" loading="lazy" alt="The analyst's answer about ARB on Arbitrum, with numbered fact citations after each sentence"></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -495,7 +468,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="intro">
       <h2 id="cases-h">Verified research examples</h2>
-      <p>Reviewed snapshots of historical, ingested windows from October 2026, recomputed from the stored data before publication. They illustrate the method; they are not live data and not a statement about any protocol.</p>
+      <p>Reviewed snapshots of historical windows from October 2026. Every figure here was recomputed before publication from swap events our own pipeline collected over public JSON-RPC. USD values are deliberately not shown: they depend on an external price feed. These examples illustrate the method; they are not live data and not a statement about any protocol.</p>
     </div>
     <article class="xcase" id="case-arb" aria-labelledby="case-arb-h">
       <div class="xcase-head">
@@ -504,27 +477,32 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <h3 id="case-arb-h">ARB on Arbitrum One</h3>
           <p class="when">14 Oct 2026, 12:00 UTC to 17 Oct 2026, 08:00 UTC · 4 ingested Uniswap v3-style pools · reviewed snapshot, not live</p>
         </div>
-        <p class="lead">Every Swap event emitted by the selected pools in this window, valued hour by hour. These are selected-pool event measurements: not the total ARB market and not transaction-net trading volume.</p>
+        <p class="lead">Every Swap event emitted by the selected pools in this window, counted hour by hour. These are selected-pool event measurements: not the total ARB market and not transaction-net trading volume.</p>
       </div>
       <dl class="figs">
         <div><dt>64,763</dt><dd>pool Swap events</dd></div>
+        <div><dt>64,564</dt><dd>distinct transactions</dd></div>
         <div><dt>68 / 68</dt><dd>hours covered by successful, gated ingestion runs</dd></div>
-        <div><dt>$17.52M</dt><dd>USD-valued pool-event volume</dd></div>
-        <div><dt>0</dt><dd>unvalued swaps: every swap had a stablecoin leg or a verified hourly price</dd></div>
-        <div><dt>$1.35M</dt><dd>valued through a stablecoin leg (23,700 swaps)</dd></div>
-        <div><dt>$16.17M</dt><dd>valued through verified hourly prices (41,063 swaps)</dd></div>
+        <div><dt>0</dt><dd>duplicate events: each on-chain event is stored exactly once</dd></div>
+        <div><dt>93.33M</dt><dd>ARB in pool-event volume, from raw on-chain amounts</dd></div>
+        <div><dt>23,700</dt><dd>swaps with a stablecoin on the other side</dd></div>
         <div><dt>4</dt><dd>pools; the fourth contributes 107 events, all after 17 Oct 04:00 UTC</dd></div>
-        <div><dt>Q&amp;A</dt><dd>the same facts answered by the AI analyst with citations (see the phone screen above)</dd></div>
+        <div><dt>10</dt><dd>anomaly findings in the window, none of high severity</dd></div>
       </dl>
-      <div class="xcase-body">
-        <figure class="shot"><img src="assets/img/explorer-comparison.jpg" width="968" height="474" loading="lazy" alt="Historical comparison of two ARB windows on Arbitrum One, both fully covered, with swap events, token volume, valued USD volume, transaction-net volume and unvalued swaps"><figcaption>Window comparison inside the same snapshot: marked comparable only because every pool is covered in both windows.</figcaption></figure>
+      <div class="split" style="margin:0 0 32px">
         <div>
           <h4>How to read these numbers</h4>
           <ul class="checks">
             <li><b>Selected pools, not the market.</b> Only the four ingested pools are measured. Other pools, venues and centralised exchanges are not included.</li>
-            <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both; transaction-net volume is reported separately.</li>
-            <li><b>Valuation.</b> USD comes from a stablecoin leg where one exists, otherwise from a verified hourly price. A swap without either stays unvalued — here there were none.</li>
+            <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both; transaction-net volume is reported separately in the application.</li>
             <li><b>Historical.</b> A reviewed snapshot of an ingested window, published as an example. Nothing on this page is live.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>About USD values</h4>
+          <ul class="checks">
+            <li><b>Not shown here.</b> In the application, USD comes from a stablecoin leg where one exists, otherwise from an hourly price feed configured for the installation.</li>
+            <li><b>Never zero-filled.</b> A swap without a usable price stays unvalued and is counted as such, so coverage is visible instead of hidden.</li>
           </ul>
         </div>
       </div>
@@ -550,20 +528,20 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
           <h3 id="case-velo-h">VELO on OP Mainnet</h3>
           <p class="when">16 Oct 2026, 12:00 UTC to 17 Oct 2026, 00:00 UTC · 12 pools discovered and verified, 6 ingested · reviewed snapshot, not live</p>
         </div>
-        <p class="lead">An example of what the anomaly engine reports — and of what the data does not cover. Market coverage is partial and the report says so.</p>
+        <p class="lead">An example of what the anomaly engine reports — and of what the data does not cover. Market coverage is partial and the report says so. USD values are not shown (see above).</p>
       </div>
       <dl class="figs">
-        <div><dt>12</dt><dd>pools discovered, verified on-chain and classified as supported</dd></div>
+        <div><dt>12</dt><dd>candidate pools, each verified on-chain and classified as supported</dd></div>
         <div><dt>6</dt><dd>pools ingested (3 Solidly-style, 3 Uniswap v3-style)</dd></div>
         <div><dt>65,568</dt><dd>pool Swap events in 12 of 12 covered hours</dd></div>
         <div><dt>12.68M</dt><dd>VELO in pool-event volume</dd></div>
         <div><dt>62,302</dt><dd>Solidly-style events carrying 463,647 VELO</dd></div>
         <div><dt>3,266</dt><dd>Uniswap v3-style events carrying 12.2M VELO</dd></div>
-        <div><dt>$468,893</dt><dd>USD-valued volume; 1,202 swaps stay unvalued because one hourly price was missing — never counted as $0</dd></div>
-        <div><dt>3</dt><dd>high-severity findings: volume spikes of 7.25× and 7.43× and an activity spike of 12.8× against a frozen baseline</dd></div>
+        <div><dt>58,792</dt><dd>distinct transactions; 0 duplicate events</dd></div>
+        <div><dt>3</dt><dd>high-severity findings from swap counts and token volume: spikes of 7.25×, 7.43× and 12.8× against a frozen baseline</dd></div>
       </dl>
       <div class="xcase-body">
-        <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="937" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"><figcaption>One finding with its facts, method, limitations, alternative explanations and provenance.</figcaption></figure>
+        <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="938" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"><figcaption>One finding with its facts, method, limitations, alternative explanations and provenance.</figcaption></figure>
         <div>
           <h4>What a finding is — and is not</h4>
           <ul class="checks">
@@ -631,14 +609,15 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
     <div class="pilot">
       <div>
         <h2 id="pilot-h">Let's scope a private pilot</h2>
-        <p class="lede" style="margin-top:18px">Tell us which tokens, protocols and networks matter to you. We start with a discovery conversation to agree on a fixed, measurable scope — data coverage, findings, reports and the AI analyst on verified on-chain data, for one organisation.</p>
+        <p class="lede" style="margin-top:18px">Tell us which tokens, protocols and networks matter to you. The first step is a discovery conversation; if it fits, we agree a fixed, measurable pilot scope in writing before anything is installed.</p>
         <div class="actions"><a class="btn" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a></div>
         <p class="contact">Opens a short email template: organisation, contact, what you want to analyse, preferred deployment and AI. Or write to <a class="email" href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a></p>
       </div>
       <ul class="list">
+        <li><b>The first conversation covers</b><p>Your analytical questions; the chains, tokens, pools and data sources involved; deployment and data-handling constraints; integrations you need; and the current limitations that apply to your case.</p></li>
         <li><b>You provide</b><p>A Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints and a local or cloud AI model.</p></li>
         <li><b>We never ask for</b><p>Confidential datasets, API credentials, private keys or passwords — not by email and not during the pilot.</p></li>
-        <li><b>Before anything is deployed</b><p>Scope, duration, support, licensing and data-source terms are agreed in writing. A first conversation is not a commitment on either side.</p></li>
+        <li><b>Before anything is deployed</b><p>Pilot scope, deployment feasibility, data-source permissions, licensing and commercial terms are agreed in writing. A first conversation is not a commitment on either side.</p></li>
       </ul>
     </div>
   </div>
@@ -655,7 +634,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <li>Dune and cloud AI integrations are optional and off by default.</li>
       <li>Off-site backups need an external S3-compatible destination configured per installation; until one is registered and verified, they are reported as not configured. Recovery was verified on our reference installation, not on every customer environment.</li>
       <li>WATAM DeFi Intelligence is installed per customer on their own infrastructure. A hosted, multi-tenant SaaS service is not offered.</li>
-      <li>Examples use public blockchain data and third-party price data. Protocol, token and network names describe the data analysed; they do not imply any affiliation or endorsement.</li>
+      <li>The research examples use public blockchain data collected by the application; USD values are omitted because they depend on an external price feed. Protocol, token and network names describe the data analysed; they do not imply any affiliation or endorsement.</li>
       <li>WATAM DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
     </ul>
   </div>
@@ -666,7 +645,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap foot">
     <div>
       <a class="brand" href="#top" aria-label="WATAM DeFi Intelligence, back to top"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg><span>WATAM <span class="brand-sub">DeFi Intelligence</span></span></a>
-      <p style="margin-top:16px">Private on-chain analytics and AI intelligence software by WATAM — We Are The Art Makers. Independent: not affiliated with or endorsed by any protocol, token issuer, network or data provider it analyses; their names are trademarks of their respective owners. Example data: public blockchain data via JSON-RPC, prices and protocol volumes from DefiLlama. The application source is private; this repository contains only the public overview.</p>
+      <p style="margin-top:16px">Private on-chain analytics and AI intelligence software by WATAM — We Are The Art Makers. Independent: not affiliated with or endorsed by any protocol, token issuer, network or data provider it analyses; their names are trademarks of their respective owners. The research examples use only public blockchain data collected by the application over JSON-RPC. The application source is private; this repository contains only the public overview.</p>
     </div>
     <div>
       <h4>Contact</h4>
