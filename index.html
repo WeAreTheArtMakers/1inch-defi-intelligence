@@ -3,8 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DeFi Intelligence</title>
-<meta name="description" content="DeFi Intelligence — self-hosted multi-chain DeFi analytics and evidence-grounded AI research: token exploration, anomaly detection, reporting and private AI integration.">
+<title>WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence</title>
+<meta name="description" content="WATAM DeFi Intelligence is private on-chain analytics and AI intelligence software that runs on your own infrastructure: receipt-verified swap data, token exploration, anomaly findings with evidence, source-backed reports and an AI analyst that cites its facts.">
+<link rel="canonical" href="https://wearetheartmakers.github.io/defi-intelligence/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WATAM DeFi Intelligence">
+<meta property="og:title" content="WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence">
+<meta property="og:description" content="Your infrastructure. Your blockchain data. Verifiable intelligence.">
+<meta property="og:url" content="https://wearetheartmakers.github.io/defi-intelligence/">
+<meta property="og:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WATAM DeFi Intelligence — Your infrastructure. Your blockchain data. Verifiable intelligence.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WATAM DeFi Intelligence — Private On-Chain Analytics &amp; AI Intelligence">
+<meta name="twitter:description" content="Your infrastructure. Your blockchain data. Verifiable intelligence.">
+<meta name="twitter:image" content="https://wearetheartmakers.github.io/defi-intelligence/assets/img/og-card.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://wearetheartmakers.github.io/defi-intelligence/#watam","name":"WATAM — We Are The Art Makers","alternateName":"WATAM","email":"admin@wearetheartmakers.com"},
+{"@type":"SoftwareApplication","name":"WATAM DeFi Intelligence","applicationCategory":"BusinessApplication","operatingSystem":"Linux (self-hosted, Docker)","description":"Private on-chain analytics and AI intelligence software that runs on the customer's own infrastructure.","url":"https://wearetheartmakers.github.io/defi-intelligence/","publisher":{"@id":"https://wearetheartmakers.github.io/defi-intelligence/#watam"}}
+]}
+</script>
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#0A1020">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -48,6 +68,8 @@ p{margin:0 0 14px;color:var(--ink-2)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;font:600 19px/1 var(--display);letter-spacing:.005em}
 .brand svg{flex:none}
+.brand-sub{color:var(--ink-2);font-weight:600}
+.eyebrow{display:inline-block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);margin-bottom:18px}
 .nav{display:flex;align-items:center;gap:30px}
 .nav a{color:var(--ink-2);text-decoration:none;font-size:15px}
 .nav a:hover{color:var(--ink)}
@@ -67,6 +89,7 @@ p{margin:0 0 14px;color:var(--ink-2)}
 .hero::after{content:"";position:absolute;left:-200px;bottom:-260px;width:720px;height:520px;background:radial-gradient(closest-side,rgba(226,182,94,.09),transparent 70%);pointer-events:none}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:center}
 @media (min-width:1101px){.stage{width:calc(100% + 72px);margin-right:-72px}}
+.hero h1{font-size:clamp(38px,4.2vw,58px);max-width:17ch}
 .hero .lede{margin-top:22px}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
 .actions a.link{color:var(--ink);font-weight:500;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
@@ -211,6 +234,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 .foot p{color:var(--ink-3);font-size:15px}
 .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .foot a{color:var(--ink-2);text-decoration:none} .foot a:hover{color:var(--ink)}
+.foot a.btn,.foot a.btn:hover{color:var(--brass-ink)}
 
 /* responsive */
 @media (max-width:1100px){
@@ -237,6 +261,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 @media (max-width:620px){
   body{font-size:16px}
   .wrap{padding:0 18px}
+  .top .brand{font-size:16.5px}
   .hero{padding:44px 0 24px}
   .stage{aspect-ratio:1/1.02}
   .laptop{width:100%;top:0;transform:none}
@@ -275,9 +300,9 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="DeFi Intelligence, back to top">
+    <a class="brand" href="#top" aria-label="WATAM DeFi Intelligence, back to top">
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg>
-      DeFi Intelligence
+      <span>WATAM <span class="brand-sub">DeFi Intelligence</span></span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#product">Product</a>
@@ -285,7 +310,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <a href="#research">Research</a>
       <a href="#status">What's verified</a>
       <a href="#deploy">Deployment</a>
-      <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+      <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a>
     </nav>
     <details class="menu">
       <summary aria-label="Open menu"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Menu</summary>
@@ -295,7 +320,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         <a href="#research">Research</a>
         <a href="#status">What's verified</a>
         <a href="#deploy">Deployment</a>
-        <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+        <a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a>
       </div>
     </details>
   </div>
@@ -305,16 +330,17 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <h1>On-chain evidence your team can verify.</h1>
-      <p class="lede">Self-hosted DeFi analytics for funds, protocols and risk teams. Explore any token across chains, catch unusual activity with the evidence attached, publish source-backed reports, and ask an AI analyst that only states numbers it can prove.</p>
+      <span class="eyebrow">Private On-Chain Analytics &amp; AI Intelligence</span>
+      <h1>Your infrastructure. Your blockchain data. Verifiable intelligence.</h1>
+      <p class="lede">WATAM DeFi Intelligence is analytics software you run on your own servers. It reads swaps from the blockchain, proves the data is complete before using it, flags unusual activity with the evidence attached, produces source-backed reports, and lets you ask an AI analyst that only states numbers it can trace to verified facts.</p>
       <div class="actions">
-        <a class="btn" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a>
+        <a class="btn" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a>
         <a class="link" href="#status">See what's verified</a>
       </div>
-      <p class="assure">Runs on your own servers. Your organisation's data and AI prompts stay there unless you choose a cloud AI provider.</p>
+      <p class="assure">Runs on your own servers. Your organisation's data and AI prompts stay there unless you choose a cloud AI provider. Pilots are scoped individually.</p>
     </div>
     <div>
-      <div class="stage" role="group" aria-label="The DeFi Intelligence web application on a laptop, a tablet and a phone">
+      <div class="stage" role="group" aria-label="The WATAM DeFi Intelligence web application on a laptop, a tablet and a phone">
         <div class="dev laptop">
           <div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="url">https://your-server/platform/anomalies</span></div>
           <div class="screen"><img src="assets/img/devices/desktop-anomaly-center.jpg" width="1600" height="1000" fetchpriority="high" alt="Anomaly center in a desktop browser: high-severity findings for VELO, XDP and other subjects with network, window, observed-to-baseline ratio and evidence strength"></div>
@@ -330,7 +356,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       </div>
     </div>
   </div>
-  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified on-chain data (snapshot 2026-10-17), shown in a browser on each device. DeFi Intelligence is a responsive web app, not a native mobile app.</p></div>
+  <div class="wrap"><p class="stage-note">Real screens from the self-hosted web application on verified, historical on-chain data (snapshot of 17 Oct 2026 — not live, not streaming), shown in a browser on each device. The screenshots predate the WATAM product name. It is a responsive web app, not a native mobile app.</p></div>
 </section>
 
 <section class="band" aria-labelledby="coverage-h">
@@ -345,7 +371,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <dt>Verified protocol families</dt>
       <dd><span class="tag"><span class="dot"></span>Uniswap v3-style</span><span class="tag"><span class="dot"></span>Uniswap v2-style</span><span class="tag"><span class="dot"></span>Solidly (Velodrome/Aerodrome v2)</span></dd>
       <dt>Individually verified pools</dt>
-      <dd><a class="tag" href="#case-1inch"><span class="dot"></span>Uniswap v4: six Ethereum 1INCH pools</a></dd>
+      <dd><a class="tag" href="#status"><span class="dot"></span>Uniswap v4: six Ethereum pools, each verified on its own</a></dd>
       <dt>Not counted</dt>
       <dd><span class="tag muted"><span class="dot"></span>PancakeSwap v3 (decoder only, not verified for ingestion)</span><span class="tag muted"><span class="dot"></span>Other Uniswap v4 pools and networks</span><span class="tag muted"><span class="dot"></span>v4 pools with native ETH or swap-changing hooks</span><span class="tag muted"><span class="dot"></span>Other venues</span></dd>
     </dl>
@@ -391,7 +417,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
     <div class="feature">
       <div class="copy">
         <h3>Universal token explorer</h3>
-        <p>Paste a token contract. DeFi Intelligence checks its identity on-chain and against an independent registry, discovers its pools and tells you which ones it can analyse.</p>
+        <p>Paste a token contract. WATAM DeFi Intelligence checks its identity on-chain and against an independent registry, discovers its pools and tells you which ones it can analyse.</p>
         <ul>
           <li>A support level and reason for every pool</li>
           <li>Collects only the hours that are missing, through the same gated pipeline</li>
@@ -469,83 +495,86 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="intro">
       <h2 id="cases-h">Verified research examples</h2>
-      <p>Reviewed snapshots from historical, ingested windows. Findings are statistical observations: they never establish intent, manipulation or wash trading, and addresses are not identified entities.</p>
+      <p>Reviewed snapshots of historical, ingested windows from October 2026, recomputed from the stored data before publication. They illustrate the method; they are not live data and not a statement about any protocol.</p>
     </div>
-    <article class="xcase" id="case-1inch" aria-labelledby="case-1inch-h">
+    <article class="xcase" id="case-arb" aria-labelledby="case-arb-h">
       <div class="xcase-head">
         <div>
           <span class="kicker">Historical research snapshot</span>
-          <h3 id="case-1inch-h">1INCH token on Ethereum</h3>
-          <p class="when">16 Oct 2026, 19:00 UTC to 17 Oct 2026, 19:00 UTC · 11 ingested pools, including six individually verified Uniswap v4 pools · reviewed snapshot, not live</p>
+          <h3 id="case-arb-h">ARB on Arbitrum One</h3>
+          <p class="when">14 Oct 2026, 12:00 UTC to 17 Oct 2026, 08:00 UTC · 4 ingested Uniswap v3-style pools · reviewed snapshot, not live</p>
         </div>
-        <p class="lead">Every Swap event emitted by the eleven selected pools in this window. These are selected-pool event measurements: not the total 1INCH market and not transaction-net trading volume.</p>
+        <p class="lead">Every Swap event emitted by the selected pools in this window, valued hour by hour. These are selected-pool event measurements: not the total ARB market and not transaction-net trading volume.</p>
       </div>
       <dl class="figs">
-        <div><dt>289</dt><dd>pool Swap events</dd></div>
-        <div><dt>250</dt><dd>distinct transactions</dd></div>
-        <div><dt>24</dt><dd>fully covered hours, across all 11 selected pools</dd></div>
-        <div><dt>288 / 289</dt><dd>swaps valued in USD (99.7%)</dd></div>
-        <div><dt>$108,733.34</dt><dd>USD-valued pool-event volume</dd></div>
-        <div><dt>1</dt><dd>unvalued wstETH swap: no verified hourly price, so it is left unvalued, never counted as $0</dd></div>
-        <div><dt>28</dt><dd>transactions that passed through more than one ingested pool</dd></div>
-        <div><dt>0</dt><dd>anomaly findings for this window under the existing detection method</dd></div>
+        <div><dt>64,763</dt><dd>pool Swap events</dd></div>
+        <div><dt>68 / 68</dt><dd>hours covered by successful, gated ingestion runs</dd></div>
+        <div><dt>$17.52M</dt><dd>USD-valued pool-event volume</dd></div>
+        <div><dt>0</dt><dd>unvalued swaps: every swap had a stablecoin leg or a verified hourly price</dd></div>
+        <div><dt>$1.35M</dt><dd>valued through a stablecoin leg (23,700 swaps)</dd></div>
+        <div><dt>$16.17M</dt><dd>valued through verified hourly prices (41,063 swaps)</dd></div>
+        <div><dt>4</dt><dd>pools; the fourth contributes 107 events, all after 17 Oct 04:00 UTC</dd></div>
+        <div><dt>Q&amp;A</dt><dd>the same facts answered by the AI analyst with citations (see the phone screen above)</dd></div>
       </dl>
       <div class="xcase-body">
-        <figure class="shot"><img src="assets/img/report-1inch-ethereum.jpg" width="1440" height="892" loading="lazy" alt="The application's token report for 1INCH on Ethereum: window 16 Oct 19:00 to 17 Oct 19:00 UTC, 24 verified covered hours, USD scope limited to the 11 ingested pools, 289 pool swaps, 1,180,334 1INCH, $108.7K valued with 288 of 289 swaps valued and 1 unvalued, 11 verified pools, and an hourly chart of 1INCH bought and sold"></figure>
+        <figure class="shot"><img src="assets/img/explorer-comparison.jpg" width="968" height="474" loading="lazy" alt="Historical comparison of two ARB windows on Arbitrum One, both fully covered, with swap events, token volume, valued USD volume, transaction-net volume and unvalued swaps"><figcaption>Window comparison inside the same snapshot: marked comparable only because every pool is covered in both windows.</figcaption></figure>
         <div>
           <h4>How to read these numbers</h4>
           <ul class="checks">
-            <li><b>Selected pools, not the market.</b> Only the eleven ingested pools are measured. Other DEX pools, other venues and centralised exchanges are not included, so this is not total 1INCH trading volume.</li>
-            <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both. 28 transactions did this, which is why pool-event volume (1,180,334 1INCH) is higher than transaction-net volume (855,100 1INCH).</li>
-            <li><b>Valuation.</b> 3 swaps were valued from a stablecoin leg and 285 from verified DefiLlama hourly prices. The remaining wstETH swap had no verified price for its hour and stays unvalued.</li>
-            <li><b>No findings.</b> The anomaly detectors returned nothing for this single 24-hour window. That is a statistical result for a short window, not a statement about intent or market quality.</li>
+            <li><b>Selected pools, not the market.</b> Only the four ingested pools are measured. Other pools, venues and centralised exchanges are not included.</li>
+            <li><b>Pool events, not net trades.</b> A trade routed through two ingested pools is counted in both; transaction-net volume is reported separately.</li>
+            <li><b>Valuation.</b> USD comes from a stablecoin leg where one exists, otherwise from a verified hourly price. A swap without either stays unvalued — here there were none.</li>
+            <li><b>Historical.</b> A reviewed snapshot of an ingested window, published as an example. Nothing on this page is live.</li>
           </ul>
         </div>
       </div>
       <div class="tw">
         <table class="pools">
-          <caption class="sr-only">The eleven ingested pools and their Swap events in the window</caption>
-          <thead><tr><th scope="col">Pair</th><th scope="col">Protocol and identifier</th><th scope="col">Fee tier</th><th scope="col">Swap events</th></tr></thead>
+          <caption class="sr-only">The four ingested ARB pools and their Swap events in the window</caption>
+          <thead><tr><th scope="col">Pair</th><th scope="col">Protocol family and pool</th><th scope="col">Fee tier</th><th scope="col">Swap events</th></tr></thead>
           <tbody>
-            <tr><td>1INCH / CRV</td><td>Uniswap v4 <code>PoolId 0x6bf6…d1fe</code></td><td>1%</td><td class="num">79</td></tr>
-            <tr><td>1INCH / AAVE</td><td>Uniswap v4 <code>PoolId 0x32dd…3a7a</code></td><td>1%</td><td class="num">50</td></tr>
-            <tr><td>1INCH / LINK</td><td>Uniswap v3 <code>Pool 0x2802…e4c2</code></td><td>0.3%</td><td class="num">47</td></tr>
-            <tr><td>1INCH / wstETH</td><td>Uniswap v4 <code>PoolId 0x1d6e…ea6f</code></td><td>1%</td><td class="num">39</td></tr>
-            <tr><td>1INCH / LINK</td><td>Uniswap v4 <code>PoolId 0x17bc…2958</code></td><td>1%</td><td class="num">33</td></tr>
-            <tr><td>1INCH / WETH</td><td>Uniswap v3 <code>Pool 0xe931…cb97</code></td><td>1%</td><td class="num">21</td></tr>
-            <tr><td>1INCH / WETH</td><td>Uniswap v2 <code>Pool 0x26aa…86f2</code></td><td>0.3%</td><td class="num">13</td></tr>
-            <tr><td>1INCH / WETH</td><td>Uniswap v3 <code>Pool 0xd35e…4b44</code></td><td>0.3%</td><td class="num">3</td></tr>
-            <tr><td>1INCH / USDC</td><td>Uniswap v4 <code>PoolId 0x1ff1…e81d</code></td><td>1%</td><td class="num">2</td></tr>
-            <tr><td>1INCH / WBTC</td><td>Uniswap v4 <code>PoolId 0x6255…d826</code></td><td>1%</td><td class="num one">1</td></tr>
-            <tr><td>1INCH / USDC</td><td>Uniswap v3 <code>Pool 0x9feb…82ae</code></td><td>1%</td><td class="num one">1</td></tr>
+            <tr><td>WETH / ARB</td><td>Uniswap v3-style <code>0xc6f7…396a</code></td><td>0.05%</td><td class="num">40,956</td></tr>
+            <tr><td>ARB / USDC</td><td>Uniswap v3-style <code>0xcda5…dad8</code></td><td>0.05%</td><td class="num">18,586</td></tr>
+            <tr><td>ARB / USDC</td><td>Uniswap v3-style <code>0xaebd…ccc3</code></td><td>0.3%</td><td class="num">5,114</td></tr>
+            <tr><td>WETH / ARB</td><td>Uniswap v3-style <code>0x92c6…8f00</code></td><td>0.3%</td><td class="num">107</td></tr>
           </tbody>
-          <tfoot><tr><td>11 pools</td><td>6 Uniswap v4 (204 events) · 4 Uniswap v3 · 1 Uniswap v2</td><td></td><td class="num">289</td></tr></tfoot>
+          <tfoot><tr><td>4 pools</td><td>receipt-verified Uniswap v3-style decoder</td><td></td><td class="num">64,763</td></tr></tfoot>
         </table>
       </div>
-      <div class="split">
+    </article>
+
+    <article class="xcase" id="case-velo" aria-labelledby="case-velo-h">
+      <div class="xcase-head">
         <div>
-          <h4>How the six Uniswap v4 pools were verified</h4>
-          <ul class="checks">
-            <li><b>PoolId matches PoolKey.</b> Each pool's Initialize event, found on one RPC provider and confirmed by three others, gives its PoolKey, and the hash of that key equals the PoolId. All six are hookless 1% pools without native ETH.</li>
-            <li><b>Two providers agree.</b> The 204 v4 Swap events in this window were fetched independently from two RPC providers. Both returned the identical set, and the published rows match it event for event.</li>
-            <li><b>Sampled receipt reconciliation.</b> 149 sampled transaction receipts, from this window and earlier blocks, reconciled exactly with the PoolManager's token transfers (24–25 per pool), with 0 mismatches. Not every one of the 204 swaps was individually receipt-reconciled.</li>
-          </ul>
+          <span class="kicker">Historical research snapshot</span>
+          <h3 id="case-velo-h">VELO on OP Mainnet</h3>
+          <p class="when">16 Oct 2026, 12:00 UTC to 17 Oct 2026, 00:00 UTC · 12 pools discovered and verified, 6 ingested · reviewed snapshot, not live</p>
         </div>
+        <p class="lead">An example of what the anomaly engine reports — and of what the data does not cover. Market coverage is partial and the report says so.</p>
+      </div>
+      <dl class="figs">
+        <div><dt>12</dt><dd>pools discovered, verified on-chain and classified as supported</dd></div>
+        <div><dt>6</dt><dd>pools ingested (3 Solidly-style, 3 Uniswap v3-style)</dd></div>
+        <div><dt>65,568</dt><dd>pool Swap events in 12 of 12 covered hours</dd></div>
+        <div><dt>12.68M</dt><dd>VELO in pool-event volume</dd></div>
+        <div><dt>62,302</dt><dd>Solidly-style events carrying 463,647 VELO</dd></div>
+        <div><dt>3,266</dt><dd>Uniswap v3-style events carrying 12.2M VELO</dd></div>
+        <div><dt>$468,893</dt><dd>USD-valued volume; 1,202 swaps stay unvalued because one hourly price was missing — never counted as $0</dd></div>
+        <div><dt>3</dt><dd>high-severity findings: volume spikes of 7.25× and 7.43× and an activity spike of 12.8× against a frozen baseline</dd></div>
+      </dl>
+      <div class="xcase-body">
+        <figure class="shot"><img src="assets/img/anomaly-finding.jpg" width="926" height="937" loading="lazy" alt="A VELO volume spike finding: chart with frozen baseline and observation window, facts, method, limitations, alternative explanations and provenance"><figcaption>One finding with its facts, method, limitations, alternative explanations and provenance.</figcaption></figure>
         <div>
-          <h4>What is not covered</h4>
+          <h4>What a finding is — and is not</h4>
           <ul class="checks">
-            <li><b>Other v4 pools are not automatically supported.</b> Other PoolIds, Uniswap v4 on other networks, pools with hooks that can change swap amounts and pools with native ETH each need the same verification first.</li>
-            <li><b>PancakeSwap v3 remains decoder-only.</b> Its swaps can be decoded, but it is not verified for ingestion.</li>
-            <li><b>Not the Base case.</b> This case covers the 1INCH ERC-20 token in selected Ethereum pools. It is separate from the audited aggregator case on Base below, which analyses 1inch aggregator volume on another network.</li>
+            <li><b>A statistical observation.</b> A metric moved far from a baseline frozen at onset. The finding states the method, parameters and the data it used.</li>
+            <li><b>Never an accusation.</b> It does not establish intent, manipulation or wash trading, and addresses are not identified entities.</li>
+            <li><b>Alternatives stated up front.</b> Market-wide moves, new liquidity venues, a single large participant or a listing can each explain a spike.</li>
+            <li><b>Coverage is explicit.</b> Only hours covered by successful ingestion runs are analysed; partial market coverage is reported, not hidden.</li>
           </ul>
         </div>
       </div>
     </article>
-    <div class="cases">
-      <article class="case"><h3>Aggregator volume anomaly on Base</h3><p class="when">1 Sep to 15 Oct 2026, audited</p><p>3,293,676 decoded events. Window volume <span class="num">$458.56M</span>, with <span class="num">90.2%</span> from one automated account; peak <span class="num">10.3×</span> the pre-onset median; volume excluding the identified account <span class="num">−15.5%</span> against baseline (corrected by the audit from −20.5%).</p></article>
-      <article class="case"><h3>ARB on Arbitrum One</h3><p class="when">14 Oct 12:00 to 17 Oct 03:00 UTC, 3 pools</p><p><span class="num">63,089</span> pool swap events and <span class="num">$17.06M</span> valued volume: 36.8% through stablecoin legs, 63.2% through verified hourly prices, 0 unvalued. Pass-through routing 0.1%.</p></article>
-      <article class="case"><h3>VELO on OP Mainnet</h3><p class="when">16 Oct 12:00 to 17 Oct 00:00 UTC</p><p>12 pools discovered and receipt-verified; 6 ingested. Solidly pools carried <span class="num">62,302</span> swap events but only 463,647 VELO; v3 pools carried 3,266 events and 12.2M VELO. The report states that market coverage is partial.</p></article>
-    </div>
   </div>
 </section>
 
@@ -553,24 +582,26 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="intro">
       <h2 id="status-h">What's verified, and what isn't yet</h2>
-      <p>We separate what has been tested on real data from what is integrated but not yet independently verified.</p>
+      <p>We separate what has been tested on real data from what is integrated, experimental or not supported. "Reference installation" means our own deployment; every customer installation verifies its own backups and recovery.</p>
     </div>
     <div class="tw">
       <table>
         <tr><th scope="col">Capability</th><th scope="col">Status</th></tr>
-        <tr><td>Ingestion, token explorer, anomaly engine, reports and comparisons on Base, Arbitrum One, OP Mainnet and Ethereum</td><td class="st ok">Tested on real data</td></tr>
-        <tr><td>Uniswap v4: six individually verified Ethereum 1INCH pools (PoolId/PoolKey match, two-provider agreement, sampled receipt reconciliation)</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Ingestion, token explorer, anomaly engine, reports and window comparisons on Base, Arbitrum One, OP Mainnet and Ethereum</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Uniswap v3-style, Uniswap v2-style and Solidly-style decoders (decoded swaps matched transaction receipts exactly)</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Uniswap v4: six individually verified Ethereum pools (PoolId/PoolKey match, two-provider agreement, sampled receipt reconciliation)</td><td class="st ok">Tested on real data</td></tr>
+        <tr><td>Access control: every API route requires sign-in by default, organisation roles, personal API tokens, single-use invitations for onboarding</td><td class="st ok">Tested and in production use</td></tr>
+        <tr><td>Sandboxed query engine: file, network and extension access blocked at validation and at execution</td><td class="st ok">Tested and in production use</td></tr>
+        <tr><td>Encrypted off-site backup to Cloudflare R2, restore-verified on a separate isolated server</td><td class="st ok">Verified on our reference installation (Oct 2026)</td></tr>
+        <tr><td>Local models via Ollama, including a multilingual multi-turn conversation</td><td class="st ok">Tested on one machine</td></tr>
+        <tr><td>Self-hosted Docker Compose installation: TLS proxy, first administrator, your own RPC endpoints, upgrade and rollback</td><td class="st part">Tested on Docker Desktop</td></tr>
+        <tr><td>Kubernetes deployment</td><td class="st part">Validated on a local single-node cluster</td></tr>
+        <tr><td>PancakeSwap pools, Solana research, one-click token analysis</td><td class="st part">Experimental</td></tr>
+        <tr><td>Anthropic Claude API and OpenAI API (optional, off by default, your own account)</td><td class="st part">Integrated, live calls not yet verified</td></tr>
+        <tr><td>Dune (optional, off by default, your own account)</td><td class="st part">Integrated, not verified live</td></tr>
+        <tr><td>vLLM and GPU inference servers</td><td class="st no">Not yet verified</td></tr>
         <tr><td>Other Uniswap v4 pools, other networks, hooks that change swap amounts, native ETH</td><td class="st no">Not supported</td></tr>
-        <tr><td>PancakeSwap v3 ingestion</td><td class="st part">Decoder only</td></tr>
-        <tr><td>Local models via Ollama, including a live multilingual multi-turn conversation</td><td class="st ok">Tested</td></tr>
-        <tr><td>Self-hosted Docker Compose installation: TLS proxy, first administrator, your own RPC endpoints, upgrade and rollback</td><td class="st ok">Tested on Docker Desktop</td></tr>
-        <tr><td>Organisation roles and isolation of organisation data (workspaces, reports, members, settings, audit)</td><td class="st ok">Tested</td></tr>
-        <tr><td>Local backups with verified test restore</td><td class="st ok">Tested</td></tr>
-        <tr><td>Live Anthropic Claude API and OpenAI API calls</td><td class="st no">Not yet verified</td></tr>
-        <tr><td>vLLM on GPU servers</td><td class="st no">Not yet verified</td></tr>
-        <tr><td>Kubernetes deployment on a single-node test cluster</td><td class="st part">Validated locally</td></tr>
-        <tr><td>Encrypted S3-compatible backups with isolated restore verification, against local S3-compatible storage</td><td class="st part">Tested locally</td></tr>
-        <tr><td>Off-site recovery from an independent external S3 destination</td><td class="st no">Not yet verified</td></tr>
+        <tr><td>Hosted multi-tenant SaaS</td><td class="st no">Not offered</td></tr>
       </table>
     </div>
   </div>
@@ -585,12 +616,12 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
     <div class="tw">
       <table>
         <tr><th scope="col">Profile</th><th scope="col">Status</th><th scope="col">Target</th><th scope="col">Notes</th></tr>
-        <tr><td>Business server</td><td class="st ok">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Read-only preflight installer, first-administrator setup, upgrade and rollback by release tag</td></tr>
+        <tr><td>Business server</td><td class="st part">Tested on Docker Desktop</td><td>Linux with Docker Compose, 32 GB RAM recommended, 50 GB+ persistent storage, optional NVIDIA GPU</td><td>Read-only preflight installer, first-administrator setup, upgrade and rollback by release tag. Not yet installed on a customer server</td></tr>
         <tr><td>Local evaluation</td><td class="st ok">Tested</td><td>A 16 GB machine</td><td>Small local models, memory guard, automatic ingestion off by default</td></tr>
         <tr><td>Enterprise</td><td class="st part">Validated locally</td><td>Kubernetes, separate GPU inference servers</td><td>Kubernetes manifests with optional Airflow. Upgrade, rollback, persistence, network policies and backups validated on a local single-node cluster; production clusters, managed cloud, external TLS ingress and GPU inference nodes not yet validated</td></tr>
       </table>
     </div>
-    <p class="note">Backups are encrypted before they leave the server. Point them at your own S3-compatible bucket for off-site copies; every backup can be restore-verified in isolation, without modifying production data. Tested end-to-end against local S3-compatible storage; recovery from an independent remote destination has not yet been verified.</p>
+    <p class="note">Backups are encrypted before they leave the server, and the key stays with you. Point them at your own S3-compatible bucket for off-site copies; each backup can be restore-verified on a separate, isolated server without modifying production data. On our reference installation an encrypted backup to Cloudflare R2 and its isolated restore were verified end to end in October 2026; each customer installation runs its own backup and restore verification.</p>
     <p class="note">Starting points, not performance promises: capacity depends on the measured hardware.</p>
   </div>
 </section>
@@ -599,15 +630,15 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
   <div class="wrap">
     <div class="pilot">
       <div>
-        <h2 id="pilot-h">Run a private pilot on your own server</h2>
-        <p class="lede" style="margin-top:18px">A pilot runs in evaluation mode for one organisation. Bring a token or protocol you want to analyse on a supported network; collection, findings, reports and the AI analyst run against verified on-chain data.</p>
-        <div class="actions"><a class="btn" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a></div>
-        <p class="contact">Opens a short email template: organisation, contact, use case, preferred deployment and AI. Or write to <span class="email">admin@wearetheartmakers.com</span></p>
+        <h2 id="pilot-h">Let's scope a private pilot</h2>
+        <p class="lede" style="margin-top:18px">Tell us which tokens, protocols and networks matter to you. We start with a discovery conversation to agree on a fixed, measurable scope — data coverage, findings, reports and the AI analyst on verified on-chain data, for one organisation.</p>
+        <div class="actions"><a class="btn" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a></div>
+        <p class="contact">Opens a short email template: organisation, contact, what you want to analyse, preferred deployment and AI. Or write to <a class="email" href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a></p>
       </div>
       <ul class="list">
         <li><b>You provide</b><p>A Linux server with Docker (32 GB RAM recommended, 50 GB+ storage), optionally your own RPC endpoints and a local or cloud AI model.</p></li>
         <li><b>We never ask for</b><p>Confidential datasets, API credentials, private keys or passwords — not by email and not during the pilot.</p></li>
-        <li><b>Terms</b><p>Duration, scope and support are agreed individually before a pilot starts.</p></li>
+        <li><b>Before anything is deployed</b><p>Scope, duration, support, licensing and data-source terms are agreed in writing. A first conversation is not a commitment on either side.</p></li>
       </ul>
     </div>
   </div>
@@ -622,8 +653,10 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
       <li>The examples on this page cover historical, ingested windows. Nothing here is live, and the page connects to no API.</li>
       <li>AI answer quality depends on the model. Validators reject ungrounded or forbidden statements but do not correct grammar.</li>
       <li>Dune and cloud AI integrations are optional and off by default.</li>
-      <li>Off-site backups need an external S3-compatible destination configured per installation; until one is registered and verified, they are reported as not configured.</li>
-      <li>DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
+      <li>Off-site backups need an external S3-compatible destination configured per installation; until one is registered and verified, they are reported as not configured. Recovery was verified on our reference installation, not on every customer environment.</li>
+      <li>WATAM DeFi Intelligence is installed per customer on their own infrastructure. A hosted, multi-tenant SaaS service is not offered.</li>
+      <li>Examples use public blockchain data and third-party price data. Protocol, token and network names describe the data analysed; they do not imply any affiliation or endorsement.</li>
+      <li>WATAM DeFi Intelligence is analytics and research software. It is not investment advice, makes no promise of trading or investment outcomes, and is not a regulatory certification.</li>
     </ul>
   </div>
 </section>
@@ -632,13 +665,13 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="brand" href="#top" aria-label="DeFi Intelligence, back to top"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg>DeFi Intelligence</a>
-      <p style="margin-top:16px">Self-hosted analytics software by WATAM. Independent: not affiliated with or endorsed by any protocol it analyses. The application source is private; this repository contains only the public overview.</p>
+      <a class="brand" href="#top" aria-label="WATAM DeFi Intelligence, back to top"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="8" fill="#111A2E" stroke="#2A3756"/><path d="M8 21.5l5-6 4 3.5 7-9" fill="none" stroke="#7EA6FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="10" r="2.6" fill="#E2B65E"/></svg><span>WATAM <span class="brand-sub">DeFi Intelligence</span></span></a>
+      <p style="margin-top:16px">Private on-chain analytics and AI intelligence software by WATAM — We Are The Art Makers. Independent: not affiliated with or endorsed by any protocol, token issuer, network or data provider it analyses; their names are trademarks of their respective owners. Example data: public blockchain data via JSON-RPC, prices and protocol volumes from DefiLlama. The application source is private; this repository contains only the public overview.</p>
     </div>
     <div>
       <h4>Contact</h4>
-      <p>Pilot and evaluation requests:<br><span class="email">admin@wearetheartmakers.com</span></p>
-      <p><a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=DeFi%20Intelligence%20%E2%80%94%20Private%20Pilot%20Request&amp;body=Company%20%2F%20Organization%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AIntended%20use%20case%3A%0APreferred%20deployment%3A%20Self-hosted%20%2F%20Private%20Server%20%2F%20Enterprise%0APreferred%20AI%3A%20Local%20Models%20%2F%20Claude%20API%20%2F%20OpenAI%20API%20%2F%20Customer-Hosted%0AAdditional%20requirements%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Request a Private Pilot</a></p>
+      <p>Pilot scoping and evaluation:<br><a class="email" href="mailto:admin@wearetheartmakers.com">admin@wearetheartmakers.com</a></p>
+      <p><a class="btn btn-sm" href="mailto:admin@wearetheartmakers.com?subject=WATAM%20DeFi%20Intelligence%20%E2%80%94%20Pilot%20scoping%20conversation&amp;body=Organisation%3A%0AContact%20person%3A%0ABusiness%20email%3A%0AWhat%20you%20would%20like%20to%20analyse%20%28networks%2C%20tokens%2C%20protocols%29%3A%0APreferred%20deployment%20%28your%20own%20server%20%2F%20private%20cloud%29%3A%0APreferred%20AI%20%28local%20models%20%2F%20your%20own%20cloud%20AI%20account%20%2F%20none%29%3A%0ATimeline%3A%0A%0A%28Please%20do%20not%20include%20confidential%20datasets%2C%20API%20credentials%2C%20private%20keys%20or%20passwords.%29%0A">Discuss a pilot</a></p>
     </div>
     <div>
       <h4>On this page</h4>
@@ -648,7 +681,7 @@ footer{border-top:1px solid var(--line-soft);padding:56px 0 64px;color:var(--ink
         <li><a href="#research">Research examples</a></li>
         <li><a href="#status">What's verified</a></li>
         <li><a href="#deploy">Deployment</a></li>
-        <li><a href="#pilot">Private pilot</a></li>
+        <li><a href="#pilot">Scope a pilot</a></li>
       </ul>
     </div>
   </div>
